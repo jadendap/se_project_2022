@@ -1,0 +1,53 @@
+.navbar-style
+{
+    background: #114357;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F29492, #114357);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F29492, #114357); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+img {
+    width: 300px;
+    height: 420px;
+    object-fit: fill;
+    margin-top: 130px;
+  }
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 25px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .search_bar input[type="text"] {
+    position:absolute;
+    left:70%;
+    top:2%;
+    width:25%;
+    background-color:white;
+    color:grey;
+}
+@media screen and (max-width: 1050px) {
+    .search_bar input[type="text"] {
+        position:absolute;
+        left:63%;
+        top:2%;
+        width:25%;
+        background-color:white;
+        color:grey;
+    }
+}
+@media screen and (max-width: 650px) {
+    .search_bar input[type="text"] {
+        position:absolute;
+        left:50%;
+        top:2%;
+        width:25%;
+        background-color:white;
+        color:grey;
+    }
+}
