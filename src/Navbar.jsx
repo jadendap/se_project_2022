@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import { useNavigate } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 export class NavBar extends Component{
-
     render(){
         return(
+          
             <React.Fragment>
+              
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Website Name</a>
+    <a class="navbar-brand" href="#home">Website Name</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,6 +26,7 @@ export class NavBar extends Component{
             <li><a class="dropdown-item" href="#cooking">Cooking</a></li>
             <li><hr class="dropdown-divider"></hr></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
+           
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -37,6 +41,7 @@ export class NavBar extends Component{
             <li><hr class="dropdown-divider"></hr></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
+          
         </li>
       </ul>
     </div>

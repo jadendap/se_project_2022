@@ -14,9 +14,24 @@ img {
   .column {
     float: left;
     width: 33.33%;
-    padding: 25px;
   }
-  
+  .column img:hover{
+    background: rgb(76, 175, 80);
+    opacity: .6;
+  }
+  .overlay
+  {
+    position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+  }
   /* Clearfix (clear floats) */
   .row::after {
     content: "";
@@ -51,3 +66,8 @@ img {
         color:grey;
     }
 }
+.btn-info {
+  background-color: #f44336;
+  margin-top : 25px;
+  float: right;
+} 
