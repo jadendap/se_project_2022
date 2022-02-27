@@ -40,19 +40,14 @@
     
   </body>
   <!---include navbar components to demonstrate what you need----->
-              <a  href="./Pages/login.html">
-                <button class="btn info">Login</button>
-              </a>
-              <a  href="./Pages/register-page.html">
-                <button class="btn register">Register Here</button>
-              </a>
+        
                 <div class="row">
                   <div class="column">
                     <div class="header">
                       <div class="search_bar">
-                          <input type="text" placeholder="What are you looking for" name="search" value="search">
+                          <input type="search" id="mySearch" value="Food" placeholder="What are you looking for" name="search" value="search">
                       </div>
-                      
+                      <button class="search-btn" onclick="myFunction()">Search</button>
                   </div>
                     <a  href="./Pages/clothing-page.html">
                     <img src="./clothing.jpg" alt="Snow" style="width:100%">
@@ -68,9 +63,14 @@
                   <div class="column">
                     <a href="./Pages/furniture-page.html">
                     <img src="./furniture.jpg" alt="" style="width:100%">
-                    <span>Furniture</span>
+                    <span>Homegoods</span>
                   </a>
                   </div>
                 </div>
+                <script>
+                  function myFunction() {
+                    document.getElementById("mySearch").value = "clothing";
+                  }
+                  </script>
                 
 </html>
