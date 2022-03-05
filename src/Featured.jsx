@@ -5,6 +5,7 @@ import FeaturedItems from "./FeaturedItems";
 const Container = styled.div`
   display: flex;
   padding-bottom: 0px;
+  padding-left: 60px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items:center

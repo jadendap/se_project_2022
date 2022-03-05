@@ -21,10 +21,11 @@ const CategoryItem = ({item}) => {
   return (
     <Container>
         <Circle/>
-        <Image src={item.img} />
+        <h3>{item.description}</h3>
+        <Image src={item.img}  />
         <Info>
-            {item.title} 
-
+        {item.title}
+        
         </Info>
     </Container>
   )

@@ -1,9 +1,61 @@
 .navbar-style
 {
-    background: #114357;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F29492, #114357);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #F29492, #114357); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(19,24,15,1) 52%, rgba(0,0,0,1) 89%); 
 
+  
+
+}
+.shopping-cart-icon
+{
+  background-color: silver;
+  height: 40px;
+  width: 40px;
+  margin-right: 1em;
+  position:relative; 
+  left:1820px; 
+  top:-100px; 
+}
+.myButton{
+  background:url(./shopping-cart.png) no-repeat;
+  cursor:pointer;
+  border:none;
+  width:50px;
+  height:50px;
+}
+
+.myButton:active  /* use Dot here */
+{   
+  background:url(./shopping-cart.png) no-repeat;
+}
+.btn{
+  color: rgb(124, 9, 9);
+  height: 40px;
+  width: 40px;
+  margin-right: 1em;
+  position:relative; 
+  left:1820px; 
+  top:-100px; 
+
+}
+.website-name
+{
+  color: azure;
+  text-decoration: none;
+}
+.website-name:hover{
+  color: lightgreen;
+  text-decoration: none;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(219, 236, 228, 0.918);
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: rgb(100, 245, 100);;
+}
+.dropdown-menu
+{
+  background-color: #98c285;
 }
 img {
     width: 400px;
@@ -12,23 +64,21 @@ img {
     margin-top: 130px;
   }
   .btn-register{
-    top:11%;
-    left: 59% !important;
+    top:20%;
+    left: 89% !important;
     width:120px;
     height:40px;
     position: absolute;
-    z-index: 2;
-    background-color: #e6908f!important; 
+    background-color: #98c285!important; 
     
   }
   .btn-login{
-    top:11%;
-    left: 50% !important;
+    top:20%;
+    left: 80% !important;
     width:120px;
     height:40px;
     position: absolute;
-    z-index: 2;
-    background-color: #e6908f!important; 
+    background-color: #98c285!important; 
     
   }
   .btn-register:hover
@@ -82,7 +132,7 @@ img {
   background-color:white;
   color:grey;
 }
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1200px) {
     .search_bar input[type="text"] {
         position:absolute;
         left:63%;
@@ -91,116 +141,28 @@ img {
         background-color:white;
         color:grey;
     }
-}
-@media screen and (max-width: 650px) {
-    .search_bar input[type="text"] {
-        position:absolute;
-        left:60%;
-        top:2%;
-        width:25%;
-        background-color:white;
-        color:grey;
-    }
-    .login-btn {
-      background-color: #f44336;
-      z-index: 1;
-      float: right;
-      position:relative;
-    } 
-    img {
-      width: 10px;
-      height: 90px;
-      object-fit: scale-down;
-      margin-top: 90px;
-    }
-    .column {
-      float: left;
-      width: 40.33%;
-      height: 20%;
-      padding-left: 50px;
-    }
-    .clothes
-    {
-      left: 20px;
-      top: 55px;
-
-    }
     .btn-register{
-      top:11%;
-      left: 20% !important;
-      width:120px;
+      font-size: 12px;
+      top:45%;
+      left: 80% !important;
+      width:80px;
       height:40px;
       position: absolute;
       z-index: 2;
-      background-color: #e6908f!important; 
       
     }
     .btn-login{
-      top:11%;
-      left: 50% !important;
-      width:120px;
+      top:45%;
+      left: 89% !important;
+      width:75px;
       height:40px;
       position: absolute;
       z-index: 2;
-      background-color: #e6908f!important; 
       
     }
 }
-@media screen and (max-width: 812px) {
-  .search_bar input[type="text"] {
-      position:absolute;
-      left:60%;
-      top:2%;
-      width:25%;
-      background-color:white;
-      color:grey;
-  }
-  .login-btn {
-    background-color: #f44336;
-    z-index: 1;
-    float: right;
-    position:relative;
-  } 
-  img {
-    width: 10px;
-    height: 90px;
-    object-fit: scale-down;
-    margin-top: 90px;
-  }
-  .column {
-    float: left;
-    width: 40.33%;
-    height: 20%;
-    padding-left: 50px;
-  }
-  .clothes
-  {
-    left: 20px;
-    top: 55px;
-
-  }
-  .btn-register{
-    top:11%;
-    left: 25% !important;
-    width:120px;
-    height:40px;
-    position: absolute;
-    z-index: 2;
-    background-color: #e6908f!important; 
-    
-  }
-  .btn-login{
-    top:11%;
-    left: 44% !important;
-    width:120px;
-    height:40px;
-    position: absolute;
-    z-index: 2;
-    background-color: #e6908f!important; 
-    
-  }
-}
-@media screen and (max-width: 920px) {
+/*media screen max-width 920px*/
+@media screen and (max-width: 922px) {
   .search_bar input[type="text"] {
       position:absolute;
       left:60%;
@@ -234,26 +196,83 @@ img {
 
   }
   .btn-register{
-    top:11%;
-    left: 25% !important;
+    font-size: 14px;
+    top:45%;
+    left: 55% !important;
     width:120px;
     height:40px;
     position: absolute;
     z-index: 2;
-    background-color: #e6908f!important; 
     
   }
   .btn-login{
-    top:11%;
-    left: 44% !important;
+    top:45%;
+    left: 74% !important;
     width:120px;
     height:40px;
     position: absolute;
     z-index: 2;
-    background-color: #e6908f!important; 
     
   }
 }
+/*media screen max-width 812px  optomized✅ */
+@media screen and (max-width: 768px) {
+  html{
+    width: 812;
+    overflow: auto;
+  }
+  .search_bar input[type="text"] {
+      position:absolute;
+      left:60%;
+      top:2%;
+      width:25%;
+      background-color:white;
+      color:grey;
+  }
+  .login-btn {
+    background-color: #f44336;
+    z-index: 1;
+    float: right;
+    position:relative;
+  } 
+  img {
+    width: 10px;
+    height: 90px;
+    object-fit: scale-down;
+    margin-top: 90px;
+  }
+  .column {
+    float: left;
+    width: 40.33%;
+    height: 20%;
+    padding-left: 50px;
+  }
+  .clothes
+  {
+    left: 20px;
+    top: 55px;
+
+  }
+  .btn-register{
+    top:46%;
+    left: 55% !important;
+    width:120px;
+    height:40px;
+    position: absolute;
+    z-index: 2;
+    
+  }
+  .btn-login{
+    top:46%;
+    left: 74% !important;
+    width:120px;
+    height:40px;
+    position: absolute;
+    z-index: 2; 
+    
+  }
+}
+/*max width 628px
 @media screen and (max-width: 628px) {
   .search_bar input[type="text"] {
       position:absolute;
@@ -315,4 +334,4 @@ img {
   margin-left: 1200px;
   z-index: 1;
   position:relative;
-} 
+} */
