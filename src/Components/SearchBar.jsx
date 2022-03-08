@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { IoSearch, IoClose } from "react-icons/io5";
 import "../Styles/SearchBar.css"
 const SearchBarContainer = styled.div`
-   margin-left: 1000px;
-   margin-top: -75px;
+   margin-left: 100px;
+   margin-top: 0px;
    display: flex;
    flex-direction : column ;
-   width: 30em;
+   width: 100em;
    height: 3.8em;
    background-color: white;
    border-radius: 6px;
