@@ -268,7 +268,7 @@ img {
     
   }
 }
-/*max width 628px
+max width 628px
 @media screen and (max-width: 628px) {
   .search_bar input[type="text"] {
       position:absolute;
@@ -330,4 +330,4 @@ img {
   margin-left: 1200px;
   z-index: 1;
   position:relative;
-} */
+}

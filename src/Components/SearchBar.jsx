@@ -13,7 +13,7 @@ const SearchBarContainer = styled.div`
    border-radius: 6px;
    box-shadow: 0px 2px 12px 3px rgba(0,0,0,0.14);
    overflow: hidden;
-   z-index:1000 ;
+   z-index:-10 ;
    
 @media screen and (max-width: 768px)
 {
@@ -32,7 +32,7 @@ const SearchInputContainer = styled.div`
     align-items: center;
     position: relative;
     padding: 2px 15px;
-    z-index:1000 ;
+    z-index:-10 ;
 
 `;
 const SearchInput = styled.input`
@@ -76,7 +76,7 @@ const CloseIcon = styled.span`
     vertical-align: middle;
     transition: all 200ms ease-in-out;
     cursor:pointer;
-    z-index:1000 ;
+    z-index:-10 ;
     color: white;
     
     &:hover{
