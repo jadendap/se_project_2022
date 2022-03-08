@@ -5,7 +5,6 @@ import Featured from "../Components/Featured"
 import Slider from "../Components/Slider"
 
 import TextField from "@mui/material/TextField";
-import List from "../List"
 import SearchBar from "../Components/SearchBar.jsx"
 import {Paper} from "@material-ui/core"
 import { ThemeProvide, createTheme } from "@material-ui/core/styles";

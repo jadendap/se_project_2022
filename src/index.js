@@ -9,7 +9,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //import { NavBar } from "./Navbar";
 import "./Styles/index.css"
 import App from "./Pages/App"
-import About from "./Pages/About"
 import Desktop from "./Pages/desktop"
 import NavBar from "./Components/Navbar";
 import Search from "./Components/SearchBar";
@@ -25,8 +24,6 @@ ReactDOM.render(
       <Routes>
       <Route path="/" element={<App />}>
       </Route>
-        <Route path="/About" element={<About />}>
-        </Route>
         <Route path="/Desktop" element={<Desktop />}>
         </Route>
       </Routes>

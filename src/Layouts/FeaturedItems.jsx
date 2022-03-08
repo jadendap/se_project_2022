@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Desktop from "../Pages/desktop"
 import '../Styles/App.css';
 import React from "react";
 import ReactDOM from "react-dom";
@@ -39,7 +40,7 @@ const FeaturedItems = ({item}) => {
     
         <Image src={item.img} />
         <Info>
-        <Title href="https://github.com/styled-components/styled-components">{item.title} </Title>
+        <Title href="/Desktop">{item.title} </Title>
         </Info>
         
         

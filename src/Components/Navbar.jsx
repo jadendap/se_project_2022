@@ -87,11 +87,7 @@ export class NavBar extends Component{
             <li><a class="dropdown-item" href="#decor">Playstation</a></li>
             <li><a class="dropdown-item" href="#appliances">Nintendo Switch</a></li>
             <li><a class="dropdown-item" href="#cooking">PC</a></li>
-            <li className="nav-item">
-                <Link className="dropdown-item" to="/about">
-                  About
-                </Link>
-              </li>
+            
            
           </ul>
         </li>

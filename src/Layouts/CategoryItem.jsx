@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { withRouter } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import Desktop from "../Pages/desktop"
 const Circle= styled.div``
 
 
@@ -30,7 +30,7 @@ const CategoryItem = ({item}) => {
         <Circle/>
         
         
-        <Info title={`view ${item.title}` }>
+        <Info title={`view ${item.title}` } href="/Desktop">
         <Image src={item.img}/>
         <h3>{item.description}</h3>
         </Info>
