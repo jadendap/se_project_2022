@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { featured } from "./data";
-import FeaturedItems from "./FeaturedItems";
+import { featured } from "../data";
+import FeaturedItems from "../Layouts/FeaturedItems";
 
 const Container = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const Container = styled.div`
   padding-left: 60px;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items:center
+  align-items:center;
 `;
 
 

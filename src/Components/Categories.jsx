@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { categories } from "./data";
-import CategoryItem from "./CategoryItem";
+import { categories } from "../data";
+import CategoryItem from "../Layouts/CategoryItem";
 
 const Container = styled.div`
   display: flex;
-  padding-right 20px;
+  padding-right: 20px;
   flex-wrap: wrap;
 `;
 

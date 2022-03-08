@@ -6,27 +6,35 @@ const Circle= styled.div``
 
 
 const Container = styled.div`
-    flex:1;
-    margin: 5px;
-    min-width: 280px;
-    height: 350px;
+padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    
 `;
 const Image= styled.img`
-    height: 75%;
-    min-width: 280px;
+ width: 40vh;
+  height: 40vh;
+  min-height: 50vh;
+  object-fit: cover;
+  border: 15px solid #f7f2ee;
 `;
-const Info = styled.div``
+const Info = styled.div`
+width: 100%;
+height: 100%;
+text-align:center ;
+`
 
 const CategoryItem = ({item}) => {
   return (
     <Container>
         <Circle/>
-        <h3>{item.description}</h3>
-        <Image src={item.img}  />
-        <Info>
-        {item.title}
         
+        
+        <Info title={`view ${item.title}` }>
+        <Image src={item.img}/>
+        <h3>{item.description}</h3>
         </Info>
+        
     </Container>
   )
 }

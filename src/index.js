@@ -7,21 +7,27 @@ import "bootstrap/dist/css/bootstrap.css"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 //import { NavBar } from "./Navbar";
-import "./index.css"
-import App from "./App"
-import About from "./About"
-import Home from "./Featured"
-import Navigation from "./Navigation"
-import NavBar from "./Navbar";
-import Categories from "./Categories";
-import Featured from "./Featured";
+import "./Styles/index.css"
+import App from "./Pages/App"
+import About from "./Pages/About"
+import Desktop from "./Pages/desktop"
+import NavBar from "./Components/Navbar";
+import Search from "./Components/SearchBar";
+import Categories from "./Components/Categories"
+import Featured from "./Components/Featured"
+import SearchBar from "./Components/SearchBar"
 ReactDOM.render(
     <Router>
       <NavBar/>
+      <SearchBar/>
+      
+      
       <Routes>
-      <Route path="/" element={<Home />}>
+      <Route path="/" element={<App />}>
       </Route>
         <Route path="/About" element={<About />}>
+        </Route>
+        <Route path="/Desktop" element={<Desktop />}>
         </Route>
       </Routes>
     </Router>,

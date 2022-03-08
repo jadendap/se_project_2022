@@ -1,32 +1,31 @@
-import { ShoppingCartOutlined} from "@mui/icons-material";
+import { FaShoppingCart} from "react-icons/fa";
 import React, { Component } from "react";
 import { useNavigate } from 'react-router-dom';
 import {Link, NavLink} from 'react-router-dom';
 import { useState } from "react";
 import styled from "styled-components";
-const Icon = styled.div`
-position:absolute ;
-    right:0;
-`
 export class NavBar extends Component{
     render(){
       
         return(
           
           
-            <React.Fragment>
-              
+            <React.Fragment>     
+                   
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
 <a  href="./Pages/login.html">
-                <button class="btn-login">Login</button>
+                <button class="btn-login"title="login here">Login</button>
               </a>
               <a  href="./Pages/register-page.html">
-                <button class="btn-register">Register Here</button>
+                <button class="btn-register"title="register here">Register Here</button>
               </a>
-              <Icon><ShoppingCartOutlined/></Icon>
+              
+              
+              <button className="fa-fa-shopping-cart"title="go to cart"><FaShoppingCart/></button>
+              
   <div class="container-fluid">
     <li class="navbar-brand">
-    <Link className="website-name" to="/">
+    <Link className="website-name" title="return to homepage" to="/">
       <h1 font size= "25" align="left">
     TechTerra
     </h1>
@@ -45,11 +44,12 @@ export class NavBar extends Component{
             <li><a class="dropdown-item" href={process.env.PUBLIC_URL+"/Pages/monitors.html"}>Monitors</a></li>
             
             <li><a class="dropdown-item" href={process.env.PUBLIC_URL+"/Pages/accessories.html"}>Accessories</a></li>
-      
-            <li><a class="dropdown-item" href={process.env.PUBLIC_URL+"/Pages/desktop.html"}>Desktop Components</a></li>
-            <Link className="dropdown-item" to="/desktop">
-                  Desktop
+            <li><a class="dropdown-item" href={process.env.PUBLIC_URL+"/Pages/storage.html"}>Storage & Drives</a></li>
+            <li className="nav-item">
+                <Link className="dropdown-item" to="/desktop">
+                  Desktop Components
                 </Link>
+              </li>
             <li><hr class="dropdown-divider"></hr></li>
           </ul>
           
