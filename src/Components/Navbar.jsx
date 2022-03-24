@@ -13,12 +13,16 @@ export class NavBar extends Component{
             <React.Fragment>     
                    
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
-<a  href="./Pages/login.html">
+              <li>
+                <Link to="/Login">
                 <button class="btn-login"title="login here">Login</button>
-              </a>
-              <a  href="./Pages/register-page.html">
+                </Link>
+              </li>
+              <li>
+              <Link to="/Register">
                 <button class="btn-register"title="register here">Register Here</button>
-              </a>
+                </Link>
+              </li>
               
               
               <button className="fa-fa-shopping-cart"title="go to cart"><FaShoppingCart/></button>
