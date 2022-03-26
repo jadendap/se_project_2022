@@ -67,7 +67,14 @@ const Form = ({onSubmit}) => {
             username: usernameRef.current.value,
             password: passwordRef.current.value
         };
-        onSubmit(data);
+        fetch('http://localhost:9000/customers', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(() => {
+      console.log('new blog added');
+    })
+       //onSubmit(data);
     };
     return (
       <form style={formStyle} onSubmit={handleSubmit} >

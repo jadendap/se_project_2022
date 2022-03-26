@@ -12,6 +12,8 @@ import App from "./Pages/App"
 import Desktop from "./Pages/desktop"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
+
+import Demo from "./Pages/Demo"
 //import Login from "./Pages/login"
 import NavBar from "./Components/Navbar";
 import Search from "./Components/SearchBar";
@@ -23,6 +25,7 @@ import SearchBar from "./Components/SearchBar"
 ReactDOM.render(
     <Router>
       <NavBar/>
+      
       <Routes>
       <Route path="/" element={<App />}>
       </Route>

@@ -3,7 +3,6 @@ import NavBar from "../Components/Navbar";
 import Categories from "../Components/Categories"
 import Featured from "../Components/Featured"
 import Slider from "../Components/Slider"
-
 import TextField from "@mui/material/TextField";
 import SearchBar from "../Components/SearchBar.jsx"
 import {Paper} from "@material-ui/core"
@@ -17,6 +16,7 @@ export default class App extends Component
         
         return(
             <React.Fragment>
+                
                 <Featured/>
             <Categories/>
             
