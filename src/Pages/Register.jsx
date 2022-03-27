@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+  
 const appStyle = {
     height: '700px',
     display: 'flex',
@@ -13,7 +13,7 @@ const formStyle = {
     borderRadius: '5px',
     background: 'black',
     width: '520px',
-    height: '400px',
+    height: '500px',
     display: 'block',
 
 };
@@ -59,6 +59,7 @@ const Field = React.forwardRef(({label, type}, ref) => {
 });
 
 const Form = ({onSubmit}) => {
+  
     const usernameRef = React.useRef();
     const passwordRef = React.useRef();
     const handleSubmit = e => {
@@ -67,19 +68,21 @@ const Form = ({onSubmit}) => {
             username: usernameRef.current.value,
             password: passwordRef.current.value
         };
-        fetch('http://localhost:9000/customers', {
+        /*fetch('http://localhost:9000/customers', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     }).then(() => {
       console.log('new blog added');
-    })
+    })*/
        //onSubmit(data);
     };
     return (
       <form style={formStyle} onSubmit={handleSubmit} >
-        <Field ref={usernameRef} label="Email Address:" type="text" />
-        <Field ref={passwordRef} label="Username:" type="text" />
+        <Field  className = "firstname" label="First Name:" type="text" />
+        <Field  label="Last Name:" type="text" />
+        <Field  label="Address:" type="text" />
+        <Field ref={usernameRef} label="Username:" type="text" />
         <Field ref={passwordRef} label="Pasword:" type="password" />
         <div>
           <button style={submitStyle} type="submit">Submit</button>

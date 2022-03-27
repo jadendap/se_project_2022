@@ -5,7 +5,7 @@ import "popper.js/dist/umd/popper";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.css"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import PersonForm from "./Components/PersonForm";
 //import { NavBar } from "./Navbar";
 import "./Styles/index.css"
 import App from "./Pages/App"
@@ -25,7 +25,6 @@ import SearchBar from "./Components/SearchBar"
 ReactDOM.render(
     <Router>
       <NavBar/>
-      
       <Routes>
       <Route path="/" element={<App />}>
       </Route>

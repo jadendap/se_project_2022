@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 
 const appStyle = {
     height: '700px',
@@ -56,6 +57,8 @@ const Field = React.forwardRef(({label, type}, ref) => {
 });
 
 const Form = ({onSubmit}) => {
+  
+  
     const usernameRef = React.useRef();
     const passwordRef = React.useRef();
     const handleSubmit = e => {
@@ -71,7 +74,7 @@ const Form = ({onSubmit}) => {
         <Field ref={usernameRef} label="Username:" type="text" />
         <Field ref={passwordRef} label="Password:" type="password" />
         <div>
-          <button style={submitStyle} type="submit">Submit</button>
+          <button  style={submitStyle} type="submit">Submit</button>
         </div>
       </form>
     );
@@ -80,10 +83,53 @@ const Form = ({onSubmit}) => {
 // Usage example:
 
 const Login = () => {
-    const handleSubmit = data => {
-        const json = JSON.stringify(data, null, 4);
+ 
+  const navigate = useNavigate();
+
+  const redirect = () => {
+   navigate('/');
+  }
+        //console.log(data)
+    const handleSubmit = async (data) => {
+      const url = "http://localhost:9000/customers";
+      const response = fetch(url)
+      const customer_data = await (await response).json();
+        const json = data;
         console.clear();
-        console.log(json);
+        //array for usernames pulled from database
+        let username_array = [];
+
+        //array for passwords pulled from the database
+        let password_array = [];
+
+        //loops through the customer data
+        for(let i = 0; i < customer_data.length; i++)
+        {
+          username_array.push(customer_data[i].username)
+          password_array.push(customer_data[i].password)
+
+        }
+        //loops through the array of usernames
+        for(let i = 0; i < username_array.length; i++){
+        if(username_array[i] == json.username && password_array[i] != json.password)
+        {
+          alert("user found but password incorrect");
+        }
+        //if username and password match log the user in
+          if(username_array[i] == json.username && password_array[i] == json.password)
+        {
+          //function call to redirect to the home page
+          redirect();
+        }
+        //if 
+        else
+        {
+          alert("username and password incorrect, please try again");
+          
+        }
+      
+      }
+        //console.log(json);
     };
     return (
       <div style={appStyle}>
@@ -92,4 +138,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Login; 

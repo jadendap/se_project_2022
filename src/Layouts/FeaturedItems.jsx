@@ -11,7 +11,6 @@ const Image = styled.img`
   height: 50vh;
   object-fit: cover;
   border: 15px solid #f7f2ee;
-
 `;
 const Title= styled.a`
 top:0px;
