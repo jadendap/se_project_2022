@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-  
+import { useNavigate } from 'react-router-dom';
 const appStyle = {
     height: '700px',
     display: 'flex',
@@ -59,28 +59,34 @@ const Field = React.forwardRef(({label, type}, ref) => {
 });
 
 const Form = ({onSubmit}) => {
+  const [inputValue, setInputValue] = useState("");
   
-    const usernameRef = React.useRef();
-    const passwordRef = React.useRef();
+    const usernameRef = React.useRef(null);
+    const passwordRef = React.useRef(null);
+    const firstnameRef = React.useRef(null);
+    const lastnameRef = React.useRef(null);
+    //usernameRef = " ";
+    //passwordRef = " ";
     const handleSubmit = e => {
+      
         e.preventDefault();
         const data = {
             username: usernameRef.current.value,
-            password: passwordRef.current.value
+            password: passwordRef.current.value,
+            firstname: firstnameRef.current.value,
+            lastname: lastnameRef.current.value
         };
-        /*fetch('http://localhost:9000/customers', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    }).then(() => {
-      console.log('new blog added');
-    })*/
-       //onSubmit(data);
+        //do not remove
+       onSubmit(data);
     };
+    
     return (
+      
       <form style={formStyle} onSubmit={handleSubmit} >
-        <Field  className = "firstname" label="First Name:" type="text" />
-        <Field  label="Last Name:" type="text" />
+        
+        <Field  ref={firstnameRef} className = "firstname" label="First Name:" type="text"  
+        />
+        <Field  ref={lastnameRef} label="Last Name:" type="text" />
         <Field  label="Address:" type="text" />
         <Field ref={usernameRef} label="Username:" type="text" />
         <Field ref={passwordRef} label="Pasword:" type="password" />
@@ -94,10 +100,57 @@ const Form = ({onSubmit}) => {
 // Usage example:
 
 const Register = () => {
-    const handleSubmit = data => {
-        const json = JSON.stringify(data, null, 4);
-        console.clear();
-        console.log(json);
+  const navigate = useNavigate();
+
+  const redirect = () => {
+   navigate('/');
+  }
+  
+    const handleSubmit = async (data) => {
+      const url = "http://localhost:9000/customers";
+      const response = fetch(url)
+      const customer_data = await (await response).json();
+        const json = data;
+        
+
+        let username_array = [];
+
+        for(let i = 0; i < customer_data.length; i++)
+        {
+          username_array.push(customer_data[i].username)
+          console.log(customer_data[i].username);
+
+        }
+        for(let i = 0; i < username_array.length; i++){
+          
+          
+          if(username_array[i] != json.username && json.firstname.length <= 0)
+          {
+            alert("please enter a first name");
+          }
+          else if(username_array[i] != json.username && json.lastname.length <= 0)
+          {
+            alert("please enter a last name");
+          }
+          else if(username_array[i] != json.username && json.username.length <= 0)
+          {
+            alert("please enter a username");
+          }
+          else if(username_array[i] == json.username)
+          {
+            alert("user found please login or try a different username");
+          }
+          else if(username_array[i] != json.username && json.password.length < 10)
+          {
+            alert("password too short, please try again");
+          }
+          else if(username_array[i] != json.username && json.password.length > 10)
+          {
+            redirect();
+          }
+        
+        
+        }
     };
     return (
       <div style={appStyle}>
