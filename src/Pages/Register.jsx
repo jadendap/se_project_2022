@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+
 const appStyle = {
     height: '700px',
     display: 'flex',
@@ -13,7 +14,7 @@ const formStyle = {
     borderRadius: '5px',
     background: 'black',
     width: '520px',
-    height: '500px',
+    height: '550px',
     display: 'block',
 
 };
@@ -61,21 +62,27 @@ const Field = React.forwardRef(({label, type}, ref) => {
 const Form = ({onSubmit}) => {
   const [inputValue, setInputValue] = useState("");
   
-    const usernameRef = React.useRef(null);
-    const passwordRef = React.useRef(null);
-    const firstnameRef = React.useRef(null);
-    const lastnameRef = React.useRef(null);
+  const usernameRef = React.useRef();
+  const passwordRef = React.useRef();
+  const addressRef = React.useRef();
+  const firstRef = React.useRef();
+  const lastRef = React.useRef();
+  const telRef = React.useRef();
     //usernameRef = " ";
     //passwordRef = " ";
     const handleSubmit = e => {
       
         e.preventDefault();
         const data = {
-            username: usernameRef.current.value,
-            password: passwordRef.current.value,
-            firstname: firstnameRef.current.value,
-            lastname: lastnameRef.current.value
+          username: usernameRef.current.value,
+          password: passwordRef.current.value,
+          address: addressRef.current.value,
+          firstName: firstRef.current.value,
+          lastName: lastRef.current.value,
+          telephone: telRef.current.value,
         };
+        
+
         //do not remove
        onSubmit(data);
     };
@@ -84,12 +91,12 @@ const Form = ({onSubmit}) => {
       
       <form style={formStyle} onSubmit={handleSubmit} >
         
-        <Field  ref={firstnameRef} className = "firstname" label="First Name:" type="text"  
-        />
-        <Field  ref={lastnameRef} label="Last Name:" type="text" />
-        <Field  label="Address:" type="text" />
         <Field ref={usernameRef} label="Username:" type="text" />
-        <Field ref={passwordRef} label="Pasword:" type="password" />
+      <Field ref={passwordRef} label="Pasword:" type="password" />
+      <Field ref={addressRef} label="Shipping Address:" type="text" />
+      <Field ref={firstRef} label="First Name:" type="text" />
+      <Field ref={lastRef} label="Last Name:" type="text" />
+      <Field ref={telRef} label="Phone Number:" type="text" />
         <div>
           <button style={submitStyle} type="submit">Submit</button>
         </div>
@@ -111,6 +118,7 @@ const Register = () => {
       const response = fetch(url)
       const customer_data = await (await response).json();
         const json = data;
+
         
 
         let username_array = [];
@@ -118,17 +126,16 @@ const Register = () => {
         for(let i = 0; i < customer_data.length; i++)
         {
           username_array.push(customer_data[i].username)
-          console.log(customer_data[i].username);
 
         }
         for(let i = 0; i < username_array.length; i++){
           
           
-          if(username_array[i] != json.username && json.firstname.length <= 0)
+          if(username_array[i] != json.username && json.firstName.length <= 0)
           {
             alert("please enter a first name");
           }
-          else if(username_array[i] != json.username && json.lastname.length <= 0)
+          else if(username_array[i] != json.username && json.lastName.length <= 0)
           {
             alert("please enter a last name");
           }
@@ -146,11 +153,20 @@ const Register = () => {
           }
           else if(username_array[i] != json.username && json.password.length > 10)
           {
+            
+            
             redirect();
           }
         
         
         }
+        fetch("http://localhost:9000/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+            }).then(() => {
+            console.log("new blog added");
+            });
     };
     return (
       <div style={appStyle}>
