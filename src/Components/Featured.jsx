@@ -1,24 +1,15 @@
 import styled from "styled-components";
 import { featured } from "../data";
 import FeaturedItems from "../Layouts/FeaturedItems";
-
-const Container = styled.div`
-  display: flex;
-  padding-bottom: 0px;
-  padding-left: 60px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items:center;
-`;
-
+import './ComponentCSS/Featured.css';
 
 const Featured = () => {
   return (
-    <Container>
-      {featured.map((item) => (
+    <div className="Featured-container">
+            {featured.map((item) => (
         <FeaturedItems item={item} key={item.id} />
       ))}
-    </Container>
+    </div>
   );
 };
 

@@ -268,7 +268,7 @@ img {
     
   }
 }
-max width 628px
+
 @media screen and (max-width: 628px) {
   .search_bar input[type="text"] {
       position:absolute;
