@@ -1,5 +1,3 @@
-
-
 div.info
 {
     position: absolute;
@@ -9,7 +7,7 @@ div.info
 }
 /*web page background*/
 body{
-background: white;
+background: #EEFDF5;
 }
 .shop-now-btn
 {
@@ -17,13 +15,4 @@ background: white;
     color: white;
     border:none;
     padding: 10px;
-}
-.featured-item-containers
-{    
-}
-.featured-product-image
-{
-  border: 25px solid #f7f2ee;
-  width: 100%;
-  height: 100%;
 }
