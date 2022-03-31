@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { IoSearch, IoClose } from "react-icons/io5";
 import "../Styles/SearchBar.css"
+
+
 const SearchBarContainer = styled.div`
    margin-left: 100px;
    margin-top: 0px;

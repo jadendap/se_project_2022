@@ -18,7 +18,7 @@
 }
 
 /* Style the navigation bar links */
-.navbar a {
+.navbar a  {
   float: left;
   display: block;
   color: white;
