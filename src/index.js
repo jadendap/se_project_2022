@@ -1,41 +1,45 @@
 import React from "react";
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom";
 import "jquery";
 import "popper.js/dist/umd/popper";
 import "bootstrap/dist/js/bootstrap";
-import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-//import "./Styles/index.css"
-import App from "./Pages/App"
-import Desktop from "./Pages/desktop"
-import Login from "./Pages/Login"
-import Register from "./Pages/Register"
-
-import Demo from "./Pages/Demo"
-//import Login from "./Pages/login"
+//import { NavBar } from "./Navbar";
+import "./Styles/index.css";
+import App from "./Pages/App";
+import Desktop from "./Pages/desktop";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 import NavBar from "./Components/Navbar";
-import Navbar from "./Components/Navbar";
 import Footer from './Components/Footer'
-//import Customer from "./Pages/login";
+/*********************** stuff michael added************************/
+import AdminLogin from "./Pages/AdminLogin";
+import AdminPage from "./Pages/AdminPage";
+import AdminAddItemPage from "./Pages/AdminAddItemPage";
+import AdminDiscountsPage from "./Pages/AdminDiscountsPage";
+
+/************************************************************************ */
 
 ReactDOM.render(
-    <Router>
-      <Navbar/>
-      <Routes>
-      <Route exact path="/" element={<App />}>
-      </Route>
-        <Route path="/Desktop" element={<Desktop />}>
-        </Route>
-        <Route path="/Login" element={<Login />}>
-        </Route>
-        <Route path="/Register" element={<Register />}>
-        </Route>
-        
-      </Routes>
+  <Router>
+    <NavBar />
 
-      <Footer/>
-    </Router>,
-  
-    document.getElementById("root")
-  );
+    <Routes>
+      <Route path="/" element={<App />}></Route>
+      <Route path="/Desktop" element={<Desktop />}></Route>
+      <Route path="/Login" element={<Login />}></Route>
+      <Route path="/Register" element={<Register />}></Route>
+      <Route path="/AdminLogin" element={<AdminLogin />}></Route>
+      <Route path="/AdminPage" element={<AdminPage />}></Route>
+      <Route path="/AdminAddItemPage" element={<AdminAddItemPage />}></Route>
+      <Route
+        path="/AdminDiscountsPage"
+        element={<AdminDiscountsPage />}
+      ></Route>
+    </Routes>
+  </Router>,
+
+  document.getElementById("root")
+);
