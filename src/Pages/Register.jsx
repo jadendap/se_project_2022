@@ -76,9 +76,9 @@ const Form = ({onSubmit}) => {
         const data = {
           username: usernameRef.current.value,
           password: passwordRef.current.value,
-          address: addressRef.current.value,
           firstName: firstRef.current.value,
           lastName: lastRef.current.value,
+          address: addressRef.current.value,
           telephone: telRef.current.value,
         };
         
@@ -109,9 +109,12 @@ const Form = ({onSubmit}) => {
 const Register = () => {
   const navigate = useNavigate();
 
-  const redirect = () => {
+  const home_redirect = () => {
    navigate('/');
   }
+  const login_redirect = () => {
+    navigate('/Login');
+   }
   
     const handleSubmit = async (data) => {
       const url = "http://localhost:9000/customers";
@@ -122,6 +125,7 @@ const Register = () => {
         
 
         let username_array = [];
+        let message = "";
 
         for(let i = 0; i < customer_data.length; i++)
         {
@@ -130,43 +134,68 @@ const Register = () => {
         }
         for(let i = 0; i < username_array.length; i++){
           
-          
-          if(username_array[i] != json.username && json.firstName.length <= 0)
+          //check if username is entered
+          if(json.username.length <= 0)
           {
-            alert("please enter a first name");
+            message = "please enter a username";
+            break;
           }
-          else if(username_array[i] != json.username && json.lastName.length <= 0)
-          {
-            alert("please enter a last name");
-          }
-          else if(username_array[i] != json.username && json.username.length <= 0)
-          {
-            alert("please enter a username");
-          }
+          //check if username exists
           else if(username_array[i] == json.username)
           {
-            alert("user found please login or try a different username");
+            message = "username already exist, redirecting you to login page ";
+            login_redirect();
+            break;
           }
-          else if(username_array[i] != json.username && json.password.length < 10)
+          //check if password is long enough
+          else if(json.password.length < 10)
           {
-            alert("password too short, please try again");
+            message = "password too short, please try again";
+            break;
           }
-          else if(username_array[i] != json.username && json.password.length > 10)
+          //check if address is entered
+          else if(json.address.length <= 0)
+          {
+            message = "please enter your address";
+            break;
+          }
+          else if(json.firstName.length <= 0)
+          {
+            message = "please enter a first name";
+            break;
+          }
+          else if(json.lastName.length <= 0)
+          {
+            message = "please enter a last name";
+            break;
+          }
+          else if(json.telephone.length != 10)
+          {
+            message = "please enter a phone number";
+            break;
+          }
+          else if(username_array[i] != json.username && json.password.length >= 10)
           {
             
-            
-            redirect();
-          }
-        
-        
-        }
-        fetch("http://localhost:9000/register", {
+            fetch("http://localhost:9000/customers", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
             }).then(() => {
             console.log("new blog added");
             });
+            home_redirect();
+            break;
+          }
+          
+          
+        
+        }
+        if( message != "")
+          {
+            alert(message)
+          }
+        
     };
     return (
       <div style={appStyle}>

@@ -102,6 +102,8 @@ const Login = () => {
         //array for passwords pulled from the database
         let password_array = [];
 
+        let message = "";
+
         //loops through the customer data
         for(let i = 0; i < customer_data.length; i++)
         {
@@ -111,25 +113,38 @@ const Login = () => {
         }
         //loops through the array of usernames
         for(let i = 0; i < username_array.length; i++){
-        if(username_array[i] == json.username && password_array[i] != json.password)
+        if(json.username.length <= 0)
         {
-          alert("user found but password incorrect");
+          message = "please insert your username";
+          break;
         }
-        //if username and password match log the user in
-          if(username_array[i] == json.username && password_array[i] == json.password)
+        else if(json.password.length <= 0)
         {
-          //function call to redirect to the home page
-          redirect();
+          message = "please insert your password";
+          break;
         }
-        //if 
-        else
+        else if(username_array[i] == json.username && password_array[i] != json.password)
         {
-          alert("username and password incorrect, please try again");
+          message = "user found but password incorrect";
+          break;
+        }
+        else if(username_array[i] != json.username && password_array[i] != json.password)
+        {
+          message = "username and password incorrect, please try again";
+          break;
           
         }
+        else if(username_array[i] == json.username && password_array[i] == json.password)
+        {
+          redirect();
+          break;
+        }
       
-      }
-        //console.log(json);
+       }
+       if( message != "")
+       {
+         alert(message)
+       }
     };
     return (
       <div style={appStyle}>
