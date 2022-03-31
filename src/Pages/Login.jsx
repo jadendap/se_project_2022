@@ -91,7 +91,7 @@ const Login = () => {
   }
         //console.log(data)
     const handleSubmit = async (data) => {
-      const url = "http://localhost:9000/customers";
+      const url = "http://localhost:9000/register";
       const response = fetch(url)
       const customer_data = await (await response).json();
         const json = data;

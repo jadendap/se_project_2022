@@ -169,15 +169,20 @@ const Register = () => {
             message = "please enter a last name";
             break;
           }
-          else if(json.telephone.length != 10)
+          else if(json.telephone.length <= 0)
           {
             message = "please enter a phone number";
+            break;
+          }
+          else if(json.telephone.length != 10)
+          {
+            message = "invalid phone number";
             break;
           }
           else if(username_array[i] != json.username && json.password.length >= 10)
           {
             
-            fetch("http://localhost:9000/customers", {
+            fetch("http://localhost:9000/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
