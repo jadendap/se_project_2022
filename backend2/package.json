@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for SE project 2022",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "connect-pg-simple": "^7.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^1.0.4",
+    "pg": "^8.7.3"
+  },
+  "scripts": {
+    "start": "nodemon ./src/server.js localhost",
+    "make-migration": "npx knex migrate:make",
+    "migration": "npx knex migrate:latest",
+    "rollback": "npx knex migrate:rollback",
+    "make-seed": "npx knex seed:make",
+    "seed": "npx knex seed:run",
+    "seed-file": "npx knex seed:run --specific=",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
