@@ -6,8 +6,8 @@ import routeChange from "./AdminDiscounts";
 import AdminModifyUsers from "./AdminModifyUsers";
 import AdminSales from "./AdminSales";
 import AdminOrders from "./AdminOrders";
-import AdminAddItem from "./AdminAddItem";
-import "../ComponentCSS/AdminPage.css";
+import AdminAddItem from "../Admin/AdminAddItem";
+import '../../Styles/AdminPage.css';
 import { Link } from 'react-router-dom';
 import {Route} from "react-router-dom"
 export default function AdminNavbar() {

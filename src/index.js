@@ -15,10 +15,10 @@ import Register from "./Pages/Register";
 import NavBar from "./Components/User/Navbar";
 import Footer from './Components/User/Footer'
 /*********************** stuff michael added************************/
-import AdminLogin from "./Pages/AdminLogin";
-import AdminPage from "./Pages/AdminPage";
-import AdminAddItemPage from "./Pages/AdminAddItemPage";
-import AdminDiscountsPage from "./Pages/AdminDiscountsPage";
+import AdminLogin from "./Pages/Admin/AdminLogin";
+import AdminPage from "./Pages/Admin/AdminPage";
+import AdminAddItemPage from "./Pages/Admin/AdminAddItemPage";
+import AdminDiscountsPage from "./Pages/Admin/AdminDiscountsPage";
 import AdminNavbar from "./Components/Admin/AdminNav";
 
 /************************************************************************ */

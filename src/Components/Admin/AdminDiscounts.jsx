@@ -3,7 +3,7 @@
 // we then log that json array to browser console with native javascript module/function console.log()
 import { AccessibleOutlined } from "@mui/icons-material";
 import React from "react";
-import '../ComponentCSS/AdminPage.css';
+import '../../Styles/AdminPage.css';
 import { useNavigate } from "react-router-dom";
 const btn = 
 {

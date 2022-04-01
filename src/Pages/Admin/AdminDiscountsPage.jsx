@@ -1,5 +1,5 @@
 import React from "react";
-import AdminNavbar from "../Components/Admin/AdminNav";
+import AdminNavbar from "../../Components/Admin/AdminNav";
 const appStyle = {
   height: "700px",
   display: "flex",
@@ -106,7 +106,7 @@ const AdminDiscountsPage = () => {
   return (
     <>
     <div style={appStyle}>
-      <h1>Welcome To add discount page</h1>
+      <h1 class="mt-5">Welcome To add discount page</h1>
       
       <Form onSubmit={handleSubmit} />
     </div>
