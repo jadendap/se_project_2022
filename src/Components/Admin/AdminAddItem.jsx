@@ -9,7 +9,7 @@ function AdminAddItem() {
   };
   return (
     <div className="app flex-row align-items-center">
-      <button color="primary" className="px-4" onClick={routeChange}>
+      <button color="primary" className="additem" onClick={routeChange}>
         AddItem!
       </button>
     </div>

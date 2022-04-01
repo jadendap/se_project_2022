@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { categories } from "../data";
-import CategoryItem from "../Layouts/CategoryItem";
+import { categories } from "../../data";
+import CategoryItem from "../../Layouts/CategoryItem";
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 

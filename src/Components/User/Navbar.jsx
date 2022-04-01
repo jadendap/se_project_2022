@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MdOutlineLogin } from 'react-icons/md';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { BiSearchAlt2 } from 'react-icons/bi';
-import './ComponentCSS/Navbar.css';
+import '../ComponentCSS/Navbar.css';
 
 
 export default function Navbar() {

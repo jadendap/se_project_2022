@@ -16,3 +16,10 @@ background: #EEFDF5;
     border:none;
     padding: 10px;
 }
+/*moved from styles.css*/
+.App {
+    font-family: sans-serif;
+  }
+  .h1{
+      font-size: 2;
+  }

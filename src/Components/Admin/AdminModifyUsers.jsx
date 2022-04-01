@@ -1,6 +1,7 @@
 // fetchCustomers uses native javascript function fetch to reach backend server and get response.
 // we use native javasctip function json() to parse response and make it json array
 // we then log that json array to browser console with native javascript module/function console.log()
+import '../ComponentCSS/AdminPage.css';
 const modifyUsers = async () => {
   const response = await fetch("http://localhost:9000/customers");
   const responseJson = await response.json();
@@ -10,7 +11,7 @@ const modifyUsers = async () => {
 // Demo is react component that renders a button when clicked calls and awaits the fetchCustomers async function
 const AdminModifyUsers = () => (
   <>
-    <button
+    <button className="modifyusers-btn" 
       onClick={async () => {
         await modifyUsers();
       }}

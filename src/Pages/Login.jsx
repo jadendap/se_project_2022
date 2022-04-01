@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-
+import AdminButton from "../Components/Admin/AdminButton";
 const appStyle = {
     height: '700px',
     display: 'flex',
@@ -73,6 +73,7 @@ const Form = ({onSubmit}) => {
       <form style={formStyle} onSubmit={handleSubmit} >
         <Field ref={usernameRef} label="Username:" type="text" />
         <Field ref={passwordRef} label="Password:" type="password" />
+        <AdminButton />
         <div>
           <button  style={submitStyle} type="submit">Submit</button>
         </div>
