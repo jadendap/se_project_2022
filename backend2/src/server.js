@@ -1,10 +1,8 @@
 const knex = require("knex");
 const express = require("express");
 const knexConfig = require("../knexfile.js");
-//const res = require("express/lib/response");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
 
 const server = express();
 server.use(cors());
@@ -36,6 +34,8 @@ var loginParser = bodyParser.json();
 server.post("/login", loginParser, async (req, res) => {
   const { username, password } = req.body;
   const customer = await db("customer").where("username", username);
+
+  //username check
   if (customer.length === 0) {
     console.log("Username: " + username + " not found");
     return res.status(404).send("Customer not found");
@@ -61,11 +61,24 @@ server.post("/login", loginParser, async (req, res) => {
   res.send(maxSessionId);
 });
 
+//get all products
 server.get("/products", async (req, res) => {
   const products = await db.select("*").from("product");
   res.send(products);
 });
 
+//search based on :search parameter
+server.get("/products/:search", async (req, res) => {
+  const search = req.params.search;
+  console.log(search);
+  //search name and desc columns
+  const searchResults = await db("product")
+    .whereILike("name", `%${search}%`)
+    .orWhereILike("desc", `%${search}%`);
+  console.log(searchResults);
+  res.send(searchResults);
+});
+//return all featured items
 server.get("/featured", async (req, res) => {
   const featured_items = await db
     .select("*")
@@ -130,13 +143,17 @@ server.post("/additem", jsonParser, async (req, res) => {
     price: req.body.price,
   };
   inventory = { quantity: req.body.quantity };
+  //insert item into product table
   const dbResult = await db.insert(item).into("product");
   console.log(inventory);
+  //insert into inventory table
   const inventoryResult = await db.insert(inventory).into("product_inventory");
+  //get the most recent inventory id so we can assign it to the product that was just added
   const maxIventoryId = await db("product_inventory")
     .max("id as maxId")
     .first();
   console.log(maxIventoryId);
+  //id assignment
   const updateResult = await db("product")
     .where("name", req.body.product_name)
     .update("inventory_id", maxIventoryId.maxId);
