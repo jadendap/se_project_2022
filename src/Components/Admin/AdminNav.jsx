@@ -32,6 +32,18 @@ export default function AdminNavbar() {
     <Link to='/AdminDiscountsPage' class="nav-link" className="nav-link"data-toggle="tab"  >Add Discount</Link>
   </li>
   <li class="admin-nav-item">
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Modify Items</Link>
+  </li>
+  <li class="admin-nav-item">
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Modify Users</Link>
+  </li>
+  <li class="admin-nav-item">
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Set Sale Items</Link>
+  </li>
+  <li class="admin-nav-item">
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Orders</Link>
+  </li>
+  <li class="admin-nav-item">
     <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Add Item</Link>
   </li>
 </ul>
