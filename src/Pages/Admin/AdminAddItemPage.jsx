@@ -1,5 +1,5 @@
 import React from "react";
-
+import AdminNavbar from "../../Components/Admin/AdminNav";
 const appStyle = {
   height: "700px",
   display: "flex",
@@ -116,6 +116,7 @@ const AdminAddItemPage = () => {
   };
   return (
     <div style={appStyle}>
+      <AdminNavbar/>
       <h1>Welcome To add item page</h1>
       <Form onSubmit={handleSubmit} />
     </div>

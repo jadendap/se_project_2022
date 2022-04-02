@@ -105,6 +105,8 @@ const AdminDiscountsPage = () => {
   };
   return (
     <>
+    
+  <AdminNavbar/>
     <div style={appStyle}>
       <h1 class="mt-5">Welcome To add discount page</h1>
       

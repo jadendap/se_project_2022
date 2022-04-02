@@ -19,10 +19,12 @@ import { render } from "@testing-library/react";
 import '../../Styles/AdminPage.css';
 function AdminPage() {
   return (
+    
     <section>
+      
+      <AdminNavbar/>
       <div class="container-fluid">
         <h1 class="mt-5" >Welcome</h1>
-
         <h1 class="mt-5">This site is for Administrative Use Only</h1>
       </div>
     </section>
