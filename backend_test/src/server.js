@@ -23,7 +23,16 @@ server.get("/customers", async (req, res) => {
   const customers = await db.select("*").from("customer");
   res.send(customers);
 });
-
+server.get("/api/products", async (req, res) => {
+  const products = await db.select("*").from("product");
+  res.send(products);
+});
+server.get('/api/product/id/:id', async (req, res) => {
+  const id = req.params.id;
+  const product = await db("product").where("id", id);
+  res.send(product);
+});
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+

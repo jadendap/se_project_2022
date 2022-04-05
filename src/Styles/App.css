@@ -1,0 +1,29 @@
+
+
+div.info
+{
+    position: absolute;
+    top: 2;
+    align-items: center;
+    justify-content: center;
+}
+/*web page background*/
+body{
+background: white;
+}
+.shop-now-btn
+{
+    background-color: grey;
+    color: white;
+    border:none;
+    padding: 10px;
+}
+.featured-item-containers
+{    
+}
+.featured-product-image
+{
+  border: 25px solid #f7f2ee;
+  width: 100%;
+  height: 100%;
+}
