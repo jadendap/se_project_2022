@@ -1,6 +1,5 @@
 import React from "react";
 
-import AdminButton from "../Components/AdminButton"; //added -michael
 const appStyle = {
   height: "700px",
   display: "flex",
@@ -36,12 +35,12 @@ const inputStyle = {
 const submitStyle = {
   margin: "10px 0 0 0",
   padding: "7px 10px",
-  border: "1px solid #efffff",
+  border: "1px black",
   borderRadius: "3px",
   background: "#98c285",
   width: "100%",
   fontSize: "15px",
-  color: "black",
+  color: "white",
   display: "block",
 };
 
@@ -63,32 +62,25 @@ const Form = ({ onSubmit }) => {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
-    const response = await fetch("http://localhost:9000/login", {
+    console.log(data);
+    const response = await fetch("http://localhost:9000/adminlogin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    if (response.status === 404) {
-      alert("customer not found");
-      console.log("customer not found");
-      //window.location.href = "http://localhost:3000/Login";
-    } else if (response.status === 401) {
-      alert("bad password");
-      console.log("bad password");
-      //window.location.href = "http://localhost:3000/Login";
+    console.log(response.status);
+    if (response.status === 200) {
+      window.location.href = "http://localhost:3000/AdminPage";
     } else {
-      const responseJson = await response.json();
-      const customerSessionId = responseJson.sessionId;
-      console.log(customerSessionId);
-      //window.location.href = "http://localhost:3000/Desktop";
+      console.log("something went wrong");
     }
+    const responseJson = await response.json();
+    console.log(responseJson);
   };
   return (
     <form style={formStyle} onSubmit={handleSubmit}>
-      <Field ref={usernameRef} label="Username:" type="text" />
+      <Field ref={usernameRef} label="Admin Name:" type="text" />
       <Field ref={passwordRef} label="Pasword:" type="password" />
-      <AdminButton />
-
       <div>
         <button style={submitStyle} type="submit">
           Submit
@@ -100,7 +92,7 @@ const Form = ({ onSubmit }) => {
 
 // Usage example:
 
-const Login = () => {
+const AdminLogin = () => {
   const handleSubmit = (data) => {
     const json = JSON.stringify(data, null, 4);
 
@@ -113,4 +105,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

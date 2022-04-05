@@ -1,5 +1,6 @@
 import React from "react";
 
+import AdminButton from "../Components/AdminButton"; //added -michael
 const appStyle = {
   height: "700px",
   display: "flex",
@@ -35,12 +36,12 @@ const inputStyle = {
 const submitStyle = {
   margin: "10px 0 0 0",
   padding: "7px 10px",
-  border: "1px black",
+  border: "1px solid #efffff",
   borderRadius: "3px",
   background: "#98c285",
   width: "100%",
   fontSize: "15px",
-  color: "white",
+  color: "black",
   display: "block",
 };
 
@@ -67,17 +68,28 @@ const Form = ({ onSubmit }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    console.log(response.status);
-    if (response.status === 200) {
-      window.location.href = "http://localhost:3000/AdminPage";
+    if (response.status === 404) {
+      alert("customer not found");
+      console.log("customer not found");
+      //window.location.href = "http://localhost:3000/Login";
+    } else if (response.status === 401) {
+      alert("bad password");
+      console.log("bad password");
+      //window.location.href = "http://localhost:3000/Login";
+    } else {
+      const responseJson = await response.json();
+      const customerSessionId = responseJson.sessionId;
+      console.log(customerSessionId);
+      sessionStorage.setItem("sessionId", customerSessionId);
+      window.location.href = "http://localhost:3000/Desktop";
     }
-    const responseJson = await response.json();
-    console.log(responseJson);
   };
   return (
     <form style={formStyle} onSubmit={handleSubmit}>
-      <Field ref={usernameRef} label="Admin Name:" type="text" />
+      <Field ref={usernameRef} label="Username:" type="text" />
       <Field ref={passwordRef} label="Pasword:" type="password" />
+      <AdminButton />
+
       <div>
         <button style={submitStyle} type="submit">
           Submit
@@ -89,11 +101,10 @@ const Form = ({ onSubmit }) => {
 
 // Usage example:
 
-const AdminLogin = () => {
+const Login = () => {
   const handleSubmit = (data) => {
-    const json = JSON.stringify(data, null, 4);
-
-    console.log(json);
+    //const json = JSON.stringify(data, null, 4);
+    //console.log(json);
   };
   return (
     <div style={appStyle}>
@@ -102,4 +113,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default Login;

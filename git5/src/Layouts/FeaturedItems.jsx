@@ -11,8 +11,8 @@ const FeaturedItems = ({ item }) => {
     <div className="FeaturedItems-container">
       <div className="item-wrapper">
         <Link className="itemLink" to="/Desktop">
-          <p>{item.title}</p>
-          <img className="itemImg" src={item.img} alt="Product Image" />
+          <p>{item.name}</p>
+          <img className="itemImg" src={item.image_url} alt="Product Image" />
         </Link>
       </div>
     </div>

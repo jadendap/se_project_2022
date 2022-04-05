@@ -19,6 +19,7 @@ import AdminLogin from "./Pages/AdminLogin";
 import AdminPage from "./Pages/AdminPage";
 import AdminAddItemPage from "./Pages/AdminAddItemPage";
 import AdminDiscountsPage from "./Pages/AdminDiscountsPage";
+import FeaturedPage from "./Pages/FeaturedPage";
 
 /************************************************************************ */
 
@@ -38,6 +39,7 @@ ReactDOM.render(
         path="/AdminDiscountsPage"
         element={<AdminDiscountsPage />}
       ></Route>
+      <Route path="/FeaturedPage" element={<FeaturedPage />}></Route>
     </Routes>
   </Router>,
 
