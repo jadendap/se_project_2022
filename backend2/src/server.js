@@ -18,6 +18,20 @@ server.get("/customers", async (req, res) => {
   const customers = await db.select("*").from("customer");
   res.send(customers);
 });
+server.get("/categories", async (req, res) => {
+  const categories = await db.select("*").from("product_category");
+  res.send(categories);
+});
+
+server.get("/inventory", async (req, res) => {
+  const quantities = await db.select("*").from("product_inventory");
+  res.send(quantities);
+});
+
+server.get("/discounts", async (req, res) => {
+  const discounts = await db.select("*").from("discount");
+  res.send(discounts);
+});
 
 //GET customer based on id
 server.get("/customers/:id", async (req, res) => {
@@ -52,12 +66,17 @@ server.post("/login", loginParser, async (req, res) => {
   const session = { customer_id: customer[0].id };
   //create shopping_session based on customer id
   const sessionResult = await db.insert(session).into("shopping_session");
-  console.log(sessionResult);
 
   //send shopping session id back to front end
   const maxSessionId = await db("shopping_session")
     .max("id as sessionId")
     .first();
+  console.log(
+    customer[0].username +
+      " logged in with session id " +
+      maxSessionId.sessionId
+  );
+
   res.send(maxSessionId);
 });
 
@@ -97,11 +116,31 @@ server.get("/sale", async (req, res) => {
 
   res.send(sale_items);
 });
+
 server.get("/register", async (req, res) => {
   res.send("hello from register");
 });
-server.get("/adminlogin", async (req, res) => {
-  res.send("hello from admin login");
+//admin login
+var adminloginParser = bodyParser.json();
+server.post("/adminlogin", adminloginParser, async (req, res) => {
+  //console.log(JSON.stringify(req.body));
+  const { username, password } = req.body;
+  console.log(req.body);
+  const customer = await db("se_admins").where("username", username);
+
+  //username check
+  if (customer.length === 0) {
+    console.log("Username: " + username + " not found");
+    return res.status(404).send("Customer not found");
+  }
+  //password check
+  if (password !== customer[0].password) {
+    console.log("Password did not match");
+    return res.status(401).send("Bad Password");
+  }
+  //admin id and password of admin that just logged in
+  console.log(customer[0].id + " " + customer[0].password);
+  res.send("admin log in");
 });
 
 //register user
@@ -173,6 +212,36 @@ server.post("/adddiscount", jsonParser, async (req, res) => {
   const dbResult = await db.insert(discount).into("discount");
   console.log(dbResult);
   res.send("discount added");
+});
+
+server.post("/customerproduct", jsonParser, async (req, res) => {
+  //get highest cart_item id
+  console.log(JSON.stringify(req.body));
+  let sessionProduct = req.body;
+  sessionProduct = {
+    session_id: req.body.sessionId,
+    product_id: req.body.productId,
+  };
+  console.log(sessionProduct);
+  maxCartId = await db("cart_item").max("id as cartMaxId").first();
+  console.log(maxCartId.cartMaxId);
+  //if they don't have a cart, make one for cust
+  if (!maxCartId.cartMaxId) {
+    dbResult = await db.insert(sessionProduct).into("cart_item");
+    if (dbResult.length === 0) {
+      return res.status(500).send("Error: item couldn't be added");
+    } else {
+      return res.send("Item added to cart");
+    }
+  }
+  //existing cart needs to add an item
+  else {
+    dbResult = await db.insert(sessionProduct).into("cart_item");
+    if (dbResult.length === 0) {
+      res.status(500).send("Error: item couldn't be added");
+    }
+  }
+  res.send("message received");
 });
 
 server.listen(PORT, () => {
