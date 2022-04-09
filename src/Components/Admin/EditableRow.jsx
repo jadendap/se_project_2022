@@ -7,7 +7,7 @@ const EditableRow = ({editFormData, handleEditFormChange}) => {
       <button type='submit'>Save</button>
   </td>
   <td>
-  document.write(editFormData.id);
+  #
   </td>
         <td><input 
   type="text" 
