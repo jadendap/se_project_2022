@@ -53,9 +53,7 @@ const submitStyle = {
 
 const Field = React.forwardRef(({ label, type }, ref) => {
   return (
-    
     <div>
-      
       <label style={labelStyle}>{label}</label>
       <input ref={ref} type={type} style={inputStyle} />
     </div>
@@ -63,33 +61,46 @@ const Field = React.forwardRef(({ label, type }, ref) => {
 });
 
 const Form = ({ onSubmit }) => {
-  const d_name = React.useRef();
-  const d_desc = React.useRef();
-  const d_percent = React.useRef();
-  const d_active = React.useRef();
+  const product_name = React.useRef();
+  const discount = React.useRef();
+  const category = React.useRef();
+  const inventory = React.useRef();
+  const desc = React.useRef();
+  const sku = React.useRef();
+  const image_url = React.useRef();
+  const price = React.useRef();
+  const quantity = React.useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      discount_name: d_name.current.value,
-      discount_desc: d_desc.current.value,
-      percent: d_percent.current.value,
-      active: d_active.current.value,
+      product_name: product_name.current.value,
+      discount: discount.current.value,
+      category: category.current.value,
+      desc: desc.current.value,
+      sku: sku.current.value,
+      url: image_url.current.value,
+      price: price.current.value,
+      quantity: quantity.current.value,
     };
-    fetch("http://localhost:9000/adddiscount", {
+    fetch("http://localhost:9000/additem", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     }).then(() => {
-      console.log("new discount added");
+      console.log("new item added");
     });
     //onSubmit(data);
   };
   return (
     <form style={formStyle} onSubmit={handleSubmit}>
-      <Field ref={d_name} label="Discount Name:" type="text" />
-      <Field ref={d_desc} label="Discount Description:" type="text" />
-      <Field ref={d_percent} label="Discount percent:" type="text" />
-      <Field ref={d_active} label="Active:" type="text" />
+      <Field ref={product_name} label="Product Name:" type="text" />
+      <Field ref={discount} label="Discount id:" type="text" />
+      <Field ref={category} label="Category id:" type="text" />
+      <Field ref={desc} label="Description:" type="text" />
+      <Field ref={sku} label="Sku:" type="text" />
+      <Field ref={image_url} label="Image URL:" type="text" />
+      <Field ref={price} label="Price:" type="text" />
+      <Field ref={quantity} label="Quantity:" type="text" />
       <div>
         <button style={submitStyle} type="submit">
           Submit
@@ -101,24 +112,19 @@ const Form = ({ onSubmit }) => {
 
 // Usage example:
 
-const AdminDiscountsPage = () => {
+const AdminAddItemPage = () => {
   const handleSubmit = (data) => {
     const json = JSON.stringify(data, null, 4);
     console.clear();
     console.log(json);
   };
   return (
-    <>
-    
-  
     <div style={appStyle}>
-    <AdminNavbar/>
-      <h1 class="mt-5">Welcome To add discount page</h1>
-      
+      <AdminNavbar/>
+      <h1>Welcome To Set Sale items page</h1>
       <Form onSubmit={handleSubmit} />
     </div>
-    </>
   );
 };
 
-export default AdminDiscountsPage;
+export default AdminAddItemPage;

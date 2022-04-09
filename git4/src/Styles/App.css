@@ -8,6 +8,7 @@ div.info
 /*web page background*/
 body{
 background: #EEFDF5;
+max-width: 900px;
 }
 .shop-now-btn
 {

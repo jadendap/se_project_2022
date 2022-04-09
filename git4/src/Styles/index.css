@@ -1,5 +1,4 @@
 
-
 .form-control{
   top: 10;
 }
@@ -7,9 +6,12 @@
 {
   background: rgb(0,0,0);
   background: linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(19,24,15,1) 52%, rgba(0,0,0,1) 89%); 
-
+  
+  
   
 
+}
+.navbar {
 }
 .form-control mr-sm-2{
   position:absolute;

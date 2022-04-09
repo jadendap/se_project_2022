@@ -1,4 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
+
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 import AdminModifyItems from "../../Components/Admin/AdminModifyItems";
 import getItems from "../../Components/Admin/AdminModifyItems";
 import AdminDiscounts from "../../Components/Admin/AdminDiscounts";
@@ -16,19 +19,47 @@ import AdminDiscountsPage from "./AdminDiscountsPage";
 import AdminAddItemPage from "./AdminAddItemPage";
 import AdminHome from "./AdminPage"
 import { render } from "@testing-library/react";
-import '../../Styles/AdminPage.css';
+import '../../Styles/AdminPage.scss';
+import Customers from "../../Components/User/customers"
+import ModifyUsersTable from "../../Components/Admin/ModifyUsersTable";
+import '../../Styles/index.css'
+  
+  //console.log(responseJson);
+  //return responseJson;
+//};
 function AdminPage() {
-  return (
-    
-    <section>
-      
-      <AdminNavbar/>
-      <div class="container-fluid">
-        <h1 class="mt-5" >Welcome</h1>
-        <h1 class="mt-5">This site is for Administrative Use Only</h1>
-        
-      </div>
-    </section>
+  const fetchCustomers = async () => {
+    const response = await fetch("http://localhost:9000/customers");
+    const responseJson = await response.json();
+    console.log(responseJson);
+    sessionStorage.setItem("products", JSON.stringify(responseJson));
+    console.log(sessionStorage.getItem("products"));
+    window.location.href = "http://localhost:3000/AdminPage";
+  };
+  return(
+<>
+
+<AdminNavbar/>
+<ModifyUsersTable/>
+  </>
   );
+
+  //let data = fetchCustomers();
+  //console.log(data);
+  //let username_array = [];
+  //for(let i = 0; i < data.length; i++)
+  //{
+    //username_array.push(data[i].username)
+    //console.log(data[i].username)
+
+  //}
+  //return (
+    //<>
+    
+    //<AdminNavbar/>
+    //<h1>{username_array[0]}</h1>
+    //</>
+//)
+
 }
-  export default (AdminPage);
+export default AdminPage;

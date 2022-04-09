@@ -92,7 +92,7 @@ server.get("/sale", async (req, res) => {
   const sale_items = await db
     .select("*")
     .from("product")
-    .innerjoin("discount")
+    //.innerjoin("discount")
     .whereNotNull("discount_id");
 
   res.send(sale_items);
@@ -173,6 +173,107 @@ server.post("/adddiscount", jsonParser, async (req, res) => {
   const dbResult = await db.insert(discount).into("discount");
   console.log(dbResult);
   res.send("discount added");
+});
+
+var jsonParser = bodyParser.json();
+/*server.put("/register", jsonParser, async (req, res) => {
+  console.log(JSON.stringify(req.body));
+  userName = req.body.username;
+  userPass = req.body.password;
+  userAddress = req.body.address;
+  userFirst = req.body.firstName;
+  userLast = req.body.lastName;
+  userPhone = req.body.telephone;
+  let usr = req.body;
+  usr = {
+    username: userName,
+    password: userPass,
+    first_name: userFirst,
+    address: userAddress,
+    last_name: userLast,
+    telephone: userPhone,
+  };
+  const dbResult = await db.update(usr);
+  res.send("customer updated");
+});*/
+server.patch("/register", jsonParser, async (req, res) => {
+  console.log(JSON.stringify(req.body));
+  userName = req.body.username;
+  userPass = req.body.password;
+  userAddress = req.body.address;
+  userFirst = req.body.firstName;
+  userLast = req.body.lastName;
+  userPhone = req.body.telephone;
+  let usr = req.body;
+  usr = {
+    username: userName,
+    password: userPass,
+    first_name: userFirst,
+    address: userAddress,
+    last_name: userLast,
+    telephone: userPhone,
+  };
+
+  const dbResult = db('customers').where({username: userName}).update(usr);
+  if (usr) {
+    res.send(usr);
+    
+    console.log(dbResult);
+  } else {
+    res.status(400).send("record not found");
+  }
+   
+});
+server.put("/customers/:id", jsonParser, async (req, res) => {
+  //console.log(JSON.stringify(req.body));
+  userName = req.body.username;
+  userPass = req.body.password;
+  userAddress = req.body.address;
+  userFirst = req.body.first_name;
+  userLast = req.body.last_name;
+  userPhone = req.body.telephone;
+  let usr = req.body;
+  usr = {
+    username: userName,
+    password: userPass,
+    first_name: userFirst,
+    address: userAddress,
+    last_name: userLast,
+    telephone: userPhone,
+  };
+  res.setHeader("Content-Type", "text/html");
+  const dbResult = await db('customer').where({username: userName}).update(usr)
+  if (usr) {
+    console.log(usr)
+    return res.status(200).json({updated: dbResult})
+  } else {
+    res.status(400).send("record not found");
+  }
+   
+});
+server.put("/products", jsonParser, async (req, res) => {
+  console.log(JSON.stringify(req.body));
+  itemname = req.body.itemname;
+  itemdesc = req.body.itemdesc;
+  itemimage = req.body.itemimage;
+  itemcategory = req.body.itemcategory;
+  itemprice = req.body.itemprice;
+  let product = req.body;
+  product = {
+    name: itemname,
+    desc: itemdesc,
+    image_url: itemimage,
+    category: itemcategory,
+    price: itemprice,
+  };
+  res.setHeader("Content-Type", "text/html");
+  const dbResult = await db('product').where({name: itemname}).update(product);
+  if (product) {
+    return res.status(200).json({updated: dbResult})
+  } else {
+    res.status(400).send("record not found");
+  }
+   
 });
 
 server.listen(PORT, () => {

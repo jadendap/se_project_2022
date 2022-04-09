@@ -19,7 +19,8 @@ export default function Navbar() {
   window.addEventListener("resize", showElement);
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
+    <nav class="navbar navbar-dark bg-dark navbar-style">
+      <div class="container">
       <div class="container-fluid">
         <li class="navbar-brand">
           <Link className="website-name" title="Return to the homepage" to="/">
@@ -213,6 +214,8 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+      </div>
     </nav>
+    
   );
 }

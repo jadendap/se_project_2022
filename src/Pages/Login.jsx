@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import AdminButton from "../Components/Admin/AdminButton"; //added -michael
 const appStyle = {
   height: "700px",
@@ -54,32 +54,41 @@ const Field = React.forwardRef(({ label, type }, ref) => {
   );
 });
 const Form = ({ onSubmit }) => {
+  
+  const navigate = useNavigate();
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
-
+  const home_redirect = () => {
+    navigate('/');
+   }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
+    
     const response = await fetch("http://localhost:9000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    if (response.status === 404) {
+    if (response.status === 404 || data.username == "") {
       alert("customer not found");
       console.log("customer not found");
       //window.location.href = "http://localhost:3000/Login";
-    } else if (response.status === 401) {
+    } else if (response.status === 401 || data.password == "") {
       alert("bad password");
       console.log("bad password");
+      
       //window.location.href = "http://localhost:3000/Login";
     } else {
+      
       const responseJson = await response.json();
       const customerSessionId = responseJson.sessionId;
       console.log(customerSessionId);
+      home_redirect();
+      
       //window.location.href = "http://localhost:3000/Desktop";
     }
   };
@@ -101,10 +110,17 @@ const Form = ({ onSubmit }) => {
 // Usage example:
 
 const Login = () => {
-  const handleSubmit = (data) => {
+  const handleSubmit = async (data) => {
+    
+  
     const json = JSON.stringify(data, null, 4);
+    const url = "http://localhost:9000/customers";
+    const response = fetch(url)
+    const customer_data = await (await response).json();
+    json = data;
 
     console.log(json);
+   
   };
   return (
     <div style={appStyle}>

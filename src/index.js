@@ -19,6 +19,10 @@ import AdminLogin from "./Pages/Admin/AdminLogin";
 import AdminPage from "./Pages/Admin/AdminPage";
 import AdminAddItemPage from "./Pages/Admin/AdminAddItemPage";
 import AdminDiscountsPage from "./Pages/Admin/AdminDiscountsPage";
+import AdminModifyItemsPage from "./Pages/Admin/AdminModifyItemsPage";
+import AdminModifyUsersPage from "./Pages/Admin/AdminModifyUsersPage";
+import AdminOrdersPage from "./Pages/Admin/AdminOrdersPage";
+import AdminSetSalePage from "./Pages/Admin/AdminSetSalePage";
 import AdminNavbar from "./Components/Admin/AdminNav";
 
 /************************************************************************ */
@@ -38,16 +42,19 @@ ReactDOM.render(
       
     <Route path="/AdminDiscountsPage" element={<AdminDiscountsPage/>}></Route>
   <Route path="/AdminAddItemPage" element={<AdminAddItemPage/> }></Route>
+  <Route path="/AdminModifyItemsPage" element={<AdminModifyItemsPage/> }></Route>
+  <Route path="/AdminModifyUsersPage" element={<AdminModifyUsersPage/> }></Route>
+  <Route path="/AdminOrdersPage" element={<AdminOrdersPage/> }></Route>
+  <Route path="/AdminSetSalePage" element={<AdminSetSalePage/> }></Route>
       
       
       
   
     </Routes>
     
-    
+  <Footer/>
   </Router>
-  <Router>
-  </Router>
+  
 </>,
 
   document.getElementById("root")

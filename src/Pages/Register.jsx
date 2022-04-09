@@ -189,7 +189,7 @@ const Register = () => {
             }).then(() => {
             console.log("new blog added");
             });
-            home_redirect();
+            //home_redirect();
             break;
           }
           

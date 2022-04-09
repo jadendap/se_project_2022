@@ -6,7 +6,13 @@ li {
     list-style: none;
     
 }
-
+.navbar
+{
+}
+.nav
+{
+    overflow: hidden;
+}
 
 
 .fa-fa-shopping-cart
@@ -57,12 +63,13 @@ li {
     .nav {
         align-items: center;
     }
+    
 
     .navbar-style
     {
     background: rgb(0,0,0);
     background: linear-gradient(90deg, rgba(0,0,0,1) 16%, rgb(38, 48, 29) 52%, rgba(0,0,0,1) 89%); 
-
+    
 
     }
     .form-control mr-sm-2{

@@ -34,10 +34,7 @@ ReactDOM.render(
       <Route path="/AdminLogin" element={<AdminLogin />}></Route>
       <Route path="/AdminPage" element={<AdminPage />}></Route>
       <Route path="/AdminAddItemPage" element={<AdminAddItemPage />}></Route>
-      <Route
-        path="/AdminDiscountsPage"
-        element={<AdminDiscountsPage />}
-      ></Route>
+      <Route path="/AdminDiscountsPage" element={<AdminDiscountsPage />}></Route>
     </Routes>
   </Router>,
 

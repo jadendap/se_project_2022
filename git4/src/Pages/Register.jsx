@@ -82,6 +82,7 @@ const Form = ({ onSubmit }) => {
 
     //do not remove
     onSubmit(data);
+    
   };
 
   return (

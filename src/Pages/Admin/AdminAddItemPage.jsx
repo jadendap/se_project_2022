@@ -6,6 +6,8 @@ const appStyle = {
 };
 
 const formStyle = {
+  position: "relative",
+  display:"flex",
   margin: "auto",
   padding: "10px",
   border: "1px solid black",
@@ -14,6 +16,9 @@ const formStyle = {
   width: "520px",
   height: "720px",
   display: "block",
+  
+  right: "500px",
+  top: "100px"
 };
 
 const labelStyle = {

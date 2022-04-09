@@ -7,7 +7,7 @@ import AdminModifyUsers from "./AdminModifyUsers";
 import AdminSales from "./AdminSales";
 import AdminOrders from "./AdminOrders";
 import AdminAddItem from "../Admin/AdminAddItem";
-import '../../Styles/AdminPage.css';
+import '../../Styles/AdminPage.scss';
 import { Link } from 'react-router-dom';
 import {Route} from "react-router-dom"
 
@@ -26,22 +26,19 @@ export default function AdminNavbar() {
     <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminPage'>Dashboard</Link>
   </li>
   <li class="admin-nav-item">
-    <a class="nav-link" className="nav-link"data-toggle="tab">Modify Items</a>
-  </li>
-  <li class="admin-nav-item">
     <Link to='/AdminDiscountsPage' class="nav-link" className="nav-link"data-toggle="tab"  >Add Discount</Link>
   </li>
   <li class="admin-nav-item">
-    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Modify Items</Link>
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminModifyItemsPage'>Modify Items</Link>
   </li>
   <li class="admin-nav-item">
-    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Modify Users</Link>
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminModifyUsersPage'>Modify Users</Link>
   </li>
   <li class="admin-nav-item">
-    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Set Sale Items</Link>
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminSetSalePage'>Set Sale Items</Link>
   </li>
   <li class="admin-nav-item">
-    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Orders</Link>
+    <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminOrdersPage'>Orders</Link>
   </li>
   <li class="admin-nav-item">
     <Link class="nav-link" className="nav-link"data-toggle="tab"  to='/AdminAddItemPage'>Add Item</Link>
