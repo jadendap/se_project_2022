@@ -18,11 +18,20 @@ server.get("/customers", async (req, res) => {
   const customers = await db.select("*").from("customer");
   res.send(customers);
 });
+
+//GET all admins
+server.get("/admins", async (req, res) => {
+  const admins = await db.select("*").from("se_admins");
+  res.send(admins);
+});
+
+//GET all product categories
 server.get("/categories", async (req, res) => {
   const categories = await db.select("*").from("product_category");
   res.send(categories);
 });
 
+//GET all product inventory
 server.get("/inventory", async (req, res) => {
   const quantities = await db.select("*").from("product_inventory");
   res.send(quantities);
@@ -80,13 +89,15 @@ server.post("/login", loginParser, async (req, res) => {
   res.send(maxSessionId);
 });
 
-//get all products
+//GET all products
 server.get("/products", async (req, res) => {
   const products = await db.select("*").from("product");
   res.send(products);
 });
 
-//search based on :search parameter
+// ------backend server TEST------search based on :search parameter,
+//  usage example: localhost/9000/products/laptops
+//  returns: ON SUCCESS, returns found items in JSON.  returns empty array if nothing is found
 server.get("/products/:search", async (req, res) => {
   const search = req.params.search;
   console.log(search);
@@ -97,6 +108,19 @@ server.get("/products/:search", async (req, res) => {
   console.log(searchResults);
   res.send(searchResults);
 });
+
+//search db from user input
+server.get("/products/search", async (req, res) => {
+  const search = req.body.search;
+  console.log(search);
+  //search name and desc columns
+  const searchResults = await db("product")
+    .whereILike("name", `%${search}%`)
+    .orWhereILike("desc", `%${search}%`);
+  console.log(searchResults);
+  res.send(searchResults);
+});
+
 //return all featured items
 server.get("/featured", async (req, res) => {
   const featured_items = await db
@@ -106,12 +130,12 @@ server.get("/featured", async (req, res) => {
   res.send(featured_items);
 });
 
-//get all items on sale
+//GET all items on sale
 server.get("/sale", async (req, res) => {
   const sale_items = await db
     .select("*")
     .from("product")
-    .innerjoin("discount")
+    .leftJoin("discount")
     .whereNotNull("discount_id");
 
   res.send(sale_items);
@@ -214,6 +238,7 @@ server.post("/adddiscount", jsonParser, async (req, res) => {
   res.send("discount added");
 });
 
+//customer adds a product
 server.post("/customerproduct", jsonParser, async (req, res) => {
   //get highest cart_item id
   console.log(JSON.stringify(req.body));
