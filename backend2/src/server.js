@@ -133,10 +133,10 @@ server.get("/featured", async (req, res) => {
 //GET all items on sale
 server.get("/sale", async (req, res) => {
   const sale_items = await db
-    .select("*")
     .from("product")
-    .leftJoin("discount")
-    .whereNotNull("discount_id");
+    .innerJoin("discount", "product.discount_id", "discount.id")
+    .whereNot("discount_id", 6)
+    .andWhereNot("discount.active", "false");
 
   res.send(sale_items);
 });
