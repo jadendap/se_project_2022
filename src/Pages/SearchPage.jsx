@@ -15,13 +15,14 @@ const SearchPage = () => {
         console.log( url );
 
         const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(keyword),
+          method: "GET",
         });
 
-        console.log( response);
-
+        
+        const responseJson = await response.json();
+        //console.log( JSON.stringify(responseJson));
+        setProducts( responseJson );
+        console.log( products );
     }
 
 
@@ -32,15 +33,7 @@ const SearchPage = () => {
 
     const yeah = () => {
       {
-        products.map( (item) =>
-          //Swtich out the statment with the item.link or whatever it is called.
-          <Link className='product-link' to={`/`}>
-          <div className="product-wrapper"> 
-            <div className="product-info"><p className='testing2'>{item.name}</p><p>{item.price}</p></div>
-            <img className="product-img" src={item.image_url} alt='Product Image' />
-          </div>
-          </Link>
-        )
+
       }
     }
 
@@ -51,9 +44,18 @@ const SearchPage = () => {
 
     return (
         <div className="searchPage-container" >
-            Here
             {
-              products.length ? (<p>We have something </p>) : (<p>We do NOT have something</p>)
+              products.length ? (
+                products.map( (item) =>
+                //Swtich out the statment with the item.link or whatever it is called.
+                <Link className='product-link' to={`/`}>
+                <div className="product-wrapper"> 
+                  <div className="product-info"><p className='testing2'>{item.name}</p><p>{item.price}</p></div>
+                  <img className="product-img" src={item.image_url} alt='Product Image' />
+                </div>
+                </Link>
+              )
+              ) : (<p>We do NOT have something</p>)
             }
         </div>
     )

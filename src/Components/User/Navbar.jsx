@@ -7,9 +7,6 @@ import '../ComponentCSS/Navbar.css';
 
 const Navbar = ({ search, setSearch }) => {
 
-  const handleClick = () => {
-    console.log( search );
-  }
 
   return (
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark navbar-style">
@@ -18,7 +15,7 @@ const Navbar = ({ search, setSearch }) => {
     <div class="container-fluid">
     <li class="navbar-brand">
         <Link className="website-name" title="Return to the homepage"  to="/">
-          <h1 onClick={console.log("Here")}>TechTerra</h1>
+          <h1>TechTerra</h1>
         </Link>
     </li>
     
@@ -87,7 +84,7 @@ const Navbar = ({ search, setSearch }) => {
               <ul className="working" class="navbar-nav ms-auto">
                 <form class="d-flex" onSubmit={(e) => e.preventDefault()} >
                   <input  id="search-input" class="form-control me-2"  type="search"  placeholder="Search"  onChange={(e) => setSearch( e.target.value )} aria-label="Search" />
-                  <a href={`/search/${search}`}><button id="search-button" class="searchButton" type="button" onClick={handleClick} >Search</button></a>
+                  <a href={`/search/${search}`}><button id="search-button" class="searchButton" type="button" >Search</button></a>
                 </form>  
               <li ><Link  to="/Login"className="login-link account-link" >     <BsFillPersonFill/>   Login   </Link> <Link to="/Register" className="account-link" ><MdOutlineLogin/>   Sign Up  </Link></li>
               </ul>
