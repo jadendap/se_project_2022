@@ -5,7 +5,7 @@
     align-items:center;
 }
 
-@media screen and (max-width: 628px)
+@media screen and (max-width: 850px)
 {
     .Categories-container {
         display: flex;

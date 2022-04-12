@@ -1,6 +1,5 @@
 import React from "react";
-
-import AdminButton from "../Components/Admin/AdminButton"; //added -michael
+import AdminNavbar from "../../Components/Admin/AdminNav";
 const appStyle = {
   height: "700px",
   display: "flex",
@@ -12,8 +11,8 @@ const formStyle = {
   border: "1px solid black",
   borderRadius: "5px",
   background: "black",
-  width: "520px",
-  height: "300px",
+  width: "400px",
+  height: "400px",
   display: "block",
 };
 
@@ -34,61 +33,59 @@ const inputStyle = {
 };
 
 const submitStyle = {
-  margin: "10px 0 0 0",
-  padding: "7px 10px",
+  position: "relative",
+  margin: "20px 0 0 0",
+  padding: "10px 10px",
   border: "1px solid #efffff",
   borderRadius: "3px",
   background: "#98c285",
-  width: "100%",
+  width: "50%",
   fontSize: "15px",
   color: "black",
+  left: "110px",
+  top: "30px",
   display: "block",
 };
 
 const Field = React.forwardRef(({ label, type }, ref) => {
   return (
+    
     <div>
+      
       <label style={labelStyle}>{label}</label>
       <input ref={ref} type={type} style={inputStyle} />
     </div>
   );
 });
-const Form = ({ onSubmit }) => {
-  const usernameRef = React.useRef();
-  const passwordRef = React.useRef();
 
-  const handleSubmit = async (e) => {
+const Form = ({ onSubmit }) => {
+  const d_name = React.useRef();
+  const d_desc = React.useRef();
+  const d_percent = React.useRef();
+  const d_active = React.useRef();
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      username: usernameRef.current.value,
-      password: passwordRef.current.value,
+      discount_name: d_name.current.value,
+      discount_desc: d_desc.current.value,
+      percent: d_percent.current.value,
+      active: d_active.current.value,
     };
-    const response = await fetch("http://localhost:9000/login", {
+    fetch("http://localhost:9000/adddiscount", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
+    }).then(() => {
+      console.log("new discount added");
     });
-    if (response.status === 404) {
-      alert("customer not found");
-      console.log("customer not found");
-      //window.location.href = "http://localhost:3000/Login";
-    } else if (response.status === 401) {
-      alert("bad password");
-      console.log("bad password");
-      //window.location.href = "http://localhost:3000/Login";
-    } else {
-      const responseJson = await response.json();
-      const customerSessionId = responseJson.sessionId;
-      console.log(customerSessionId);
-      //window.location.href = "http://localhost:3000/Desktop";
-    }
+    //onSubmit(data);
   };
   return (
     <form style={formStyle} onSubmit={handleSubmit}>
-      <Field ref={usernameRef} label="Username:" type="text" />
-      <Field ref={passwordRef} label="Pasword:" type="password" />
-      <AdminButton />
-
+      <Field ref={d_name} label="Discount Name:" type="text" />
+      <Field ref={d_desc} label="Discount Description:" type="text" />
+      <Field ref={d_percent} label="Discount percent:" type="text" />
+      <Field ref={d_active} label="Active:" type="text" />
       <div>
         <button style={submitStyle} type="submit">
           Submit
@@ -100,17 +97,23 @@ const Form = ({ onSubmit }) => {
 
 // Usage example:
 
-const Login = () => {
+const AdminDiscountsPage = () => {
   const handleSubmit = (data) => {
     const json = JSON.stringify(data, null, 4);
-
+    console.clear();
     console.log(json);
   };
   return (
+    <>
+    
+  <AdminNavbar/>
     <div style={appStyle}>
+      <h1 class="mt-5">Welcome To add discount page</h1>
+      
       <Form onSubmit={handleSubmit} />
     </div>
+    </>
   );
 };
 
-export default Login;
+export default AdminDiscountsPage;

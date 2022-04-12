@@ -1,11 +1,16 @@
 .Footer-container {
-    margin-top: 1rem;
+    margin-top: auto;
     padding: 4rem 0 2rem 0;
     display: flex;
-    flex-direction: column;
+    height: 75px;
     justify-content: center;
     align-items: center;
     background-color: black;
     color: white;
+    bottom: 0;
+    width: 100%;
+    position:relative;
+    clear: both;
+
 }
 

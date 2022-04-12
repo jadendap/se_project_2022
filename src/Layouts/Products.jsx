@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Desktop_Components } from "../data"
-import Product from "../Components/Product"
+import Product from "../Components/User/Product"
 
 
 const Products = () => {
@@ -15,3 +15,4 @@ const Products = () => {
 }
 
 export default Products
+

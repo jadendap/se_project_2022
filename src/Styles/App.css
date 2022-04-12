@@ -1,19 +1,15 @@
-div.info
-{
-    position: absolute;
-    top: 2;
-    align-items: center;
-    justify-content: center;
-}
-/*web page background*/
-body{
-background: #EEFDF5;
-}
-.shop-now-btn
-{
-    background-color: grey;
-    color: white;
-    border:none;
-    padding: 10px;
+html,
+body {
+    height: 100%;
 }
 
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-main {
+    overflow: auto;
+    padding-bottom: 75px;
+}

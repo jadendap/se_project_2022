@@ -1,0 +1,97 @@
+.px-4{
+    background-color: #73fcb7;
+}
+.orders-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 510px;
+    left:40px; 
+}
+.additem
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 550px;
+    left:40px; 
+}
+.adminsales-btn
+{
+    
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 470px;
+    left:40px; 
+}
+.modifyusers-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 430px;
+    left:40px; 
+}
+.discount-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 390px;
+    left:40px; 
+}
+.modifyitems-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 350px;
+    left:40px; 
+}
+.admin-nav-item .nav-link:focus{
+    color:#030303;
+    background-color:#eefdf5 !important;
+    border-color: #d45500;
+    border-bottom-color:transparent !important;
+    border: 2px solid #ffffff;
+}
+.admin-nav-link .nav-link {
+    
+    text-align: left;
+    color:#00719f;
+    border: 2px solid #ffffff;
+    border-bottom-color:#ffffff !important;
+}
+.nav-link:hover{
+    
+}
+.admin-navbar-style
+{
+    background-color: #caebd9 !important;
+    position: absolute;
+        width:200px !important;
+        height: 900px;
+        top: 82px;
+        left: 100px;
+        transform: translateX(-50%);
+        text-align: left;
+}
+.nav
+{
+    width: 500px;
+}
+.navbar-brand.abs
+    {
+        position: absolute;
+        width: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: left;
+    }
+    .mt-5
+    {
+        padding-top: -20px;
+     
+        padding-left:400px;
+    }
+    a.header
+    {
+        color: #4c926c!important;
+        font-size: 130%;
+    }

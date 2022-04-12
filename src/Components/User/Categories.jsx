@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { categories } from "../data";
-import CategoryItem from "../Layouts/CategoryItem";
-import './ComponentCSS/Categories.css';
+import { categories } from "../../data";
+import CategoryItem from "../../Layouts/CategoryItem";
+import '../ComponentCSS/Categories.css';
 
 
 

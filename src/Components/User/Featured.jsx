@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { featured } from "../data";
-import FeaturedItems from "../Layouts/FeaturedItems";
-import './ComponentCSS/Featured.css';
+import { featured } from "../../data";
+import FeaturedItems from "../../Layouts/FeaturedItems";
+import '../ComponentCSS/Featured.css';
 
 const Featured = () => {
   return (

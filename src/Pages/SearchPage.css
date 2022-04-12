@@ -1,0 +1,38 @@
+.searchPage-container {
+    margin-top: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%; 
+
+}
+
+.product-wrapper {
+    padding-bottom: 20px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.product-img {
+    margin-top: 0;
+    width: 30vh;
+    height: 30vh;
+}
+
+
+
+
+.product-link {
+    text-decoration: none;
+    color: black;
+    transition: 0.2s ease all;
+}
+
+.product-link:hover {
+    text-decoration: none;
+    color: green;
+    transition: 0.2s ease all;
+}
