@@ -6,7 +6,7 @@
 module.exports = {
   client: "pg",
   connection:
-    "", //database connection string needed
+    "placeholder", //database connection string needed
   migrations: {
     directory: "./src/migrations",
   },
