@@ -136,7 +136,7 @@ const ModifyUsersTable = () => {
     setEditContactId(null);
   };
 
-  const handleDeleteClick = (contactId) => {
+  const handleDeleteClick = async (contactId) => {
     const newContacts = [...users];
 
     const index = users.findIndex((contact) => contact.id === contactId);
@@ -144,6 +144,14 @@ const ModifyUsersTable = () => {
     newContacts.splice(index, 1);
 
     setUsers(newContacts);
+
+    await fetch(`http://localhost:9000/customers/${contactId}`, 
+    { 
+    method: 'DELETE' ,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(users.id),
+    }
+    );
   };
 
   return (
@@ -189,39 +197,6 @@ const ModifyUsersTable = () => {
           </tbody>
         </table>
         </div>
-      </form>
-
-      <h2>Add a Contact</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="fullName"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="address"
-          required="required"
-          placeholder="Enter an addres..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email..."
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
       </form>
     </div>
     </div>

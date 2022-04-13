@@ -98,7 +98,7 @@ export default function Navbar() {
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>  
-              <li ><a className="login-link account-link" href="#">     <BsFillPersonFill/>   Login   </a> <a className="account-link" href="#"><MdOutlineLogin/>   Sign Up  </a></li>
+              <li ><Link className="login-link account-link" to="/Login">     <BsFillPersonFill/>   Login   </Link> <Link className="account-link" to="/Register"><MdOutlineLogin/>   Sign Up  </Link></li>
               </ul>
             </div>
       

@@ -18,7 +18,7 @@ const formStyle = {
   display: "block",
   
   right: "500px",
-  top: "100px"
+  top: "50px"
 };
 
 const labelStyle = {
@@ -93,6 +93,11 @@ const Form = ({ onSubmit }) => {
     //onSubmit(data);
   };
   return (
+    <div>
+        <button style={submitStyle} type="submit">
+          Submit
+        </button>
+      
     <form style={formStyle} onSubmit={handleSubmit}>
       <Field ref={product_name} label="Product Name:" type="text" />
       <Field ref={discount} label="Discount id:" type="text" />
@@ -102,12 +107,9 @@ const Form = ({ onSubmit }) => {
       <Field ref={image_url} label="Image URL:" type="text" />
       <Field ref={price} label="Price:" type="text" />
       <Field ref={quantity} label="Quantity:" type="text" />
-      <div>
-        <button style={submitStyle} type="submit">
-          Submit
-        </button>
-      </div>
+      
     </form>
+    </div>
   );
 };
 

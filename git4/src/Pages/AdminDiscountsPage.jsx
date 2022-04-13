@@ -14,6 +14,7 @@ const formStyle = {
   width: "400px",
   height: "400px",
   display: "block",
+  top: "10px",
 };
 
 const labelStyle = {
@@ -21,6 +22,7 @@ const labelStyle = {
   fontFamily: "Arial, Helvetica, sans-serif",
   fontSize: "15px",
   color: "white",
+  
 };
 
 const inputStyle = {
@@ -43,7 +45,7 @@ const submitStyle = {
   fontSize: "15px",
   color: "black",
   left: "110px",
-  top: "30px",
+  top: "20px",
   display: "block",
 };
 
@@ -103,7 +105,7 @@ const AdminDiscountsPage = () => {
   };
   return (
     <div style={appStyle}>
-      <h1>Welcome To add discount page</h1>
+      <h1 >Welcome To add discount page</h1>
       <Form onSubmit={handleSubmit} />
     </div>
   );

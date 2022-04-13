@@ -40,7 +40,6 @@ function AdminPage() {
 <>
 
 <AdminNavbar/>
-<ModifyUsersTable/>
   </>
   );
 

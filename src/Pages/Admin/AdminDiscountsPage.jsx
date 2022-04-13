@@ -13,7 +13,7 @@ const formStyle = {
   borderRadius: "5px",
   background: "black",
   width: "520px",
-  height: "720px",
+  height: "460px",
   display: "block",
   
   right: "500px",
@@ -47,7 +47,7 @@ const submitStyle = {
   fontSize: "15px",
   color: "black",
   left: "110px",
-  top: "30px",
+  top: "20px",
   display: "block",
 };
 
