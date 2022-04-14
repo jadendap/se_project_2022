@@ -2,37 +2,26 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineLogin } from 'react-icons/md';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { BiSearchAlt2 } from 'react-icons/bi';
 import '../ComponentCSS/Navbar.css';
 
 
-export default function Navbar() {
+const Navbar = () => {
 
-  const [element, setElement] = useState(true)
-
-  const showElement = () => {
-    if( window.innerWidth <= 922 ) {
-        setElement(true)
-    } else {
-        setElement(false)
-    }
-  }
-
-  window.addEventListener('resize', showElement)
+  const [search, setSearch ] = useState("");
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark navbar-style">
 
 
     <div class="container-fluid">
     <li class="navbar-brand">
-        <Link className="website-name" title="Return to the homepage" to="/">
+        <Link className="website-name" title="Return to the homepage"  to="/">
           <h1>TechTerra</h1>
         </Link>
     </li>
     
       
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" autoClose="inside">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -94,11 +83,11 @@ export default function Navbar() {
 
               
               <ul className="working" class="navbar-nav ms-auto">
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                  <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="d-flex" onSubmit={(e) => e.preventDefault()} >
+                  <input  id="search-input" class="form-control me-2"  type="search"  placeholder="Search"  onChange={(e) => setSearch( e.target.value )} aria-label="Search" />
+                  <a href={`/search/${search}`}><button id="search-button" class="searchButton" type="button" >Search</button></a>
                 </form>  
-              <li ><Link className="login-link account-link" to="/Login">     <BsFillPersonFill/>   Login   </Link> <Link className="account-link" to="/Register"><MdOutlineLogin/>   Sign Up  </Link></li>
+              <li ><Link  to="/Login"className="login-link account-link" >     <BsFillPersonFill/>   Login   </Link> <Link to="/Register" className="account-link" ><MdOutlineLogin/>   Sign Up  </Link></li>
               </ul>
             </div>
       
@@ -106,3 +95,5 @@ export default function Navbar() {
 </nav>
   )
 }
+
+export default Navbar
