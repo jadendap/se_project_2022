@@ -8,7 +8,6 @@ const server = express();
 server.use(cors());
 const PORT = 9000;
 const db = knex(knexConfig);
-
 server.get("/", async (req, res) => {
   res.send("Welcome to route '/'");
 });
@@ -18,6 +17,8 @@ server.get("/customers", async (req, res) => {
   const customers = await db.select("*").from("customer");
   res.send(customers);
 });
+
+
 
 //GET all admins
 server.get("/admins", async (req, res) => {
@@ -61,6 +62,7 @@ server.get("/customers/:id", async (req, res) => {
   }
   res.send(customer);
 });
+
 
 //login user
 var loginParser = bodyParser.json();
@@ -235,61 +237,23 @@ server.post("/register", jsonParser, async (req, res) => {
   const dbResult = await db.insert(usr).into("customer");
   res.send("customer added");
 });
-
-server.patch("/register", jsonParser, async (req, res) => {
+//add admin
+var jsonParser = bodyParser.json();
+server.post("/admins", jsonParser, async (req, res) => {
   console.log(JSON.stringify(req.body));
   userName = req.body.username;
   userPass = req.body.password;
-  userAddress = req.body.address;
-  userFirst = req.body.firstName;
-  userLast = req.body.lastName;
-  userPhone = req.body.telephone;
   let usr = req.body;
   usr = {
     username: userName,
     password: userPass,
-    first_name: userFirst,
-    address: userAddress,
-    last_name: userLast,
-    telephone: userPhone,
   };
-
-  const dbResult = db("customers").where({ username: userName }).update(usr);
-  if (usr) {
-    res.send(usr);
-
-    console.log(dbResult);
-  } else {
-    res.status(400).send("record not found");
+  const admin = await db("se_admins").where("username", userName);
+  if (admin.length === 0) {
+    const dbResult = await db.insert(usr).into("se_admins");
+    res.send("admin added");
   }
-});
-server.put("/customers/:id", jsonParser, async (req, res) => {
-  //console.log(JSON.stringify(req.body));
-  userName = req.body.username;
-  userPass = req.body.password;
-  userAddress = req.body.address;
-  userFirst = req.body.first_name;
-  userLast = req.body.last_name;
-  userPhone = req.body.telephone;
-  let usr = req.body;
-  usr = {
-    username: userName,
-    password: userPass,
-    first_name: userFirst,
-    address: userAddress,
-    last_name: userLast,
-    telephone: userPhone,
-  };
-  res.setHeader("Content-Type", "text/html");
-  const dbResult = await db("customer")
-    .where({ username: userName })
-    .update(usr);
-  if (usr) {
-    console.log(usr);
-    return res.status(200).json({ updated: dbResult });
-  } else {
-    res.status(400).send("record not found");
-  }
+  
 });
 //add an item to db
 var jsonParser = bodyParser.json();
@@ -298,7 +262,7 @@ server.post("/additem", jsonParser, async (req, res) => {
   let item = req.body;
   let inventory = req.body;
   item = {
-    name: req.body.product_name,
+    name: req.body.name,
     discount_id: req.body.discount,
     category_id: req.body.category,
     desc: req.body.desc,
@@ -306,6 +270,7 @@ server.post("/additem", jsonParser, async (req, res) => {
     image_url: req.body.url,
     price: req.body.price,
   };
+  console.log(item)
   inventory = { quantity: req.body.quantity };
   //insert item into product table
   const dbResult = await db.insert(item).into("product");
@@ -319,7 +284,7 @@ server.post("/additem", jsonParser, async (req, res) => {
   console.log(maxIventoryId);
   //id assignment
   const updateResult = await db("product")
-    .where("name", req.body.product_name)
+    .where("name", req.body.name)
     .update("inventory_id", maxIventoryId.maxId);
   res.send("item added");
 });
@@ -338,7 +303,6 @@ server.post("/adddiscount", jsonParser, async (req, res) => {
   console.log(dbResult);
   res.send("discount added");
 });
-
 //customer adds a product
 server.post("/customerproduct", jsonParser, async (req, res) => {
   //get highest cart_item id
@@ -369,6 +333,147 @@ server.post("/customerproduct", jsonParser, async (req, res) => {
   }
   res.send("message received");
 });
+
+var jsonParser = bodyParser.json();
+server.patch("/register", jsonParser, async (req, res) => {
+  console.log(JSON.stringify(req.body));
+  userName = req.body.username;
+  userPass = req.body.password;
+  userAddress = req.body.address;
+  userFirst = req.body.firstName;
+  userLast = req.body.lastName;
+  userPhone = req.body.telephone;
+  let usr = req.body;
+  usr = {
+    username: userName,
+    password: userPass,
+    first_name: userFirst,
+    address: userAddress,
+    last_name: userLast,
+    telephone: userPhone,
+  };
+
+  const dbResult = db('customers').where({username: userName}).update(usr);
+  if (usr) {
+    res.send(usr);
+    
+    console.log(dbResult);
+  } else {
+    res.status(400).send("record not found");
+  }
+   
+});
+var jsonParser = bodyParser.json();
+server.put("/customers/:id", jsonParser, async (req, res) => {
+  //console.log(JSON.stringify(req.body));
+  userid = req.body.id
+  userName = req.body.username;
+  userPass = req.body.password;
+  userAddress = req.body.address;
+  userFirst = req.body.first_name;
+  userLast = req.body.last_name;
+  userPhone = req.body.telephone;
+  let usr = req.body;
+  usr = {
+    id: userid,
+    username: userName,
+    password: userPass,
+    first_name: userFirst,
+    address: userAddress,
+    last_name: userLast,
+    telephone: userPhone,
+  };
+  res.setHeader("Content-Type", "text/html");
+  const dbResult = await db('customer').where({id: userid}).update(usr)
+  if (usr) {
+    console.log(usr)
+    return res.status(200).json({updated: dbResult})
+  } else {
+    res.status(400).send("record not found");
+  }
+   
+});
+var jsonParser = bodyParser.json();
+server.put("/admins/:id", jsonParser, async (req, res) => {
+  //console.log(JSON.stringify(req.body));
+  userid = req.body.id
+  userName = req.body.username;
+  userPass = req.body.password;
+  let usr = req.body;
+  usr = {
+    id: userid,
+    username: userName,
+    password: userPass,
+  };
+  res.setHeader("Content-Type", "text/html");
+  const dbResult = await db('se_admins').where({id: userid}).update(usr)
+  if (usr) {
+    console.log(usr)
+    return res.status(200).json({updated: dbResult})
+  } else {
+    res.status(400).send("record not found");
+  }
+   
+});
+var jsonParser = bodyParser.json();
+server.put("/products/:id", jsonParser, async (req, res) => {
+  console.log(JSON.stringify(req.body));
+  itemid = req.body.id
+  itemname = req.body.name;
+  itemdiscount_id = req.body.discount_id
+  itemdesc = req.body.desc;
+  itemimage = req.body.image_url;
+  itemsku =  req.body.sku;
+  itemcategory = req.body.category;
+  itemprice = req.body.price;
+  iteminventory_id = req.body.inventory_id
+  itemcategory_id = req.body.category_id
+  let product = req.body;
+  product = {
+    id:itemid,
+    name:itemname,
+    discount_id:itemdiscount_id,
+    category_id:itemcategory,
+    inventory_id: iteminventory_id,
+    desc: itemdesc,
+    sku: itemsku,
+    image_url: itemimage,
+    category: itemcategory_id,
+    price: itemprice,
+  };
+  res.setHeader("Content-Type", "text/html");
+  console.log(product)
+  console.log(itemid)
+  const dbResult = await db('product').where({id: itemid}).update(product);
+  if (product) {
+    console.log(product)
+    return res.status(200).json({updated: dbResult})
+  } else {
+    res.status(400).send("record not found");
+  }
+   
+});
+server.delete('/products/:id', async (req, res) => {
+  //const {id } = req.params
+  console.log(req.params.id)
+  //const dbResult = await db('customer').where({username: userName}).update(usr)
+  await db('product').where({id: req.params.id}).del()
+  
+})
+server.delete('/customers/:id', async (req, res) => {
+  //const {id } = req.params
+  console.log(req.params.id)
+  //const dbResult = await db('customer').where({username: userName}).update(usr)
+  await db('customer').where({id: req.params.id}).del()
+  
+})
+server.delete('/admins/:id', async (req, res) => {
+  //const {id } = req.params
+  console.log(req.params.id)
+  //const dbResult = await db('customer').where({username: userName}).update(usr)
+  await db('se_admins').where({id: req.params.id}).del()
+  
+})
 
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
