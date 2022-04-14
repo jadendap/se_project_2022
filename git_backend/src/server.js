@@ -101,7 +101,26 @@ server.post("/login", loginParser, async (req, res) => {
 
 //GET all products
 server.get("/products", async (req, res) => {
-  const products = await db.select("*").from("product");
+  const products = await db
+    .select(
+      "product.id",
+      "product.name",
+      "product.discount_id",
+      "product.category_id",
+      "product.inventory_id",
+      "product.desc",
+      "product.sku",
+      "product.image_url",
+      "product.price",
+      "product_inventory.id",
+      "product_inventory.quantity"
+    )
+    .from("product")
+    .leftJoin(
+      "product_inventory",
+      "product.inventory_id",
+      "product_inventory.id"
+    );
   res.send(products);
 });
 
@@ -133,11 +152,28 @@ server.get("/products/search", async (req, res) => {
 
 //return all featured items
 server.get("/featured", async (req, res) => {
-  const featured_items = await db
-    .select("*")
+  const featured = await db
+    .select(
+      "product.id",
+      "product.name",
+      "product.discount_id",
+      "product.category_id",
+      "product.inventory_id",
+      "product.desc",
+      "product.sku",
+      "product.image_url",
+      "product.price",
+      "product_inventory.id",
+      "product_inventory.quantity"
+    )
     .from("product")
-    .where("category_id", 1);
-  res.send(featured_items);
+    .leftJoin(
+      "product_inventory",
+      "product.inventory_id",
+      "product_inventory.id"
+    )
+    .where("product.category_id", 1);
+  res.send(featured);
 });
 
 //GET all items on sale
