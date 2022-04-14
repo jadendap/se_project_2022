@@ -54,41 +54,40 @@ const Field = React.forwardRef(({ label, type }, ref) => {
   );
 });
 const Form = ({ onSubmit }) => {
-  
   const navigate = useNavigate();
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
   const home_redirect = () => {
-    navigate('/');
-   }
+    navigate("/");
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
-    
+
     const response = await fetch("http://localhost:9000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    if (response.status === 404 || data.username == "") {
+    if (response.status === 404 || data.username === "") {
       alert("customer not found");
       console.log("customer not found");
       //window.location.href = "http://localhost:3000/Login";
-    } else if (response.status === 401 || data.password == "") {
+    } else if (response.status === 401 || data.password === "") {
       alert("bad password");
       console.log("bad password");
-      
+
       //window.location.href = "http://localhost:3000/Login";
     } else {
-      
       const responseJson = await response.json();
       const customerSessionId = responseJson.sessionId;
+      sessionStorage.setItem("sessionId", customerSessionId);
       console.log(customerSessionId);
       home_redirect();
-      
+
       //window.location.href = "http://localhost:3000/Desktop";
     }
   };
@@ -111,16 +110,13 @@ const Form = ({ onSubmit }) => {
 
 const Login = () => {
   const handleSubmit = async (data) => {
-    
-  
     const json = JSON.stringify(data, null, 4);
     const url = "http://localhost:9000/customers";
-    const response = fetch(url)
+    const response = fetch(url);
     const customer_data = await (await response).json();
     json = data;
 
     console.log(json);
-   
   };
   return (
     <div style={appStyle}>
