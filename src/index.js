@@ -24,8 +24,12 @@ import AdminModifyUsersPage from "./Pages/Admin/AdminModifyUsersPage";
 import AdminOrdersPage from "./Pages/Admin/AdminOrdersPage";
 import AdminSetSalePage from "./Pages/Admin/AdminSetSalePage";
 import AdminNavbar from "./Components/Admin/AdminNav";
+import SearchPage from "./Pages/SearchPage";
 
 /************************************************************************ */
+
+
+
 
 ReactDOM.render(
   <>
@@ -37,15 +41,17 @@ ReactDOM.render(
       <Route path="/Login" element={<Login />}></Route>
       <Route path="/Register" element={<Register />}></Route>
       <Route path="/AdminLogin" element={<AdminLogin />}></Route>
-  <Route path="/AdminPage" element={<AdminPage />}></Route>
+      <Route path="/AdminPage" element={<AdminPage />}></Route>
       <Route path="/" element={<App />}></Route>
-      
-    <Route path="/AdminDiscountsPage" element={<AdminDiscountsPage/>}></Route>
-  <Route path="/AdminAddItemPage" element={<AdminAddItemPage/> }></Route>
-  <Route path="/AdminModifyItemsPage" element={<AdminModifyItemsPage/> }></Route>
-  <Route path="/AdminModifyUsersPage" element={<AdminModifyUsersPage/> }></Route>
-  <Route path="/AdminOrdersPage" element={<AdminOrdersPage/> }></Route>
-  <Route path="/AdminSetSalePage" element={<AdminSetSalePage/> }></Route>
+      <Route path="/search/:id" element={<SearchPage/>}></Route>
+
+
+      <Route path="/AdminDiscountsPage" element={<AdminDiscountsPage/>}></Route>
+      <Route path="/AdminAddItemPage" element={<AdminAddItemPage/> }></Route>
+      <Route path="/AdminModifyItemsPage" element={<AdminModifyItemsPage/> }></Route>
+      <Route path="/AdminModifyUsersPage" element={<AdminModifyUsersPage/> }></Route>
+      <Route path="/AdminOrdersPage" element={<AdminOrdersPage/> }></Route>
+      <Route path="/AdminSetSalePage" element={<AdminSetSalePage/> }></Route>
       
       
       
