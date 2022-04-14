@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
-import "../../Styles/AdminPage.scss"
+import "../../../Styles/AdminPage.scss"
 import { SettingsBackupRestoreSharp } from "@mui/icons-material";
 
 const ModifyUsersTable = () => {

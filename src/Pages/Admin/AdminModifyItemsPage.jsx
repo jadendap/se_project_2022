@@ -22,7 +22,7 @@ import AdminHome from "./AdminPage"
 import { render } from "@testing-library/react";
 import '../../Styles/AdminPage.scss';
 import Customers from "../../Components/User/customers"
-import ModifyUsersTable from "../../Components/Admin/ModifyUsersTable";
+import ModifyUsersTable from "../../Components/Admin/users/ModifyUsersTable";
 import '../../Styles/index.css'
   
   //console.log(responseJson);
