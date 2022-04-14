@@ -1,0 +1,68 @@
+.FeaturedItems-container {
+    margin-top: 15px;
+    margin: 10px;
+    padding-top:0;
+    text-align: center;
+    
+}
+
+p {
+    font-size: 35px;
+}
+
+.itemImg {
+    margin:0;
+    object-fit:fill;
+    padding: 0;
+    width: 60vh;
+    height: 60vh;
+    image-rendering: auto;
+    transition: 0.2s ease; 
+}
+
+.itemLink {
+    top: 0;
+    color: black;
+    text-decoration: none;
+    z-index: 5;
+    align-items: flex;   
+
+}
+
+.itemImg:hover,
+.itemLink:hover {
+    text-decoration: none;
+    color: rgb(50, 195, 50);
+    transform: scale(1.05);
+    transition: 0.2s ease;  
+}
+
+@media screen and (max-width: 1220px)
+{
+    p {
+        font-size: 25px;
+    }
+    
+    .itemImg{
+        max-width: 45vh;
+        max-height: 45vh;
+    }
+
+    
+}
+
+
+
+@media screen and (max-width: 922px)
+{
+    p {
+        font-size: 25px;
+    }
+    
+    .itemImg{
+        max-width: 40vh;
+        max-height: 40vh;
+    }
+
+    
+}
