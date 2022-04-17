@@ -17,6 +17,10 @@ server.get("/customers", async (req, res) => {
   const customers = await db.select("*").from("customer");
   res.send(customers);
 });
+server.get("/products", async (req, res) => {
+  const customers = await db.select("*").from("product");
+  res.send(customers);
+});
 
 
 
@@ -62,6 +66,15 @@ server.get("/customers/:id", async (req, res) => {
   }
   res.send(customer);
 });
+server.get("/products/:id", async (req, res) => {
+  const id = req.params.id;
+  const product = await db("product").where("id", id);
+  if (product.length === 0) {
+    return res.status(404).send("Product not found");
+  }
+  res.send(product);
+});
+
 
 
 //login user
@@ -335,6 +348,26 @@ server.post("/customerproduct", jsonParser, async (req, res) => {
 });
 
 var jsonParser = bodyParser.json();
+/*server.put("/register", jsonParser, async (req, res) => {
+  console.log(JSON.stringify(req.body));
+  userName = req.body.username;
+  userPass = req.body.password;
+  userAddress = req.body.address;
+  userFirst = req.body.firstName;
+  userLast = req.body.lastName;
+  userPhone = req.body.telephone;
+  let usr = req.body;
+  usr = {
+    username: userName,
+    password: userPass,
+    first_name: userFirst,
+    address: userAddress,
+    last_name: userLast,
+    telephone: userPhone,
+  };
+  const dbResult = await db.update(usr);
+  res.send("customer updated");
+});*/
 server.patch("/register", jsonParser, async (req, res) => {
   console.log(JSON.stringify(req.body));
   userName = req.body.username;
