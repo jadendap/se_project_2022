@@ -168,12 +168,13 @@ const ModifyItemsTable = () => {
     newContacts.splice(index, 1);
 
     setProducts(newContacts);
+    console.log(contactId);
     //console.log(contactId)
     await fetch(`http://localhost:9000/products/${contactId}`, 
     { 
     method: 'DELETE' ,
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(products.id),
+    body: JSON.stringify(contactId),
     }
     );
   };
