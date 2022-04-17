@@ -24,6 +24,7 @@ const ModifyItemsTable = () => {
     name: "",
     discount_id: "",
     category_id: "",
+    inventory_id:"",
     desc: "",
     sku: "",
     image_url: "",
@@ -38,7 +39,6 @@ const ModifyItemsTable = () => {
     name:"",
     discount_id:"",
     category_id:"",
-    inventory_id: "",
     desc: "",
     sku: "",
     image_url: "",
@@ -88,6 +88,7 @@ const ModifyItemsTable = () => {
 
     const newContacts = [...products, newContact];
     setProducts(newContacts);
+    if(newContacts){
     fetch(`http://localhost:9000/additem`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -96,6 +97,7 @@ const ModifyItemsTable = () => {
           console.log(`new item added`);
           //console.log(newContacts);
           });
+        }
   };
 
 
@@ -107,7 +109,6 @@ const ModifyItemsTable = () => {
       name:editFormData.name,
       discount_id:editFormData.discount_id,
       category_id:editFormData.category_id,
-      inventory_id: editFormData.inventory_id,
       desc: editFormData.desc,
       sku: editFormData.sku,
       image_url: editFormData.image_url,
@@ -144,7 +145,6 @@ const ModifyItemsTable = () => {
       name:contact.name,
       discount_id:contact.discount_id,
       category_id:contact.category_id,
-      inventory_id: contact.inventory_id,
       desc: contact.desc,
       sku: contact.sku,
       image_url: contact.image_url,
@@ -206,19 +206,21 @@ const ModifyItemsTable = () => {
           <tbody >
             {products && products.map((product) => (
               <Fragment>
-                {editContactId === product.id ? (
+                {editContactId === product.id && product.id != null ? (
                   <EditRowsItems
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
                     handleCancelClick={handleCancelClick}
                   />
-                ) : (
+                ) : product.id != null ? (
                   <ReadOnlyRowsItems
                     product={product}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
                   />
-                )}
+                ):
+                (console.log("error rendering some items"))
+              }
               </Fragment>
             ))}
           </tbody>

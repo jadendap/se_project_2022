@@ -41,15 +41,7 @@ const EditableRow = ({editFormData, handleEditFormChange, handleCancelClick}) =>
   />
   </td>
   <td>
-  <input 
-  type="text" 
-  name="inventory_id"
-  required ="required"
-  placeholder="Enter inventory_id"
-  value={editFormData.inventory_id}
-  onChange={handleEditFormChange}
-  />
-  
+  #
   </td>
   <td>
   <input 
