@@ -25,6 +25,7 @@ import AdminOrdersPage from "./Pages/Admin/AdminOrdersPage";
 import AdminSetSalePage from "./Pages/Admin/AdminSetSalePage";
 import AdminNavbar from "./Components/Admin/AdminNav";
 import SearchPage from "./Pages/SearchPage";
+import FeaturedPage from "./Pages/FeaturedPage";
 
 /************************************************************************ */
 
@@ -38,6 +39,7 @@ ReactDOM.render(
     <Routes>
       
       <Route path="/Desktop" element={<Desktop />}></Route>
+      <Route path="/FeaturedPage" element={<FeaturedPage/>}></Route>
       <Route path="/Login" element={<Login />}></Route>
       <Route path="/Register" element={<Register />}></Route>
       <Route path="/AdminLogin" element={<AdminLogin />}></Route>

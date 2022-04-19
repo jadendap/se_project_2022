@@ -2,6 +2,7 @@ import { listClasses } from "@mui/material";
 import ProductCards from "../Components/User/ProductCard";
 import React, { useState } from "react";
 import "../Styles/FeaturedPage.css";
+import Products from "../Layouts/Products";
 const fetchFeatured = async () => {
   const response = await fetch("http://localhost:9000/featured");
   const responseJson = await response.json();
@@ -30,6 +31,7 @@ const FeaturedPage = () => {
     console.log(item);
   };
   return (
+    
     <section>
       {JSON.parse(sessionStorage.featured).map((item) => (
         <ProductCards key={item.id} item={item} handleClick={handleClick} />

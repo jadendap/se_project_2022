@@ -35,6 +35,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/FeaturedPage" element={<FeaturedPage />}></Route>
         <Route path="/Desktop" element={<Desktop />}></Route>
+        <Route path="/FeaturedPage" element={<FeaturedPage/>}></Route>
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Register" element={<Register />}></Route>
         <Route path="/AdminLogin" element={<AdminLogin />}></Route>
