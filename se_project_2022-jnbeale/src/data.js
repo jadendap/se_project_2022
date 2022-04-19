@@ -4,25 +4,29 @@ export const featured =
         id: 1,
         img: "https://images.unsplash.com/photo-1601524909162-ae8725290836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
         title: "Featured",
-        description: "Latest from our sponsers"
+        description: "Latest from our sponsers",
+        url: "/FeaturedPage"
     },
     {
         id: 2,
         img: "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         title: "On Sale",
-        description: "Save more with these marked down products"
+        description: "Save more with these marked down products",
+        url: "/FeaturedPage",
     },
     {
         id: 3,
         img: "https://images.unsplash.com/photo-1620783770629-122b7f187703?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGVsZWN0cm9uaWNzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
         title: "Trending",
-        description:"See the latest top rated tech"
+        description:"See the latest top rated tech",
+        url: "/FeaturedPage",
     },
     {
         id: 4,
         img: "https://images.unsplash.com/photo-1512295767273-ac109ac3acfa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
         title: "Best Sellers",
-        description: "Check out these popular items"
+        description: "Check out these popular items",
+        url: "/FeaturedPage"
     }
 
 ]

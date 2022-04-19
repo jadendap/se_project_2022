@@ -26,6 +26,7 @@ import AdminSetSalePage from "./Pages/Admin/AdminSetSalePage";
 import AdminNavbar from "./Components/Admin/AdminNav";
 import SearchPage from "./Pages/SearchPage";
 import FeaturedPage from "./Pages/FeaturedPage";
+import Nintendo from "./Pages/GAMING/Nintendo";
 
 /************************************************************************ */
 
@@ -40,6 +41,7 @@ ReactDOM.render(
       
       <Route path="/Desktop" element={<Desktop />}></Route>
       <Route path="/FeaturedPage" element={<FeaturedPage/>}></Route>
+      <Route path="/Nintendo" element={<Nintendo/>}></Route>
       <Route path="/Login" element={<Login />}></Route>
       <Route path="/Register" element={<Register />}></Route>
       <Route path="/AdminLogin" element={<AdminLogin />}></Route>

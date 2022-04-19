@@ -88,7 +88,7 @@ const ModifyItemsTable = () => {
 
     const newContacts = [...products, newContact];
     setProducts(newContacts);
-    if(newContacts){
+    //if(newContacts){
     fetch(`http://localhost:9000/additem`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -97,7 +97,7 @@ const ModifyItemsTable = () => {
           console.log(`new item added`);
           //console.log(newContacts);
           });
-        }
+      //  }
   };
 
 

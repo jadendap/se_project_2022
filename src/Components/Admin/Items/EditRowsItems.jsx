@@ -84,14 +84,7 @@ const EditableRow = ({editFormData, handleEditFormChange, handleCancelClick}) =>
   />
   </td>
   <td>
-  <input 
-  type="text" 
-  name="category"
-  required ="required"
-  placeholder="Enter category"
-  value={editFormData.category}
-  onChange={handleEditFormChange}
-  />
+ #
   </td>
   
   

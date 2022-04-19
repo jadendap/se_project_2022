@@ -74,7 +74,9 @@ const Navbar = () => {
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#furniture">Xbox</a></li>
                     <li><a class="dropdown-item" href="#decor">Playstation</a></li>
-                    <li><a class="dropdown-item" href="#appliances">Nintendo Switch</a></li>
+                    <li><Link className="dropdown-item" to="/Nintendo">
+                          Nintendo Switch
+                        </Link></li>
                     <li><a class="dropdown-item" href="#cooking">PC</a></li>
                   </ul>
                 </li>

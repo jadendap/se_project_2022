@@ -3,12 +3,25 @@ import ProductCards from "../Components/User/ProductCard";
 import React, { useState } from "react";
 import "../Styles/FeaturedPage.css";
 import Products from "../Layouts/Products";
+let product_arr= [];
 const fetchFeatured = async () => {
   const response = await fetch("http://localhost:9000/featured");
   const responseJson = await response.json();
 
   sessionStorage.setItem("featured", JSON.stringify(responseJson));
+  for(let i = 0; i < responseJson.length; i++)
+{
+  if(responseJson[i].name.includes("Laptop") )
+  {
+  product_arr.push(responseJson[i].name)
+  }
+
+}
 };
+
+
+
+console.log(product_arr);
 fetchFeatured();
 const FeaturedPage = () => {
   const [cart, setCart] = useState([]);
@@ -34,7 +47,9 @@ const FeaturedPage = () => {
     
     <section>
       {JSON.parse(sessionStorage.featured).map((item) => (
+        
         <ProductCards key={item.id} item={item} handleClick={handleClick} />
+      
       ))}
     </section>
   );

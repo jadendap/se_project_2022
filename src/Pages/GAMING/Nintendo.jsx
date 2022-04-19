@@ -1,8 +1,8 @@
 import { listClasses } from "@mui/material";
-import ProductCards from "../Components/User/ProductCard";
+import ProductCards from "../../Components/User/ProductCard";
 import React, { useState } from "react";
-import "../Styles/FeaturedPage.css";
-import Products from "../Layouts/Products";
+import "../../Styles/FeaturedPage.css";
+import Products from "../../Layouts/Products";
 let product_arr= [];
 const fetchFeatured = async () => {
   const response = await fetch("http://localhost:9000/Products");
@@ -23,7 +23,7 @@ const fetchFeatured = async () => {
 
 console.log(product_arr);
 fetchFeatured();
-const Desktop = () => {
+const Nintendo = () => {
   const [cart, setCart] = useState([]);
 
   const handleClick = (item) => {
@@ -58,4 +58,4 @@ const Desktop = () => {
   );
 };
 
-export default Desktop;
+export default Nintendo;
