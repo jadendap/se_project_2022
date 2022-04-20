@@ -185,14 +185,14 @@ const ModifyItemsTable = () => {
 
     setProducts(newContacts);
     //console.log(contactId)
-    await fetch(`http://localhost:9000/products/${contactId}`, 
+    /*await fetch(`http://localhost:9000/products/${contactId}`, 
     { 
     method: 'DELETE' ,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(products.id),
     }
     
-    );
+    );*/
     await fetch(`http://localhost:9000/inventory/${invId}`, 
     { 
     method: 'DELETE' ,
@@ -201,6 +201,7 @@ const ModifyItemsTable = () => {
     }
     
     );
+    console.log(products.inventory_id)
   };
 
   return (
