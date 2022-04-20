@@ -83,8 +83,14 @@ const ModifyItemsTable = () => {
     desc: addFormData.desc,
     sku: addFormData.sku,
     url: addFormData.image_url,
-    price: addFormData.price
+    price: addFormData.price,
+    quantity: addFormData.quantity
+    
     };
+
+    const newInventoryItem ={
+      quantity: addFormData.quantity
+    }
 
     const newContacts = [...products, newContact];
     setProducts(newContacts);
@@ -96,6 +102,15 @@ const ModifyItemsTable = () => {
           console.log(`new item added`);
           //console.log(newContacts);
           });
+    fetch(`http://localhost:9000/inventory`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newInventoryItem),
+            }).then(() => {
+            console.log(`item added to inventory`);
+            //console.log(newContacts);
+            });
+    
   };
 
 
@@ -160,10 +175,11 @@ const ModifyItemsTable = () => {
   };
 
 
-  const handleDeleteClick = async (contactId) => {
+  const handleDeleteClick = async (contactId, invId) => {
     const newContacts = [...products];
 
     const index = products.findIndex((contact) => contact.id === contactId);
+    const invindex = products.findIndex((contact) => contact.inventory_id === invId);
 
     newContacts.splice(index, 1);
 
@@ -175,6 +191,15 @@ const ModifyItemsTable = () => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(products.id),
     }
+    
+    );
+    await fetch(`http://localhost:9000/inventory/${invId}`, 
+    { 
+    method: 'DELETE' ,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(products.inventory_id),
+    }
+    
     );
   };
 
