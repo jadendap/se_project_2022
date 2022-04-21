@@ -22,8 +22,6 @@ server.get("/products", async (req, res) => {
   res.send(customers);
 });
 
-
-
 //GET all admins
 server.get("/admins", async (req, res) => {
   const admins = await db.select("*").from("se_admins");
@@ -74,8 +72,6 @@ server.get("/products/:id", async (req, res) => {
   }
   res.send(product);
 });
-
-
 
 //login user
 var loginParser = bodyParser.json();
@@ -178,10 +174,10 @@ server.get("/featured", async (req, res) => {
       "product.sku",
       "product.image_url",
       "product.price",
-      "product_inventory.id",
       "product_inventory.quantity"
     )
     .from("product")
+    .leftJoin("product_category", "product.category_id", "product_category.id")
     .leftJoin(
       "product_inventory",
       "product.inventory_id",
@@ -190,7 +186,6 @@ server.get("/featured", async (req, res) => {
     .where("product.category_id", 1);
   res.send(featured);
 });
-
 //GET all items on sale
 server.get("/sale", async (req, res) => {
   const sale_items = await db
@@ -266,7 +261,6 @@ server.post("/admins", jsonParser, async (req, res) => {
     const dbResult = await db.insert(usr).into("se_admins");
     res.send("admin added");
   }
-  
 });
 //add an item to db
 var jsonParser = bodyParser.json();
@@ -283,7 +277,7 @@ server.post("/additem", jsonParser, async (req, res) => {
     image_url: req.body.url,
     price: req.body.price,
   };
-  console.log(item)
+  console.log(item);
   inventory = { quantity: req.body.quantity };
   //insert item into product table
   const dbResult = await db.insert(item).into("product");
@@ -386,20 +380,19 @@ server.patch("/register", jsonParser, async (req, res) => {
     telephone: userPhone,
   };
 
-  const dbResult = db('customers').where({username: userName}).update(usr);
+  const dbResult = db("customers").where({ username: userName }).update(usr);
   if (usr) {
     res.send(usr);
-    
+
     console.log(dbResult);
   } else {
     res.status(400).send("record not found");
   }
-   
 });
 var jsonParser = bodyParser.json();
 server.put("/customers/:id", jsonParser, async (req, res) => {
   //console.log(JSON.stringify(req.body));
-  userid = req.body.id
+  userid = req.body.id;
   userName = req.body.username;
   userPass = req.body.password;
   userAddress = req.body.address;
@@ -417,19 +410,18 @@ server.put("/customers/:id", jsonParser, async (req, res) => {
     telephone: userPhone,
   };
   res.setHeader("Content-Type", "text/html");
-  const dbResult = await db('customer').where({id: userid}).update(usr)
+  const dbResult = await db("customer").where({ id: userid }).update(usr);
   if (usr) {
-    console.log(usr)
-    return res.status(200).json({updated: dbResult})
+    console.log(usr);
+    return res.status(200).json({ updated: dbResult });
   } else {
     res.status(400).send("record not found");
   }
-   
 });
 var jsonParser = bodyParser.json();
 server.put("/admins/:id", jsonParser, async (req, res) => {
   //console.log(JSON.stringify(req.body));
-  userid = req.body.id
+  userid = req.body.id;
   userName = req.body.username;
   userPass = req.body.password;
   let usr = req.body;
@@ -439,34 +431,33 @@ server.put("/admins/:id", jsonParser, async (req, res) => {
     password: userPass,
   };
   res.setHeader("Content-Type", "text/html");
-  const dbResult = await db('se_admins').where({id: userid}).update(usr)
+  const dbResult = await db("se_admins").where({ id: userid }).update(usr);
   if (usr) {
-    console.log(usr)
-    return res.status(200).json({updated: dbResult})
+    console.log(usr);
+    return res.status(200).json({ updated: dbResult });
   } else {
     res.status(400).send("record not found");
   }
-   
 });
 var jsonParser = bodyParser.json();
 server.put("/products/:id", jsonParser, async (req, res) => {
   console.log(JSON.stringify(req.body));
-  itemid = req.body.id
+  itemid = req.body.id;
   itemname = req.body.name;
-  itemdiscount_id = req.body.discount_id
+  itemdiscount_id = req.body.discount_id;
   itemdesc = req.body.desc;
   itemimage = req.body.image_url;
-  itemsku =  req.body.sku;
+  itemsku = req.body.sku;
   itemcategory = req.body.category;
   itemprice = req.body.price;
-  iteminventory_id = req.body.inventory_id
-  itemcategory_id = req.body.category_id
+  iteminventory_id = req.body.inventory_id;
+  itemcategory_id = req.body.category_id;
   let product = req.body;
   product = {
-    id:itemid,
-    name:itemname,
-    discount_id:itemdiscount_id,
-    category_id:itemcategory,
+    id: itemid,
+    name: itemname,
+    discount_id: itemdiscount_id,
+    category_id: itemcategory,
     inventory_id: iteminventory_id,
     desc: itemdesc,
     sku: itemsku,
@@ -475,49 +466,51 @@ server.put("/products/:id", jsonParser, async (req, res) => {
     price: itemprice,
   };
   res.setHeader("Content-Type", "text/html");
-  console.log(product)
-  console.log(itemid)
-  const dbResult = await db('product').where({id: itemid}).update(product);
+  console.log(product);
+  console.log(itemid);
+  const dbResult = await db("product").where({ id: itemid }).update(product);
   if (product) {
-    console.log(product)
-    return res.status(200).json({updated: dbResult})
+    console.log(product);
+    return res.status(200).json({ updated: dbResult });
   } else {
     res.status(400).send("record not found");
   }
-   
 });
-server.delete('/products/:id', async (req, res) => {
+server.delete("/products/:id", async (req, res) => {
   //const {id } = req.params
-  console.log(req.params.id)
+  console.log(req.params.id);
   //const dbResult = await db('customer').where({username: userName}).update(usr)
-  await db('product').where({id: req.params.id}).del()
-  
-})
-server.delete('/inventory/:id', async (req, res) => {
+  await db("product").where({ id: req.params.id }).del();
+});
+server.delete("/inventory/:id", async (req, res) => {
   //const {id } = req.params
-  console.log(`Inventory item deleted: ${req.params.id}`)
+  console.log(`Inventory item deleted: ${req.params.id}`);
   //const dbResult = await db('customer').where({username: userName}).update(usr)
-  await db('product_inventory').where({id: req.params.id}).del()
-  
-})
-server.delete('/customers/:id', async (req, res) => {
+  await db("product_inventory").where({ id: req.params.id }).del();
+});
+server.delete("/customers/:id", async (req, res) => {
   //const {id } = req.params
-  console.log(req.params.id)
+  console.log(req.params.id);
   //const dbResult = await db('customer').where({username: userName}).update(usr)
-  await db('customer').where({id: req.params.id}).del()
-  
-})
+  await db("customer").where({ id: req.params.id }).del();
+});
 
-server.delete('/admins/:id', async (req, res) => {
+server.delete("/admins/:id", async (req, res) => {
   //const {id } = req.params
-  console.log(req.params.id)
+  console.log(req.params.id);
   //const dbResult = await db('customer').where({username: userName}).update(usr)
-  await db('se_admins').where({id: req.params.id}).del()
-  
-})
+  await db("se_admins").where({ id: req.params.id }).del();
+});
 
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+});
+//specific product
+server.get("/product/id/:id", async (req, res) => {
+  const id = req.params.id;
+  const product = await db("product").where("id", id);
+  console.log(product);
+  res.send(product[0]);
 });
 //daniel
 //get all products
@@ -526,12 +519,8 @@ server.get("/products", async (req, res) => {
   const products = await db.select("*").from("product");
   res.send(products);
 });
-//get specific product
-server.get('/product/id/:id', async (req, res) => {
-  const id = req.params.id;
-  const product = await db("product").where("id", id);
-  res.send(product[0]);
-});
+
+
 //get cart by session
 server.get("/cart", async (req, res) => {
   const cart = await db.select("*").from("cart_item");
