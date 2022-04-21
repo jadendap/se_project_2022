@@ -43,8 +43,10 @@ function AdminModifyItemsPage() {
   };
   return (
     <>
-      <AdminNavbar />
-      <ModifyUsersTable />
+    <AdminNavbar />
+    <ModifyUsersTable />
+      
+      
     </>
   );
 

@@ -6,6 +6,43 @@ import "../../../Styles/AdminPage.scss"
 import { SettingsBackupRestoreSharp } from "@mui/icons-material";
 
 const ModifyItemsTable = () => {
+  const formStyle = {
+    position: "relative",
+    margin: "auto",
+    padding: "10px",
+    border: "1px solid black",
+    borderRadius: "5px",
+    background: "black",
+    width: "520px",
+    height: "460px",
+    display: "block",
+    color: "#98c285",
+    right: "500px",
+    top: "100px"
+  };
+  const inputStyle = {
+    margin: "5px 0 10px 0",
+    padding: "5px",
+    border: "1px solid #bfbfbf",
+    borderRadius: "3px",
+    boxSizing: "border-box",
+    width: "100%",
+  };
+  const submitStyle = {
+    position: "relative",
+    margin: "20px 0 0 0",
+    padding: "0px 0px",
+    border: "1px solid #efffff",
+    borderRadius: "3px",
+    background: "#98c285",
+    width: "30%",
+    height: "5%",
+    fontSize: "15px",
+    color: "black",
+    left: "160px",
+    top: "-10px",
+    display: "block",
+  };
   const [products, setProducts] = useState([]);
   const fetchData = async () =>
   {
@@ -94,6 +131,7 @@ const ModifyItemsTable = () => {
 
     const newContacts = [...products, newContact];
     setProducts(newContacts);
+    window.location.reload(false)
     fetch(`http://localhost:9000/additem`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -185,47 +223,58 @@ const ModifyItemsTable = () => {
 
     setProducts(newContacts);
     //console.log(contactId)
-    /*await fetch(`http://localhost:9000/products/${contactId}`, 
-    { 
-    method: 'DELETE' ,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(products.id),
-    }
-    
-    );*/
-    await fetch(`http://localhost:9000/inventory/${invId}`, 
+   
+   /* await fetch(`http://localhost:9000/inventory/${invId}`, 
     { 
     method: 'DELETE' ,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(products.inventory_id),
     }
     
+    );*/
+    await fetch(`http://localhost:9000/customerproduct/${contactId}`, 
+    { 
+    method: 'DELETE' ,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(products.id),
+    }
+    
     );
-    console.log(products.inventory_id)
+    await fetch(`http://localhost:9000/products/${contactId}`, 
+    { 
+    method: 'DELETE' ,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(products.id),
+    }
+    
+    );
+    //console.log(products.inventory_id)
   };
 
   return (
     <>
     <h1 className="pageHeading">Modify Inventory</h1>
     <div className="panel">
-      <h2>Products</h2>
+      
     <div className="app-container">
+    <div className="product_table">
+    <h2>Products</h2>
       <form onSubmit={handleEditFormSubmit}>
-      <div class="table-wrapper-scroll-y my-custom-scrollbar">
-        <table  class="table table-striped">
+      <div class="table-responsive">
+        <table  class="tableFixHead table-striped">
           <thead>
             <tr>
-              <th scope="col">Actions</th>
-              <th scope="col">#</th>
-              <th scope="col">Item Name</th>
-              <th scope="col">Discount ID</th>
-              <th scope="col">Category ID</th>
-              <th scope="col">Inventory ID</th>
-              <th scope="col" >Description</th>
-              <th scope="col">price</th>
-              <th scope="col">sku</th>
-              <th scope="col">image_url</th>
-              <th scope="col">category</th>
+              <th class="col-6">Actions</th>
+              <th class="col-6">Product ID</th>
+              <th class="col">Item Name</th>
+              <th class="col">Discount ID</th>
+              <th class="col">Category ID</th>
+              <th class="col">Inventory ID</th>
+              <th class="col" >Description</th>
+              <th class="col">price</th>
+              <th class="col">sku</th>
+              <th class="col">image_url</th>
+              <th class="col">category</th>
             </tr>
           </thead>
           
@@ -251,46 +300,49 @@ const ModifyItemsTable = () => {
         </table>
         </div>
       </form>
+      </div>
 
-      <h2>Add a Product</h2>
       
-      <form onSubmit={handleAddFormSubmit}>
-        <input
+      <div className="product_form">
+      
+      <form  style={formStyle} onSubmit={handleAddFormSubmit}>
+      <h2 color="red">Add a Product</h2>
+        <input style={inputStyle}
           type="text" 
           name="name"
           required ="required"
           placeholder="Enter item name"
           onChange={handleAddFormChange}
         />
-        <input
+        <input style={inputStyle}
           type="text" 
           name="discount_id"
           required ="required"
           placeholder="Enter a discount id"
           onChange={handleAddFormChange}
         />
-        <input
+        <input style={inputStyle}
           type="text" 
           name="category_id"
           required ="required"
           placeholder="Enter a category id"
           onChange={handleAddFormChange}
         />
-        <input
+        <input style={inputStyle}
           type="text" 
           name="desc"
           required ="required"
           placeholder="Enter a description"
           onChange={handleAddFormChange}
         />
-        <input
+        <input style={inputStyle}
            type="text" 
            name="sku"
            required ="required"
            placeholder="Enter sku"
           onChange={handleAddFormChange}
         />
-        <input
+        <input style={inputStyle}
           type="text" 
           name="image_url"
           required ="required"
@@ -298,22 +350,23 @@ const ModifyItemsTable = () => {
           onChange={handleAddFormChange}
         />
         
-        <input
+        <input style={inputStyle}
            type="text"
            name="price"
            required ="required"
            placeholder="Enter price"
           onChange={handleAddFormChange}
         />
-        <input
+        <input style={inputStyle}
           type="text" 
           name="quantity"
           required ="required"
           placeholder="Enter quantity"
           onChange={handleAddFormChange}
         />
-        <button type="submit" onClick={() => window.location.reload(false)}>Add</button>
+        <button style={submitStyle} type="submit" >Add</button>
       </form>
+      </div>
     </div>
     </div>
     </>

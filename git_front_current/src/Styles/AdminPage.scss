@@ -70,13 +70,13 @@
 {
     background-color: #caebd9 !important;
     position:relative;
-        width:200px !important;
-        height: 1020px;
-        top: -2px;
-        left: -57px;
-        transform: translateX(-50%);
-        text-align: left;
-        border: 5px solid rgb(0, 0, 0);
+    width:200px !important;
+    height: 1000px;
+    top: -2px;
+    left: -57px;
+    transform: translateX(-50%);
+    text-align: left;
+    border: 5px solid rgb(0, 0, 0);
 }
 .nav
 {
@@ -124,9 +124,7 @@
       .username{
         width: 50px;
       }
-      .table
-      {
-      }
+      
       .panel 
       {
           
@@ -152,13 +150,6 @@
       {
         max-height: 300px;
       }
-      .td
-      {
-      }
-      .h1
-      {
-
-      }
       #wrapper div {
         width: 120px;
         background-color: rgba(0,0,255,.1)
@@ -179,9 +170,8 @@
     }
     .table-responsive
     {
-      max-height: 300px;
-      max-height: 600px;
-      overflow: hidden;
+      max-height: 500px;
+      max-width: 1000px;
     }
     .my-custom-scrollbar {
 position: relative;
@@ -198,4 +188,45 @@ display: block;
   left:260px;
   width: 1500px;
 
+}
+.savebtn{
+  position: relative;
+}
+.editbtn
+{
+  position: relative;
+  width: 50px;
+}
+.delbtn
+{
+  position: relative;
+  width: 50px;
+
+}
+th{
+  position: sticky;
+  top: 0;
+}
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; background-color: #caebd9};
+.scrollme {
+  overflow-x: auto;
+}
+.table thead th 
+      {
+        table-layout: fixed;
+        word-wrap: break-word;
+        background-color: #caebd9
+      }
+.table{
+}
+.product_form
+{
+  position: relative;
+  left: 1100px;
+  top: -670px;
+}
+.product_table
+{
+  position: relative;
+  top: -70px;
 }

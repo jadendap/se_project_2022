@@ -161,12 +161,12 @@ const ModifyUsersTable = () => {
       <h2>Registered Users</h2>
     <div className="app-container">
       <form onSubmit={handleEditFormSubmit}>
-      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <div class="table-responsive">
         <table  class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Actions</th>
-              <th scope="col">#</th>
+              <th scope="col-6">Actions</th>
+              <th scope="col">User ID</th>
               <th scope="col">Username</th>
               <th scope="col">First Name</th>
               <th scope="col">Last Name</th>

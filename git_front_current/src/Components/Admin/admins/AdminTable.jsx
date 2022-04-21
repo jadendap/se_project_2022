@@ -148,12 +148,12 @@ const AdminTable = () => {
       <h2>Admins</h2>
     <div className="app-container">
       <form onSubmit={handleEditFormSubmit}>
-      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <div class="table-responsive">
         <table  class="table table-striped">
           <thead>
             <tr>
               <th scope="col">Actions</th>
-              <th scope="col">#</th>
+              <th scope="col">ID</th>
               <th scope="col">Username</th>
               <th scope="col">Password</th>
             </tr>
