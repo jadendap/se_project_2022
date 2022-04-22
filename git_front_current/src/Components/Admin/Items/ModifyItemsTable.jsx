@@ -232,14 +232,14 @@ const ModifyItemsTable = () => {
     }
     
     );*/
-    await fetch(`http://localhost:9000/customerproduct/${contactId}`, 
+    /*await fetch(`http://localhost:9000/deleteCartItem/`, 
     { 
     method: 'DELETE' ,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(products.id),
     }
     
-    );
+    );*/
     await fetch(`http://localhost:9000/products/${contactId}`, 
     { 
     method: 'DELETE' ,

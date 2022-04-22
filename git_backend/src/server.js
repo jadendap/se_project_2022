@@ -521,7 +521,7 @@ server.listen(PORT, () => {
 });
 //daniel
 //get all products
-/*
+
 server.get("/products", async (req, res) => {
   const products = await db.select("*").from("product");
   res.send(products);
@@ -556,4 +556,3 @@ server.delete('/deleteCartItem', jsonParser, async(req, res) => {
   const dbResult = await db("cart_item").where("session_id",req.body.session_id).where("product_id",req.body.product_id).del();
   res.send("item is deleted from cart");
 });
-*/
