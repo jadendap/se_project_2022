@@ -6,7 +6,6 @@ import "../Styles/cart.css";
 const Cart = () => {
   const [price, setPrice] = useState(0);
   const [cart, setCart] = useState([]);
-  var amount = 1;
 
   const getCart = async () => {
     const keyword = sessionStorage.sessionId;
@@ -15,18 +14,21 @@ const Cart = () => {
       window.location.href = "http://localhost:3000/Login";
       return;
     }
-    console.log(keyword);
-    const url = "http://localhost:9000/cart/" + keyword;
-    console.log(url);
+
+    const url = "http://localhost:9000/cart/id/" + keyword;
+
     const response = await fetch(url, {
       method: "GET",
     });
     const responseJson = await response.json();
-    console.log(typeof responseJson);
+
     if (!responseJson[0].amount) {
       for (var q = 0; q < responseJson.length; q++) {
         responseJson[q].amount = 1;
       }
+    }
+    for (var q = 0; q < responseJson.length; q++) {
+      responseJson[q].amount = parseInt(responseJson[q].amount);
     }
     setCart(responseJson);
     return responseJson;
@@ -44,34 +46,30 @@ const Cart = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    cart = cart.filter(function (obj) {
-      return obj.product_id !== id;
-    });
-    console.log(cart);
-    const arr = cart.filter((item) => item.product_id !== id);
+    // cart = cart.filter(function (obj) {
+    //   return obj.product_id !== id;
+    // });
+    // console.log(cart);
+    // const arr = cart.filter((item) => item.product_id !== id);
     setCart(cart);
     handlePrice();
   };
 
   const handlePrice = () => {
     let ans = 0;
-    cart.map((item) => (ans += item.amount * item.price));
+    cart.map((item) => (ans += parseInt(item.amount) * item.price));
     setPrice(ans);
   };
 
   const handleChange = (item, d) => {
-    console.log(cart);
-    console.log(item);
-    if (!cart[0].amount) {
-      for (var q = 0; q < cart.length; q++) {
-        cart[q].amount = 1;
-      }
-    }
     const ind = cart.indexOf(item);
-    console.log(ind);
+
     const arr = cart;
     console.log(arr);
+
     arr[ind].amount += d;
+    console.log(typeof parseInt(arr[ind].amount));
+    console.log(typeof d);
 
     if (arr[ind].amount === 0) arr[ind].amount = 1;
     setCart([...arr]);

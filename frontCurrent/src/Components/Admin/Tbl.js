@@ -41,6 +41,7 @@ export class Tbl extends Component {
   render() {
     return (
       <div>
+        <h1 style={{ textAlign: "center" }}>Orders</h1>
         <table
           class="display cell-border"
           width="70%"

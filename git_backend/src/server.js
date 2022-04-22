@@ -160,6 +160,28 @@ server.get("/products/search", async (req, res) => {
   console.log(searchResults);
   res.send(searchResults);
 });
+//delete from cart
+var deleteParser = bodyParser.json();
+server.delete("/removeFromCart", deleteParser, async (req, res) => {
+  productId = req.body.productId;
+  sessionId = req.body.sessionId;
+  console.log(productId + " " + sessionId);
+  let deleteItem = req.body;
+  deleteItem = {
+    product_id: productId,
+    session_id: sessionId,
+  };
+
+  deleteResult = await db("cart_item")
+    .where(function () {
+      this.where("product_id", productId).andWhere("session_id", sessionId);
+    })
+    .del();
+  if (deleteResult > 0) {
+    console.log("item deleted");
+  }
+  return;
+});
 
 //return all featured items
 server.get("/featured", async (req, res) => {
@@ -512,6 +534,27 @@ server.get("/product/id/:id", async (req, res) => {
   console.log(product);
   res.send(product[0]);
 });
+server.get("/cart/id/:id", async (req, res) => {
+  const id = req.params.id;
+  const cart = await db
+    .select(
+      " cart_item.product_id",
+      "product.name",
+      "product.price",
+      "product.image_url"
+    )
+    .count("cart_item.product_id AS amount")
+    .from("cart_item")
+    .innerJoin("product", "cart_item.product_id", "product.id")
+    .where({ session_id: id })
+    .groupBy(
+      "product.name",
+      "cart_item.product_id",
+      "product.price",
+      "product.image_url"
+    );
+  res.send(cart);
+});
 //daniel
 //get all products
 
@@ -528,12 +571,7 @@ server.get("/cart", async (req, res) => {
 });
 //SELECT  product.name,product.price, COUNT(cart_item.product_id) AS quantity FROM cart_item INNER JOIN product on product.id = cart_item.product_id where session_id = 86
 // group by product.name, product.price;
-server.get("/cart/id/:id", async (req, res) => {
-  const id = req.params.id;
-  //const cart = await db.from("cart_item").innerJoin("product", "cart_item.product_id", "product.id").where({session_id: id});
-  const cart = await db.select(" cart_item.product_id","product.name","product.price","product.image_url").count("cart_item.product_id AS quantity").from("cart_item").innerJoin("product", "cart_item.product_id", "product.id").where({session_id: id}).groupBy("product.name","cart_item.product_id","product.price","product.image_url");
-  res.send(cart);
-});
+
 //delete cart_item to session
 var jsonParser = bodyParser.json();
 server.delete('/deleteCartItem', jsonParser, async(req, res) => {
