@@ -28,9 +28,9 @@ import SearchPage from "./Pages/SearchPage";
 import FeaturedPage from "./Pages/FeaturedPage";
 
 /************************************************************************ */
-import FeaturedProducts from './Pages/FeaturedProducts';
+
 import ProductInfo from './Pages/ProductInfo';
-import CartScreen from './Pages/CartScreen';
+
 ReactDOM.render(
   <>
     <Router>
@@ -44,9 +44,8 @@ ReactDOM.render(
         <Route path="/AdminPage" element={<AdminPage />}></Route>
         <Route path="/" element={<App />}></Route>
         <Route path="/search/:id" element={<SearchPage />}></Route>
-        <Route path="/FeaturedProducts" element={<FeaturedProducts/>}></Route>
         <Route path="/Cart/id/:id" element={<CartScreen/>}></Route>
-        <Route path="/Product/id/:id" element={<ProductInfo/>}></Route>
+        <Route path="/product/id/:id" element={<ProductInfo/>}></Route>
         <Route
           path="/AdminDiscountsPage"
           element={<AdminDiscountsPage />}

@@ -1,5 +1,4 @@
-import { Home } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../Styles/cart.css";
 
@@ -59,10 +58,22 @@ const Cart = () => {
     let ans = 0;
     cart.map((item) => (ans += parseInt(item.amount) * item.price));
     setPrice(ans);
-  };
+  }; 
 
   const handleChange = (item, d) => {
     const ind = cart.indexOf(item);
+    const userSession = sessionStorage.sessionId;
+    console.log(item.product_id);
+    //added this so it updates the cart_item into the table
+    const cart_item = {
+      sessionId: userSession,
+      productId: item.product_id,
+    };
+    const addResponse = fetch("http://localhost:9000/customerproduct", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cart_item),
+    });
 
     const arr = cart;
     console.log(arr);
@@ -86,7 +97,8 @@ const Cart = () => {
       {cart.map((item) => (
         <div className="cart_box" key={item.id}>
           <div className="cart_img">
-            <img src={item.image_url} alt="" />
+            <Link to={`/product/id/${item.product_id}`}>
+              <img src={item.image_url} alt="" /></Link>
             <p>{item.title}</p>
           </div>
           <div>

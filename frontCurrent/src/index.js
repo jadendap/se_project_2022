@@ -14,6 +14,9 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import NavBar from "./Components/User/Navbar";
 import Footer from "./Components/User/Footer";
+import ProductInfo from './Pages/ProductInfo';
+import Shipping from './Pages/Shipping';
+import Payment from './Pages/Payment';
 /*********************** stuff michael added************************/
 import AdminLogin from "./Pages/Admin/AdminLogin";
 import AdminPage from "./Pages/Admin/AdminPage";
@@ -47,7 +50,9 @@ ReactDOM.render(
         <Route path="/AdminPage" element={<AdminPage />}></Route>
         <Route path="/" element={<App />}></Route>
         <Route path="/search/:id" element={<SearchPage />}></Route>
-
+        <Route path="/product/id/:id" element={<ProductInfo/>}></Route>
+        <Route path="/Shipping" element={<Shipping/>}></Route>
+        <Route path="/Payment" element={<Payment/>}></Route>
         <Route
           path="/AdminDiscountsPage"
           element={<AdminDiscountsPage />}

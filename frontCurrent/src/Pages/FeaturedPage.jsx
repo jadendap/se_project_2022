@@ -1,8 +1,6 @@
-import { listClasses } from "@mui/material";
 import ProductCards from "../Components/User/ProductCard";
-import React, { useState } from "react";
+import React from "react";
 import "../Styles/FeaturedPage.css";
-import Navbar from "../Components/User/Navbar";
 
 const fetchFeatured = async () => {
   const response = await fetch("http://localhost:9000/featured");
