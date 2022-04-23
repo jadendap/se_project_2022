@@ -1,11 +1,9 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useReducer} from "react";
-import { Col, ListGroup, Row, Badge, Button} from "react-bootstrap";
-import Navbar from "../Components/User/Navbar";
-import "../Styles/FeaturedPage.css";
+import { useNavigate,useParams } from "react-router-dom";
+import { Col, ListGroup, Row, Badge} from "react-bootstrap";
 
 
 function ProductInfo() {
+    const navigate= useNavigate();
     const params = useParams();
     const {id} = params;
     const fetchProductInfo = async () => {
@@ -39,8 +37,9 @@ function ProductInfo() {
         });
 
         console.log("item added");
+        navigate('/cart');
     };
-    
+
     return (
         <div >
             <Row>

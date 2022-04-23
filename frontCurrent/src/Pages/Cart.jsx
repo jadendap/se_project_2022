@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../Styles/cart.css";
 
@@ -97,7 +97,8 @@ const Cart = () => {
       {cart.map((item) => (
         <div className="cart_box" key={item.id}>
           <div className="cart_img">
-            <img src={item.image_url} alt="" />
+            <Link to={`/product/id/${item.product_id}`}>
+              <img src={item.image_url} alt="" /></Link>
             <p>{item.title}</p>
           </div>
           <div>
