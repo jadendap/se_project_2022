@@ -19,7 +19,7 @@ function Product(props) {
                 <img src={product.image_url} className="card-img-top" alt={product.name} />
             </Link>
             <Card.Body>
-                <Link to={`/product/id/${product.id}`}>
+
                     <Card.Title>{product.name}</Card.Title>
                 </Link>
                 <Card.Text>${product.price}</Card.Text>
