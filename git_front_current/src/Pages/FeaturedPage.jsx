@@ -3,7 +3,7 @@ import ProductCards from "../Components/User/ProductCard";
 import React, { useState } from "react";
 import "../Styles/FeaturedPage.css";
 const fetchFeatured = async () => {
-  const response = await fetch("http://localhost:9000/featured");
+  const response = await fetch("http://localhost:9000/products");
   const responseJson = await response.json();
 
   sessionStorage.setItem("featured", JSON.stringify(responseJson));

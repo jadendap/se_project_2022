@@ -44,17 +44,42 @@ const ModifyItemsTable = () => {
     display: "block",
   };
   const [products, setProducts] = useState([]);
+  
   const fetchData = async () =>
   {
     const response = await fetch('http://localhost:9000/products')
     const data = await response.json()
     setProducts(data)
   }
-  
+  const [cart, setCart] = useState([]);
+  const fetchCartitems = async () =>
+  {
+    const response = await fetch('http://localhost:9000/cart')
+    const cart_data = await response.json()
+    setCart(cart_data)
+    //console.log(cart_data);
+
+  }  
+  const [inv, setInv] = useState([]);
+  const fetchinventory = async () =>
+  {
+    const response = await fetch('http://localhost:9000/inventory')
+    const inventory_data = await response.json()
+    setInv(inventory_data)
+    //console.log(cart_data);
+
+  } 
   useEffect(() =>
   {
     fetchData()
+    fetchCartitems()
+    fetchinventory()
   }, [])
+
+  /*const [cart, setCart] = useState({
+    session_id: "",
+    product_id: "",
+  })*/
 
   const [addFormData, setAddFormData] = useState({
     id:"",
@@ -213,41 +238,139 @@ const ModifyItemsTable = () => {
   };
 
 
-  const handleDeleteClick = async (contactId, invId) => {
+  const handleDeleteClick = async (contactId) => {
     const newContacts = [...products];
-
+    //const newCart = [...cart];
+    let invId;
+    let quan;
     const index = products.findIndex((contact) => contact.id === contactId);
-    const invindex = products.findIndex((contact) => contact.inventory_id === invId);
-
+    
+    
+    //const invindex = products.findIndex((contact) => contact.inventory_id === invId);
+    let cart_session;
     newContacts.splice(index, 1);
+    //newCart.splice(index, 1);
 
     setProducts(newContacts);
+    //setCart(newCart);
+    //console.log(newCart);
+   // console.log(newContacts)
+   let userCart = {
+    session_id: cart_session,
+    product_id: contactId,
+  }
+  for(let i = 0; i < products.length; i++)
+    {
+      if(products[i].id == contactId)
+      {
+        //console.log(contactId);
+        //console.log(products[i].name);
+        invId = products[i].inventory_id;
+        //console.log(inv.id)
+        //console.log(invId)
+        for(let j =0; j < inv.length; j++)
+        {
+        if(inv[j].id == invId)
+        {
+          
+          quan = inv[j].quantity
+        }
+      }
+        //quan = inv[i].quantity;
+      }
+    }
+    console.log(quan)
+ 
+  
+    
+    let cart_arr = [];
+    //all carts with the product in them
+    let usercart_arr = [];
+    for(let i=0; i< cart.length; i++)
+    {
+      cart_arr.push(cart[i].id)
+    }
+    for(let i =0; i < cart_arr.length; i++)
+    {
+      if(cart[i].product_id == contactId)
+      {
+        cart_session = cart[i].session_id;
+       
+      
+      
+      userCart = {
+        id: cart[i].id,
+        session_id: cart_session,
+        product_id: contactId,
+      }
+      if(cart_session != null){
+        usercart_arr.push(userCart);
+        }
+    }
+      
+    }
+    let userInventory = 
+    {
+      id: invId,
+      quantity: quan
+    }
+    //console.log(usercart_arr);
+    
+    console.log(userCart)
     //console.log(contactId)
+    //console.log(invId);
+    console.log(userInventory)
+    //console.log(inv)
+
+    //console.log(userInventory)
+
    
-   /* await fetch(`http://localhost:9000/inventory/${invId}`, 
-    { 
-    method: 'DELETE' ,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(products.inventory_id),
-    }
+    //console.log(newCart);
+    //console.log(usercart_arr);
+
     
-    );*/
-    /*await fetch(`http://localhost:9000/deleteCartItem/`, 
+   if(usercart_arr.length > 0 )
+    {
+    for(let i = 0; i< usercart_arr.length; i++){
+      if(usercart_arr[i].session_id != null){
+   await fetch(`http://localhost:9000/deleteCartItem/`, 
     { 
     method: 'DELETE' ,
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(products.id),
-    }
+    body: JSON.stringify(usercart_arr[i]),
     
-    );*/
-    await fetch(`http://localhost:9000/products/${contactId}`, 
-    { 
-    method: 'DELETE' ,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(products.id),
     }
     
     );
+  }
+    console.log(`product with session_id of ${cart_session} was deleted from the cart `)
+  }
+ 
+}
+/*await fetch(`http://localhost:9000/products/${contactId}`, 
+{ 
+method: 'DELETE' ,
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(contactId),
+}
+
+
+)*/
+await fetch(`http://localhost:9000/inventory/`, 
+{ 
+method: 'DELETE' ,
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(userInventory),
+}
+
+);
+//console.log(contactId)
+
+
+  
+    
+    
+   
     //console.log(products.inventory_id)
   };
 
