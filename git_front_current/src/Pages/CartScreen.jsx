@@ -1,66 +1,98 @@
-import { useEffect, useReducer} from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "../Styles/cart.css";
 import {Row, Col, ListGroup, Card, ListGroupItem} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 
-const reducer = (state, action) => {
-    switch(action.type) {
-        case 'FETCH_REQUEST':
-            return {...state, loading:true};
-        case 'FETCH_SUCCESS':
-            return {...state, cartItems: action.payload, loading: false};
-        case 'FETCH_FAIL':
-            return { ...state, loading: false, error: action.payload};
-        default:
-            return state;
-    }
-};
+const Cart = () => {
+    const [price, setPrice] = useState(0);
+    const [cart, setCart] = useState([]);
 
-function CartScreen() {
+    const getCart = async () => {
+        const keyword = sessionStorage.sessionId;
+        if (!keyword) {
+            alert("Please sign in to view cart");
+            window.location.href = "http://localhost:3000/Login";
+            return;
+        }
 
-    const params = useParams();
-    const {id} = params;
-    const [{cartItems}, dispatch] = useReducer(reducer, {
-        cartItems: [],
-    });
+        const url = "http://localhost:9000/cart/id/" + keyword;
 
-    useEffect( () =>{
-        const fetchData = async () => {
-            dispatch({type:'FETCH_REQUEST'});
-            try {
-                const result = await axios.get(`/cart/id/${id}`);
-                dispatch({type:'FETCH_SUCCESS',payload:result.data});
-            } catch(err) {
-                dispatch({type: 'FETCH_FAIL',payload: err.message});
+        const response = await fetch(url, {
+            method: "GET",
+        });
+        const responseJson = await response.json();
+
+        if (!responseJson[0].amount) {
+            for (var q = 0; q < responseJson.length; q++) {
+                responseJson[q].amount = 1;
             }
+        }
+        for (var q = 0; q < responseJson.length; q++) {
+            responseJson[q].amount = parseInt(responseJson[q].amount);
+        }
+        setCart(responseJson);
+        return responseJson;
+    };
+
+    const handleRemove = (id) => {
+        console.log(id);
+        const data = {
+            sessionId: sessionStorage.sessionId,
+            productId: id,
         };
-        fetchData();
-    }, [id]);
-    const addToCart = async (item) => {
-        await axios.post('/addCartItem',{
-            session_id: 86,
-            product_id: item.product_id,
-        }).then(function (res) {
-                console.log(res);
-            }).catch(function (err) {
-            console.log(err);
-        })};
-    const deleteFromCart = async (item) => {
-        await axios.delete('/deleteCartItem', {data: {
-                session_id: 86,
-                product_id: item.product_id,
-            }
-        }).then(function (res) {
-            console.log(res);
-        }).catch(function (err) {
-            console.log(err);
-        })};
 
-    const reload = async () => {
-        const result = await axios.get(`/cart/id/${id}`);
-        dispatch({type:'FETCH_SUCCESS',payload:result.data})
-     }
+        const deleteResponse = fetch("http://localhost:9000/removeFromCart", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+        // cart = cart.filter(function (obj) {
+        //   return obj.product_id !== id;
+        // });
+        // console.log(cart);
+        // const arr = cart.filter((item) => item.product_id !== id);
+        setCart(cart);
+        handlePrice();
+    };
+
+    const handlePrice = () => {
+        let ans = 0;
+        cart.map((item) => (ans += parseInt(item.amount) * item.price));
+        setPrice(ans);
+    };
+
+    const handleChange = (item, d) => {
+        const ind = cart.indexOf(item);
+        const userSession = sessionStorage.sessionId;
+        console.log(item.product_id);
+        //added this so it updates the cart_item into the table
+        const cart_item = {
+            sessionId: userSession,
+            productId: item.product_id,
+        };
+        const addResponse = fetch("http://localhost:9000/customerproduct", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cart_item),
+        });
+
+        const arr = cart;
+        console.log(arr);
+
+        arr[ind].amount += d;
+        console.log(typeof parseInt(arr[ind].amount));
+        console.log(typeof d);
+
+        if (arr[ind].amount === 0) arr[ind].amount = 1;
+        setCart([...arr]);
+    };
+    useEffect(() => {
+        handlePrice();
+    });
+    useEffect(() => {
+        getCart();
+    }, []);
 
     return (
         <div id="cartItems">
@@ -68,42 +100,37 @@ function CartScreen() {
             <h1>Cart</h1>
             <Row>
                 <Col md={8}>
-                    {cartItems.length === 0 ? (
+                    {cart.length === 0 ? (
                             <div>
-                                 <Link to="/">Cart is empty</Link>
+                                <Link to="/">Cart is empty</Link>
                             </div>
                         ):
                         (
                             <ListGroup>
-                                {cartItems.map((product) => (
+                                {cart.map((item) => (
                                     <ListGroup.Item>
                                         <Row className="align-items-center">
                                             <Col md={4}>
-                                                <img
-                                                    src={product.image_url}
-                                                    alt={product.name}
-                                                    className="img-fluid rounded img-thumbnail"
-                                                ></img>{' '}
-                                                <Link to={`/product/id/${product.product_id}`}>{product.name}</Link>
+                                                <Link to={`/product/id/${item.product_id}`}>
+                                                    <img
+                                                        src={item.image_url}
+                                                        alt={item.name}
+                                                        className="img-fluid rounded img-thumbnail"
+                                                    ></img> </Link> {' '}
+                                                {item.name}
                                             </Col>
                                             <Col md={3}>
-                                                <button>
+                                                <button class="button-3" role="button" nClick={() => handleChange(item, -1)}>
                                                     -
                                                 </button>{' '}
-                                                <span id="quantity">{product.quantity}</span>{' '}
-                                                <button onClick={() => {
-                                                    addToCart(product);
-                                                    reload();
-                                                }}>
+                                                <span id="quantity">{item.amount}</span>{' '}
+                                                <button class="button-3" role="button" onClick={() => handleChange(item, 1)}>
                                                     +
                                                 </button>
                                             </Col>
-                                            <Col md={3}>${product.price}</Col>
+                                            <Col md={3}>${item.price}</Col>
                                             <Col md={2}>
-                                                <button onClick={() => {
-                                                    deleteFromCart(product);
-                                                    reload();
-                                                }}>
+                                                <button class="button-3" role="button" onClick={() => handleRemove(item.product_id)}>
                                                     delete
                                                 </button>
                                             </Col>
@@ -120,15 +147,15 @@ function CartScreen() {
                                 <ListGroupItem>
                                     <h3>
                                         SubTotal: $
-                                        {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                                        {price}
                                     </h3>
                                 </ListGroupItem>
                                 <ListGroupItem>
                                     <div className="d-grid">
                                         <button
-                                            type="button"
-                                            variant="primary"
-                                            disabled={cartItems.length === 0}>
+                                            class="button-3"
+                                            role="button"
+                                            disabled={cart.length === 0}>
                                             Checkout
                                         </button>
                                     </div>
@@ -140,5 +167,7 @@ function CartScreen() {
             </Row>
         </div>
     );
-}
-export default CartScreen;
+};
+
+export default Cart;
+
