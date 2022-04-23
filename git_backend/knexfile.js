@@ -6,7 +6,7 @@
 module.exports = {
   client: "pg",
   connection:
-    "placeholder", //database connection string needed
+    "postgres://virhfbkm:neqOUkFsZUOLev1BtVtXzMdKHZg5BTHH@kashin.db.elephantsql.com/virhfbkm", //database connection string needed
   migrations: {
     directory: "./src/migrations",
   },
