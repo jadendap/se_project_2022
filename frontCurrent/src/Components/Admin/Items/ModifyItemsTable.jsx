@@ -106,6 +106,7 @@ const ModifyItemsTable = () => {
     image_url: "",
     category: "",
     price: "",
+    quantity:"",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -191,7 +192,12 @@ const ModifyItemsTable = () => {
       image_url: editFormData.image_url,
       category: editFormData.category,
       price: editFormData.price,
+      quantity: editFormData.quantity
     };
+    const newInventoryItem ={
+      id: editFormData.inventory_id,
+      quantity: editFormData.quantity
+    }
 
     const newContacts = [...products];
 
@@ -212,11 +218,34 @@ const ModifyItemsTable = () => {
           console.log(`product ${editContactId} was updated `);
           //console.log(newContacts);
           });
+          fetch(`http://localhost:9000/inventory`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newInventoryItem),
+            }).then(() => {
+            console.log(`item added to inventory`);
+            //console.log(newContacts);
+            });
+            window.location.reload(false)
   };
 
   const handleEditClick = (event, contact) => {
     event.preventDefault();
     setEditContactId(contact.id);
+    let quan;
+    for(let j =0; j < inv.length; j++)
+        {
+        if(inv[j].id == contact.inventory_id)
+        {
+          
+          quan = inv[j].quantity
+        }
+      }
+    const userInventory = 
+    {
+      id: contact.inventory_id,
+      quantity: quan
+    }
 
     const formValues = {
       name:contact.name,
@@ -228,6 +257,7 @@ const ModifyItemsTable = () => {
       image_url: contact.image_url,
       category: contact.category,
       price: contact.price,
+      quantity: userInventory.quantity
     };
 
     setEditFormData(formValues);
@@ -279,7 +309,7 @@ const ModifyItemsTable = () => {
         //quan = inv[i].quantity;
       }
     }
-    console.log(quan)
+    //console.log(quan)
  
   
     
@@ -397,12 +427,12 @@ body: JSON.stringify(userInventory),
               <th class="col">price</th>
               <th class="col">sku</th>
               <th class="col">image_url</th>
-              <th class="col">category</th>
+              <th class="col">quantity</th>
             </tr>
           </thead>
           
           <tbody >
-            {products && products.map((product) => (
+            {inv && products && products.map((product,inventory)=> (
               <Fragment>
                 {editContactId === product.id ? (
                   <EditRowsItems
@@ -412,7 +442,9 @@ body: JSON.stringify(userInventory),
                   />
                 ) : (
                   <ReadOnlyRowsItems
+                    
                     product={product}
+                    inventory={inv}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
                   />

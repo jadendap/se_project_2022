@@ -318,6 +318,7 @@ server.post("/additem", jsonParser, async (req, res) => {
   res.send("item added");
 });
 
+
 //add a discount to db
 server.post("/adddiscount", jsonParser, async (req, res) => {
   console.log(JSON.stringify(req.body));
@@ -479,7 +480,7 @@ server.put("/products/:id", jsonParser, async (req, res) => {
     id: itemid,
     name: itemname,
     discount_id: itemdiscount_id,
-    category_id: itemcategory,
+    category_id: itemcategory_id,
     inventory_id: iteminventory_id,
     desc: itemdesc,
     sku: itemsku,
@@ -498,6 +499,17 @@ server.put("/products/:id", jsonParser, async (req, res) => {
     res.status(400).send("record not found");
   }
 });
+server.put("/inventory", jsonParser, async(req, res) =>
+{
+  let inv = req.body;
+  inv =
+  {
+    id: req.body.id,
+    quantity: req.body.quantity
+  }
+  const dbResult = await db("product_inventory").where({ id: req.body.id }).update(inv);
+}
+)
 server.delete("/products/:id", async (req, res) => {
   //const {id } = req.params
   console.log(req.params.id);

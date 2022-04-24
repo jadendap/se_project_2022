@@ -29,6 +29,7 @@ import AdminSetSalePage from "./Pages/Admin/AdminSetSalePage";
 import AdminNavbar from "./Components/Admin/AdminNav";
 import SearchPage from "./Pages/SearchPage";
 import FeaturedPage from "./Pages/FeaturedPage";
+import TrendingPage from "./Pages/Trending";
 import Navbar from "./Components/User/Navbar";
 import Featured from "./Components/User/Featured";
 import Categories from "./Components/User/Categories";
@@ -43,6 +44,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/Cart" element={<Cart />}></Route>
         <Route path="/FeaturedPage" element={<FeaturedPage />}></Route>
+        <Route path="/TrendingPage" element={<TrendingPage />}></Route>
         <Route path="/Desktop" element={<Desktop />}></Route>
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Register" element={<Register />}></Route>
