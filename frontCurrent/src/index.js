@@ -9,7 +9,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //import { NavBar } from "./Navbar";
 import "./Styles/index.css";
 import App from "./Pages/App";
-import Desktop from "./Pages/desktop";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import NavBar from "./Components/User/Navbar";
@@ -30,6 +29,14 @@ import AdminNavbar from "./Components/Admin/AdminNav";
 import SearchPage from "./Pages/SearchPage";
 import FeaturedPage from "./Pages/FeaturedPage";
 import TrendingPage from "./Pages/Trending";
+import Desktop from "./Pages/Navbar-Pages/Computers/Desktop"
+import Monitors from "./Pages/Navbar-Pages/Computers/Monitors"
+import Storage from "./Pages/Navbar-Pages/Computers/Storage"
+import Accessories from "./Pages/Navbar-Pages/Computers/Accessories"
+import Phones from "./Pages/Navbar-Pages/Mobile/Phones"
+import Laptops from "./Pages/Navbar-Pages/Mobile/Laptops"
+import Watches from "./Pages/Navbar-Pages/Mobile/Watches"
+import Readers from "./Pages/Navbar-Pages/Mobile/Readers"
 import Navbar from "./Components/User/Navbar";
 import Featured from "./Components/User/Featured";
 import Categories from "./Components/User/Categories";
@@ -46,6 +53,15 @@ ReactDOM.render(
         <Route path="/FeaturedPage" element={<FeaturedPage />}></Route>
         <Route path="/TrendingPage" element={<TrendingPage />}></Route>
         <Route path="/Desktop" element={<Desktop />}></Route>
+        <Route path="/Monitors" element={<Monitors />}></Route>
+        <Route path="/Storage" element={<Storage />}></Route>
+        <Route path="/Accessories" element={<Accessories/>}></Route>
+
+        <Route path="/Phones" element={<Phones />}></Route>
+        <Route path="/Laptops" element={<Laptops />}></Route>
+        <Route path="/Watches" element={<Watches />}></Route>
+        <Route path="/Readers" element={<Readers />}></Route>
+
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Register" element={<Register />}></Route>
         <Route path="/AdminLogin" element={<AdminLogin />}></Route>
