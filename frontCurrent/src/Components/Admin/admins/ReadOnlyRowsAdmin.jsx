@@ -12,7 +12,7 @@ const ReadOnlyRowsAdmin = ({user, handleEditClick, handleDeleteClick}) =>
             </button>
             <button type="button" onClick={()=> handleDeleteClick(user.id)}>Delete</button>
               </td>
-              <th  key={user.id}>{user.id}</th>
+              <td   key={user.id}>{user.id}</td >
               <td >{user.username}</td>
               <td >{user.password}</td>
               

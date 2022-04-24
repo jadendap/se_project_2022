@@ -43,31 +43,24 @@ const Navbar = ({ setShow }) => {
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href={process.env.PUBLIC_URL + "/Pages/accessories.html"}
-                  >
+                <li className="nav-item">
+                  <Link className="dropdown-item" to="/Monitors">
                     Monitors
-                  </a>
+                  </Link>
+                </li>
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href={process.env.PUBLIC_URL + "/Pages/accessories.html"}
-                  >
+                <Link className="dropdown-item" to="/Accessories">
                     Accessories
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href={process.env.PUBLIC_URL + "/Pages/storage.html"}
-                  >
+                <Link className="dropdown-item" to="/Storage">
                     Storage & Drives
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="dropdown-item" to="/desktop">
+                  <Link className="dropdown-item" to="/Desktop">
                     Desktop Components
                   </Link>
                 </li>
@@ -85,25 +78,25 @@ const Navbar = ({ setShow }) => {
                 MOBILE TECH
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" href="#">
+              <li className="nav-item">
+                  <Link className="dropdown-item" to="/Phones">
                     Phones/Tablets
-                  </a>
+                  </Link>
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#">
+                <li className="nav-item">
+                  <Link className="dropdown-item" to="/Laptops">
                     Laptops
-                  </a>
+                  </Link>
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#">
+                <li className="nav-item">
+                  <Link className="dropdown-item" to="/Watches">
                     Smart Watches
-                  </a>
+                  </Link>
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#">
+                <li className="nav-item">
+                  <Link className="dropdown-item" to="/Readers">
                     E-readers
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>

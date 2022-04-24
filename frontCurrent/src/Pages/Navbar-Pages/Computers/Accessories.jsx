@@ -1,14 +1,6 @@
-import ProductCards from "../Components/User/ProductCard";
+import ProductCards from "../../../Components/User/ProductCard";
 import React from "react";
-import "../Styles/FeaturedPage.css";
-import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBCardText,
-    MDBCardGroup,
-    MDBContainer
-  } from "mdbreact";
+import "../../../Styles/FeaturedPage.css";
 
 const fetchFeatured = async () => {
   const response = await fetch("http://localhost:9000/featured");
@@ -41,16 +33,23 @@ const handleClick = (item) => {
 
   console.log("item added");
 };
-const TrendingPage = () => {
+const AccessoriesPage = () => {
+    let conditions = [ "fans", "Graphics", "Fans","Mouse","Pad" ]
   return (
     <div>
       <section>
         {JSON.parse(sessionStorage.featured).map((item) => (
+            //conditions.some(el => str1.includes(el));
+            <>
+            { conditions.some(el => item.desc.includes(el)) ? (
           <ProductCards key={item.id} item={item} handleClick={handleClick} />
-        ))}
+        ):(console.log("no"))}</>
+        ))
+    
+    }
       </section>
     </div>
   );
 };
 
-export default TrendingPage;
+export default AccessoriesPage;

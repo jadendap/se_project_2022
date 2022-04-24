@@ -1,7 +1,16 @@
 import React from "react";
 
-const ReadOnlyRow = ({product, handleEditClick, handleDeleteClick}) =>
+const ReadOnlyRow = ({ product,inventory,handleEditClick, handleDeleteClick}) =>
 {
+    let quan;
+    for(let j =0; j < inventory.length; j++)
+        {
+        if(inventory[j].id == product.inventory_id)
+        {
+          
+          quan = inventory[j].quantity
+        }
+      }
     return(
         <tr>
           <td>
@@ -12,7 +21,7 @@ const ReadOnlyRow = ({product, handleEditClick, handleDeleteClick}) =>
             </button>
             <button type="button" onClick={()=> handleDeleteClick(product.id)}>Delete</button>
               </td>
-              <th  key={product.id}>{product.id}</th>
+              <td  key={product.id}>{product.id}</td>
               <td >{product.name}</td>
               <td >{product.discount_id}</td>
               <td >{product.category_id}</td>
@@ -21,7 +30,7 @@ const ReadOnlyRow = ({product, handleEditClick, handleDeleteClick}) =>
               <td >{product.price}</td>
               <td >{product.sku}</td>
               <td >{product.image_url}</td>
-              <td >{product.category}</td>
+              <td >{quan}</td>
               
         </tr>
         

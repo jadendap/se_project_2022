@@ -318,6 +318,7 @@ server.post("/additem", jsonParser, async (req, res) => {
   res.send("item added");
 });
 
+
 //add a discount to db
 server.post("/adddiscount", jsonParser, async (req, res) => {
   console.log(JSON.stringify(req.body));
@@ -479,7 +480,7 @@ server.put("/products/:id", jsonParser, async (req, res) => {
     id: itemid,
     name: itemname,
     discount_id: itemdiscount_id,
-    category_id: itemcategory,
+    category_id: itemcategory_id,
     inventory_id: iteminventory_id,
     desc: itemdesc,
     sku: itemsku,
@@ -498,18 +499,24 @@ server.put("/products/:id", jsonParser, async (req, res) => {
     res.status(400).send("record not found");
   }
 });
+server.put("/inventory", jsonParser, async(req, res) =>
+{
+  let inv = req.body;
+  inv =
+  {
+    id: req.body.id,
+    quantity: req.body.quantity
+  }
+  const dbResult = await db("product_inventory").where({ id: req.body.id }).update(inv);
+}
+)
 server.delete("/products/:id", async (req, res) => {
   //const {id } = req.params
   console.log(req.params.id);
   //const dbResult = await db('customer').where({username: userName}).update(usr)
   await db("product").where({ id: req.params.id }).del();
 });
-server.delete("/inventory/:id", async (req, res) => {
-  //const {id } = req.params
-  console.log(`Inventory item deleted: ${req.params.id}`);
-  //const dbResult = await db('customer').where({username: userName}).update(usr)
-  await db("product_inventory").where({ id: req.params.id }).del();
-});
+
 server.delete("/customers/:id", async (req, res) => {
   //const {id } = req.params
   console.log(req.params.id);
@@ -600,7 +607,7 @@ server.delete('/removeFromCart', deleteParser, async(req, res) => {
 });
 //daniel
 //get all products
-/*
+
 server.get("/products", async (req, res) => {
   const products = await db.select("*").from("product");
   res.send(products);
@@ -618,10 +625,26 @@ var jsonParser = bodyParser.json();
 server.delete('/deleteCartItem', jsonParser, async(req, res) => {
   let cartItem = req.body;
   cartItem = {
+    //added
+    id: req.body.id,
     session_id: req.body.session_id,
     product_id: req.body.product_id,
   }
-  const dbResult = await db("cart_item").where("session_id",req.body.session_id).where("product_id",req.body.product_id).del();
+  //const dbResult = await db("cart_item").where("session_id",req.body.session_id).where("product_id",req.body.product_id).del();
+  const dbResult = await db("cart_item").where("id", req.body.id).where("session_id",req.body.session_id).where("product_id",req.body.product_id).del();
   res.send("item is deleted from cart");
 });
-*/
+var jsonParser = bodyParser.json();
+server.delete('/inventory', jsonParser, async (req, res) => {
+  let inv = req.body;
+  inv =
+  {
+    id: req.body.id,
+    quantity: req.body.quantity
+  }
+  console.log(`Inventory item deleted: ${req.body.id}`);
+  //const dbResult = await db('customer').where({username: userName}).update(usr)
+  
+  const dbResult = await db("product_inventory").where("id", req.body.id).del();
+  //await db("product_inventory").where({ id:  req.body.id}).del();
+});
