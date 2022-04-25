@@ -36,11 +36,11 @@ const ModifyItemsTable = () => {
     borderRadius: "3px",
     background: "#98c285",
     width: "30%",
-    height: "5%",
+    height: "8%",
     fontSize: "15px",
     color: "black",
     left: "160px",
-    top: "-10px",
+    top: "-17px",
     display: "block",
   };
   const [products, setProducts] = useState([]);
@@ -57,8 +57,6 @@ const ModifyItemsTable = () => {
     const response = await fetch('http://localhost:9000/cart')
     const cart_data = await response.json()
     setCart(cart_data)
-    //console.log(cart_data);
-
   }  
   const [inv, setInv] = useState([]);
   const fetchinventory = async () =>
@@ -66,7 +64,6 @@ const ModifyItemsTable = () => {
     const response = await fetch('http://localhost:9000/inventory')
     const inventory_data = await response.json()
     setInv(inventory_data)
-    //console.log(cart_data);
 
   } 
   useEffect(() =>

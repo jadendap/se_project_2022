@@ -34,14 +34,14 @@ const handleClick = (item) => {
   console.log("item added");
 };
 const StoragePage = () => {
-    let conditions = [ "storage", "Storage", "SSD", "ssd" ]
+    let conditions = [ "storage", "Storage", "SSD", "ssd", "SATA" ]
   return (
     <div>
       <section>
         {JSON.parse(sessionStorage.featured).map((item) => (
             //conditions.some(el => str1.includes(el));
             <>
-            { conditions.some(el => item.desc.includes(el)) ? (
+            { conditions.some(el => item.name.includes(el)) ? (
           <ProductCards key={item.id} item={item} handleClick={handleClick} />
         ):(console.log("no"))}</>
         ))
