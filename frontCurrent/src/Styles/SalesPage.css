@@ -32,8 +32,9 @@ section {
   font-size: medium;
 }
 .details p:nth-child(2) {
-  color: grey;
-  font-size: 0.8rem;
+  color: black;
+  font-size: medium;
+  font-weight: bold;
 }
 .details p:nth-child(3) {
   font-weight: bolx;
@@ -41,14 +42,14 @@ section {
   font-size: medium;
 }
 .details p:nth-child(4) {
-  font-weight: bolx;
-
-  font-size: medium;
+  font-weight: bold;
+  color: red;
+  font-size: small;
 }
 .details p:nth-child(5) {
-  font-weight: bolx;
-
-  font-size: medium;
+  font-weight: bold;
+  color: red;
+  font-size: small;
 }
 .details p:nth-child(6) {
   font-weight: bolx;

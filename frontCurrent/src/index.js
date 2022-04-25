@@ -14,10 +14,10 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import NavBar from "./Components/User/Navbar";
 import Footer from "./Components/User/Footer";
-import ProductInfo from './Pages/ProductInfo';
-import Shipping from './Pages/Shipping';
-import Payment from './Pages/Payment';
-import PlaceOrder from './Pages/PlaceOrder';
+import ProductInfo from "./Pages/ProductInfo";
+import Shipping from "./Pages/Shipping";
+
+import PlaceOrder from "./Pages/PlaceOrder";
 /*********************** stuff michael added************************/
 import AdminLogin from "./Pages/Admin/AdminLogin";
 import AdminPage from "./Pages/Admin/AdminPage";
@@ -34,6 +34,7 @@ import Navbar from "./Components/User/Navbar";
 import Featured from "./Components/User/Featured";
 import Categories from "./Components/User/Categories";
 import Cart from "./Pages/Cart";
+import OnSale from "./Pages/OnSale";
 
 /************************************************************************ */
 
@@ -51,12 +52,11 @@ ReactDOM.render(
         <Route path="/AdminPage" element={<AdminPage />}></Route>
         <Route path="/" element={<App />}></Route>
         <Route path="/search/:id" element={<SearchPage />}></Route>
-        <Route path="/product/id/:id" element={<ProductInfo/>}></Route>
-        <Route path="/Shipping" element={<Shipping/>}></Route>
-        <Route path="/PlaceOrder" element={<PlaceOrder/>}></Route>
+        <Route path="/product/id/:id" element={<ProductInfo />}></Route>
+        <Route path="/Shipping" element={<Shipping />}></Route>
+        <Route path="/PlaceOrder" element={<PlaceOrder />}></Route>
+        <Route path="/OnSale" element={<OnSale />}></Route>
 
-
-        <Route path="/Payment" element={<Payment/>}></Route>
         <Route
           path="/AdminDiscountsPage"
           element={<AdminDiscountsPage />}
