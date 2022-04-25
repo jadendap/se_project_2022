@@ -72,14 +72,14 @@ const getCart = async () => {
                     <Row className="align-items-center">
                       <Col md={6}>
                         <img
-                          src={item.image}
+                          src={item.image_url}
                           alt={item.name}
                           className="img-fluid rounded img-thumbnail"
                         ></img>{' '}
-                        <Link to={`/product/${item.id}`}>{item.name}</Link>
+                        <Link to={`/product/id/${item.product_id}`}>{item.name}</Link>
                       </Col>
                       <Col md={3}>
-                        <span>{item.quantity}</span>
+                        <span>Quantity: {item.amount}</span>
                       </Col>
                       <Col md={3}>${item.price}</Col>
                     </Row>
