@@ -33,7 +33,7 @@ const SearchPage = () => {
   //Make a sample data set and make it so that renders, figure out how to pull data later.
   const getProducts = async (keyword) => {
     console.log(keyword);
-    const url = "http://localhost:9000/productSearch/" + keyword;
+    const url = "http://localhost:9000/products/" + keyword;
     console.log(url);
 
     const response = await fetch(url, {

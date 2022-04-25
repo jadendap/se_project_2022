@@ -64,14 +64,15 @@ server.get("/customers/:id", async (req, res) => {
   }
   res.send(customer);
 });
-server.get("/products/:id", async (req, res) => {
+/*server.get("/products/:id", async (req, res) => {
+  
   const id = req.params.id;
   const product = await db("product").where("id", id);
   if (product.length === 0) {
     return res.status(404).send("Product not found");
   }
   res.send(product);
-});
+});*/
 
 //login user
 var loginParser = bodyParser.json();
