@@ -5,7 +5,7 @@ const cardStyle =
 {
     paddingLeft: 24,
     paddingRight: 24,
-    backgroundColor: '#ebf7f4da',
+    backgroundColor: '#aac7aa',
     paddingBottom:"5%",
     border: "1px solid black",
     width: "300px",

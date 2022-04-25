@@ -38,7 +38,9 @@ function ProductInfo() {
   };
 
   return (
+    <div className="content-container"> 
     <div>
+      
       <Row>
         <Col md={6}>
           <img
@@ -76,6 +78,7 @@ function ProductInfo() {
           </ListGroup>
         </Col>
       </Row>
+    </div>
     </div>
   );
 }

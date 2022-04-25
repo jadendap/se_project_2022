@@ -13,10 +13,27 @@ const SaleCards = ({ item, handleClick }) => {
     active,
     discount_percent,
   } = item;
-
+const cardStyle =
+{
+    paddingLeft: 24,
+    paddingRight: 24,
+    backgroundColor: '#aac7aa',
+    paddingBottom:"5%",
+    border: "1px solid black",
+    width: "300px",
+    margin:"20px",
+    height:"520px",
+}
+const productStyle =
+{
+    position: "relative",
+    top:"-100px",
+    height:"300px",
+    left:"47px"
+}
   return (
-    <div className="cards">
-      <div className="image_box">
+    <div style={cardStyle} className="cards">
+      <div style={productStyle} className="image_box">
         <Link to={`/product/id/${id}`}>
           <img src={image_url} alt="" />
         </Link>
