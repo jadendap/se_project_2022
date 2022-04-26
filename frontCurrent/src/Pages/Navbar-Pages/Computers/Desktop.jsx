@@ -36,7 +36,7 @@ const handleClick = (item) => {
 const DesktopPage = () => {
     let conditions = [ "Fan", "Graphics", "Card", "RTX", "Power" ]
   return (
-    <div>
+    <div className="content-container">
       <section>
         {JSON.parse(sessionStorage.featured).map((item) => (
             //conditions.some(el => str1.includes(el));

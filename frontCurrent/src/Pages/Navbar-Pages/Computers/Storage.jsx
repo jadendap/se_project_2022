@@ -36,7 +36,7 @@ const handleClick = (item) => {
 const StoragePage = () => {
     let conditions = [ "storage", "Storage", "SSD", "ssd", "SATA" ]
   return (
-    <div>
+    <div className="content-container">
       <section>
         {JSON.parse(sessionStorage.featured).map((item) => (
             //conditions.some(el => str1.includes(el));
