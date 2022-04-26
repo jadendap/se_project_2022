@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import ProductCards from "../Components/User/ProductCard";
 import "../Styles/SearchPage.css";
+import FeaturedPage from "./FeaturedPage";
 const handleAddClick = (item) => {
   const userSession = sessionStorage.sessionId;
   //check if user is logged in
@@ -26,8 +28,8 @@ const handleAddClick = (item) => {
 };
 const SearchPage = () => {
   const searchKey = useParams();
-  console.log(searchKey);
-
+  const [search, setSearch] = useState("");
+  //console.log( searchKey);
   const [products, setProducts] = useState([]);
 
   //Make a sample data set and make it so that renders, figure out how to pull data later.
@@ -47,41 +49,32 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
+    setSearch( (searchKey) );
+    console.log( search);
     getProducts(searchKey.id);
   }, 0);
 
-  const yeah = () => {
-    {
-    }
-  };
+
+
 
   return (
     <div className="searchPage-container">
-      <div className="searchPage-main">
         {products.length ? (
-          products.map((item) => (
-            //Swtich out the statment with the item.link or whatever it is called.
-            <Link className="product-link" to={`/`}>
-              <div className="product-wrapper">
-                <div className="product-info">
-                  <p className="testing2">{item.name}</p>
-                  <p>{item.price}</p>{" "}
-                  <button onClick={() => handleAddClick(item)}>
-                    Add to cart
-                  </button>
-                </div>
-                <img
-                  className="product-img"
-                  src={item.image_url}
-                  alt="Product Image"
-                />
-              </div>
-            </Link>
-          ))
+          <div className="searchPage-main">
+                      {products.map((item) => (
+            <ProductCards key={item.id} item={item} handleClick={handleAddClick} />
+          ))}
+          </div>
         ) : (
-          <p>We do NOT have something</p>
+          <>
+          <div className="text-container">
+            <p>No results for {search.id}. Here are the featured items instead.</p>
+          </div>
+          
+          <FeaturedPage/>
+          </>
         )}
-      </div>
+      
     </div>
   );
 };
