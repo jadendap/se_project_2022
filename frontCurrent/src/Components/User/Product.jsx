@@ -26,8 +26,9 @@ const Product = ({item}) => {
                     <FavoriteBorderOutlined/>
                 </Icon>
             </Info>
-
+            
         </Container>
+
     )
 }
 

@@ -1,7 +1,7 @@
 .Footer-container {
     margin-top: auto;
     padding: 4rem 0 2rem 0;
-    display: flex;
+    display:flex;
     height: 75px;
     justify-content: center;
     align-items: center;
@@ -9,8 +9,18 @@
     color: white;
     bottom: 0;
     width: 100%;
-    position:relative;
+    position: absolute;
     clear: both;
+    left:0;
+    left:0;
+    bottom:0;
+    right:0;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    
 
 }
-
+.content-container {
+    min-height: calc(100vh - 34px);
+  }

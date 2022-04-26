@@ -1,12 +1,30 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+const cardStyle =
+{
+    paddingLeft: 24,
+    paddingRight: 24,
+    backgroundColor: '#aac7aa',
+    paddingBottom:"5%",
+    border: "1px solid black",
+    width: "300px",
+    margin:"20px",
+    height:"500px",
+}
+const productStyle =
+{
+    position: "relative",
+    top:"-100px",
+    height:"300px",
+    left:"47px"
+}
 const ProductCards = ({ item, handleClick }) => {
     const { id, name, desc, sku, image_url, price, quantity, discount, active } =
         item;
     return (
-        <div className="cards">
-            <div className="image_box">
+        <div style={cardStyle} className="cards">
+            <div style={productStyle} className="image_box">
                 <Link to={`/product/id/${id}`}><img src={image_url} alt="" /></Link>
             </div>
             <div className="details">

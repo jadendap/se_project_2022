@@ -34,14 +34,14 @@ const handleClick = (item) => {
   console.log("item added");
 };
 const DesktopPage = () => {
-    let conditions = [ "fan", "Graphics", "Card" ]
+    let conditions = [ "Fan", "Graphics", "Card", "RTX", "Power" ]
   return (
     <div>
       <section>
         {JSON.parse(sessionStorage.featured).map((item) => (
             //conditions.some(el => str1.includes(el));
             <>
-            { conditions.some(el => item.desc.includes(el)) ? (
+            { conditions.some(el => item.name.includes(el)) ? (
           <ProductCards key={item.id} item={item} handleClick={handleClick} />
         ):(console.log("no"))}</>
         ))
