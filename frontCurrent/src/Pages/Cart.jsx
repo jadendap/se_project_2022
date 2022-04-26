@@ -58,7 +58,7 @@ const Cart = () => {
     let ans = 0;
     cart.map((item) => (ans += parseInt(item.amount) * item.price));
     setPrice(ans);
-  }; 
+  };
 
   const handleChange = (item, d) => {
     const ind = cart.indexOf(item);
@@ -119,7 +119,9 @@ const Cart = () => {
         <span>${price}</span>
       </div>
       <div className="checkout">
+      <Link to="/PlaceOrder">
         <button>Place Order</button>
+        </Link>
       </div>
     </article>
   );
