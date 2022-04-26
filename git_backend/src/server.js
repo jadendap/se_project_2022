@@ -47,7 +47,7 @@ var orderParser = bodyParser.json();
 server.post("/AddOrder",orderParser, async (req, res) => {
   let order = req.body;
   order = {
-    customer_id: req.body.customerID,
+    customer_id: req.body.customer_id,
     total: req.body.total,
     order_date: req.body.date,
   };
