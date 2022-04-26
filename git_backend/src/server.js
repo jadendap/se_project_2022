@@ -64,6 +64,15 @@ server.get("/customers/:id", async (req, res) => {
   }
   res.send(customer);
 });
+//GET customer based on shopping_session Daniel
+server.get("/customer/ShoppingSession/:id", async (req, res) => {
+  const id = req.params.id;
+  const customer = await db.from("customer").innerJoin("shopping_session","shopping_session.customer_id","customer.id").where("shopping_session.id", id);
+  if (customer.length === 0) {
+    return res.status(404).send("Customer not found");
+  }
+  res.send(customer[0]);
+});
 server.get("/products/:id", async (req, res) => {
   const id = req.params.id;
   const product = await db("product").where("id", id);
