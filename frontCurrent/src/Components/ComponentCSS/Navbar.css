@@ -54,17 +54,21 @@ li {
   height: 35px;
 }
 
-.login-link {
+.shopping-cart-link {
   padding-left: 0.75rem;
 }
 
+
+
 .account-link {
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   text-decoration: none;
   color: rgba(219, 236, 228, 0.918);
   position: relative;
 }
-
+span {
+  font-size: 1.15rem;
+}
 .account-link:hover {
   text-decoration: none;
   color: rgb(100, 245, 100);
@@ -72,7 +76,7 @@ li {
 }
 
 @media screen and (max-width: 992px) {
-  .login-link {
+  .shopping-cart-link {
     padding: 0;
   }
 }

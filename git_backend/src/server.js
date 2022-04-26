@@ -42,6 +42,18 @@ server.get("/orders", async (req, res) => {
       .from("orders");
   res.send(orders);
 });
+//Post Order Daniel
+var orderParser = bodyParser.json();
+server.post("/AddOrder",orderParser, async (req, res) => {
+  let order = req.body;
+  order = {
+    customer_id: req.body.customer_id,
+    total: req.body.total,
+    order_date: req.body.date,
+  };
+  console.log(order);
+  dbResult = await db.insert(order).into("orders");
+});
 
 //GET all product inventory
 server.get("/inventory", async (req, res) => {
@@ -64,15 +76,23 @@ server.get("/customers/:id", async (req, res) => {
   }
   res.send(customer);
 });
-/*server.get("/products/:id", async (req, res) => {
-  
+//GET customer based on shopping_session Daniel
+server.get("/customer/ShoppingSession/:id", async (req, res) => {
+  const id = req.params.id;
+  const customer = await db.from("customer").innerJoin("shopping_session","shopping_session.customer_id","customer.id").where("shopping_session.id", id);
+  if (customer.length === 0) {
+    return res.status(404).send("Customer not found");
+  }
+  res.send(customer[0]);
+});
+server.get("/products/:id", async (req, res) => {
   const id = req.params.id;
   const product = await db("product").where("id", id);
   if (product.length === 0) {
     return res.status(404).send("Product not found");
   }
   res.send(product);
-});*/
+});
 
 //login user
 var loginParser = bodyParser.json();

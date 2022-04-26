@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineLogin } from "react-icons/md";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../ComponentCSS/Navbar.css";
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Navbar = ({ setShow }) => {
   const [search, setSearch] = useState("");
@@ -185,27 +186,17 @@ const Navbar = ({ setShow }) => {
                   Search
                 </button>
               </a>
-              <div className="nav_box">
-                <div
-                  className="cart"
-                  onClick={() =>
-                    (window.location.href = "http://localhost:3000/Cart")
-                  }
-                >
-                  <span>
-                    <i class="fas fa-cart-plus"></i>
-                  </span>
-                  <span>0</span>
-                </div>
-              </div>
             </form>
             <li>
+              <Link to="/Cart"className="account-link shopping-cart-link">
+                <AiOutlineShoppingCart/>
+              </Link>
               <Link to="/Login" className="login-link account-link">
                 {" "}
-                <BsFillPersonFill /> Login{" "}
+                <BsFillPersonFill /> <span>Login</span>{" "}
               </Link>{" "}
               <Link to="/Register" className="account-link">
-                <MdOutlineLogin /> Sign Up{" "}
+                <MdOutlineLogin /> <span>Sign up</span>{" "}
               </Link>
             </li>
           </ul>

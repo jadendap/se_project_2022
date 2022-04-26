@@ -1,24 +1,29 @@
 .searchPage-container {
-    margin-top: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
     min-height: 81.1vh; 
+    
 
+}
+
+.text-container {
+    padding-top: 5px;
+    text-align: center;
 }
 
 .searchPage-main {
+    padding-left: 11rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
     overflow: auto;
     padding-bottom: 75px;
+    
+    
 }
 
 .product-wrapper {
+
     padding-bottom: 20px;
     display: flex;
-    text-align: center;
-    align-items: center;
-    flex-direction: column;
     
 }
 
