@@ -49,6 +49,7 @@ server.post("/AddOrder",orderParser, async (req, res) => {
   order = {
     customer_id: req.body.customerID,
     total: req.body.total,
+    order_date: req.body.date,
   };
   console.log(order);
   dbResult = await db.insert(order).into("orders");
