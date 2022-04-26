@@ -42,6 +42,17 @@ server.get("/orders", async (req, res) => {
       .from("orders");
   res.send(orders);
 });
+//Post Order Daniel
+var orderParser = bodyParser.json();
+server.post("/AddOrder",orderParser, async (req, res) => {
+  let order = req.body;
+  order = {
+    customer_id: req.body.customerID,
+    total: req.body.total,
+  };
+  console.log(order);
+  dbResult = await db.insert(order).into("orders");
+});
 
 //GET all product inventory
 server.get("/inventory", async (req, res) => {
