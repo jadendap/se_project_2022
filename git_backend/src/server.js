@@ -50,6 +50,7 @@ server.post("/AddOrder",orderParser, async (req, res) => {
     customer_id: req.body.customer_id,
     total: req.body.total,
     order_date: req.body.date,
+    status: req.body.status,
   };
   console.log(order);
   dbResult = await db.insert(order).into("orders");
@@ -230,18 +231,35 @@ server.get("/featured", async (req, res) => {
   res.send(featured);
 });
 //GET all items on sale
+//GET all items on sale
 server.get("/sale", async (req, res) => {
   const sale_items = await db
+      .select(
+          "product.id",
+          "product.name",
+          "product.discount_id",
+          "product.category_id",
+          "product.inventory_id",
+          "product.desc",
+          "product.sku",
+          "product.image_url",
+          "product.price",
+          "product_inventory.quantity",
+          "discount.desc",
+          "discount.discount_percent"
+      )
       .from("product")
-      .innerJoin("discount", "product.discount_id", "discount.id")
+      .where("product.category_id", 2)
+      .leftJoin(
+          "product_inventory",
+          "product.inventory_id",
+          "product_inventory.id"
+      )
+      .leftJoin("discount", "product.discount_id", "discount.id")
       .whereNot("discount_id", 6)
       .andWhereNot("discount.active", "false");
 
   res.send(sale_items);
-});
-
-server.get("/register", async (req, res) => {
-  res.send("hello from register");
 });
 //admin login
 var adminloginParser = bodyParser.json();
