@@ -85,14 +85,7 @@ server.get("/customer/ShoppingSession/:id", async (req, res) => {
   }
   res.send(customer[0]);
 });
-server.get("/products/:id", async (req, res) => {
-  const id = req.params.id;
-  const product = await db("product").where("id", id);
-  if (product.length === 0) {
-    return res.status(404).send("Product not found");
-  }
-  res.send(product);
-});
+
 
 //login user
 var loginParser = bodyParser.json();
@@ -230,18 +223,35 @@ server.get("/featured", async (req, res) => {
   res.send(featured);
 });
 //GET all items on sale
+//GET all items on sale
 server.get("/sale", async (req, res) => {
   const sale_items = await db
+      .select(
+          "product.id",
+          "product.name",
+          "product.discount_id",
+          "product.category_id",
+          "product.inventory_id",
+          "product.desc",
+          "product.sku",
+          "product.image_url",
+          "product.price",
+          "product_inventory.quantity",
+          "discount.desc",
+          "discount.discount_percent"
+      )
       .from("product")
-      .innerJoin("discount", "product.discount_id", "discount.id")
+      .where("product.category_id", 2)
+      .leftJoin(
+          "product_inventory",
+          "product.inventory_id",
+          "product_inventory.id"
+      )
+      .leftJoin("discount", "product.discount_id", "discount.id")
       .whereNot("discount_id", 6)
       .andWhereNot("discount.active", "false");
 
   res.send(sale_items);
-});
-
-server.get("/register", async (req, res) => {
-  res.send("hello from register");
 });
 //admin login
 var adminloginParser = bodyParser.json();
@@ -556,13 +566,7 @@ server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 //specific product
-/*server.get("/product/id/:id", async (req, res) => {
-  const id = req.params.id;
-  const product = await db("product").where("id", id);
-  console.log(product);
-  res.send(product[0]);
-});
- */
+
 server.get("/product/id/:id", async (req, res) => {
   const id = req.params.id;
   const productInfo = await db
