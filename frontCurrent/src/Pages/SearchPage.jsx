@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import ProductCards from "../Components/User/ProductCard";
 import "../Styles/SearchPage.css";
 import FeaturedPage from "./FeaturedPage";
+
+
+//CHECK what's going on with the availability + display the welcome *user*
+
+
 const handleAddClick = (item) => {
   const userSession = sessionStorage.sessionId;
   //check if user is logged in
@@ -34,16 +39,15 @@ const SearchPage = () => {
 
   //Make a sample data set and make it so that renders, figure out how to pull data later.
   const getProducts = async (keyword) => {
-    console.log(keyword);
+    //console.log(keyword);
     const url = "http://localhost:9000/products/" + keyword;
-    console.log(url);
+    //console.log(url);
 
-    const response = await fetch(url, {
-      method: "GET",
-    });
-
+    const response = await fetch(url);
     const responseJson = await response.json();
-    //console.log( JSON.stringify(responseJson));
+    console.log( JSON.stringify(responseJson));
+    console.log(sessionStorage);
+    sessionStorage.setItem("searchResults", JSON.stringify(responseJson));
     setProducts(responseJson);
     console.log(products);
   };
@@ -60,11 +64,16 @@ const SearchPage = () => {
   return (
     <div className="searchPage-container">
         {products.length ? (
-          <div className="searchPage-main">
-                      {products.map((item) => (
-            <ProductCards key={item.id} item={item} handleClick={handleAddClick} />
-          ))}
+          <>
+          <div className="text-container">
+            <p>{products.length} Result(s) for {search.id}. </p>
           </div>
+          <section>
+            {JSON.parse(sessionStorage.searchResults).map((item) => (
+              <ProductCards key={item.id} item={item} handleClick={handleAddClick} />
+            ))}
+          </section>
+          </>
         ) : (
           <>
           <div className="text-container">

@@ -3,30 +3,48 @@ import {Link} from "react-router-dom";
 
 const cardStyle =
 {
-    paddingLeft: 24,
-    paddingRight: 24,
-    backgroundColor: '#aac7aa',
+
+    backgroundColor: 'white',
     paddingBottom:"5%",
     border: "1px solid black",
+    width: "100px",
+    marginBottom:"20px",
+    alignItems: "center",
+    display:"flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    height:"450px",
     width: "300px",
-    margin:"20px",
-    height:"500px",
 }
 const productStyle =
 {
-    position: "relative",
-    top:"-100px",
-    height:"300px",
-    left:"47px"
+    height: "200px",
+    width:"200px",
+    margin:"0",
+    padding:"0",
+
+}
+
+const divStyle =
+{
+    backgroundColor: '#F0EFEF',
+    height: "220px",
+    width:"300px",
+    margin:"0",
+    padding:"0",
+    justifyContent:"end",
+    
+    
+
 }
 const ProductCards = ({ item, handleClick }) => {
     const { id, name, desc, sku, image_url, price, quantity, discount, active } =
         item;
     return (
         <div style={cardStyle} className="cards">
-            <div style={productStyle} className="image_box">
-                <Link to={`/product/id/${id}`}><img src={image_url} alt="" /></Link>
-            </div>
+            
+                <Link to={`/product/id/${id}`}><img style={productStyle} src={image_url} alt="" /></Link>
+
             <div className="details">
                 <Link to={`/product/id/${id}`}><p>{name}</p></Link>
                 <p>Price - ${price}</p>

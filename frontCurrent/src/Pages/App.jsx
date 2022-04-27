@@ -1,21 +1,48 @@
-import React, { Component, useEffect, useState } from "react";
-import Navbar from "../Components/User/Navbar";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Categories from "../Components/User/Categories";
 import Featured from "../Components/User/Featured";
-import TextField from "@mui/material/TextField";
-import { Paper } from "@material-ui/core";
-import { ThemeProvide, createTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "styled-components";
-import Products from "../Layouts/Products";
-import Cart from "./Cart";
+import '../Styles/App.css'
 
 const App = () => {
-  const [cart, setCart] = useState([]);
+  const [customer, setCustomerInfo] = useState("");
+
+
+  const getCustomerInfo = async () => {
+    try{
+    const keyword = sessionStorage.sessionId;
+    if (!keyword) {
+        return;
+    }
+    console.log(keyword);
+    const url = "http://localhost:9000/customer/ShoppingSession/" + keyword;
+
+    const response = await fetch(url, {
+        method: "GET",
+    });
+    const responseJson = await response.json();
+    setCustomerInfo(responseJson);
+    console.log(JSON.stringify(customer));
+    }catch (error) {
+      console.log("error", error);
+     }
+     };
+
+     useEffect(() => {
+        getCustomerInfo();
+    }, 0);
+
+  
   return (
-    <React.Fragment>
+    <div className="homePage-container">
+        {sessionStorage.sessionId ? (
+          <h1 className="welcome-text">Welcome, {customer.first_name}</h1>
+    ) : (
+    <></>
+    )}
       <Featured />
       <Categories />
-    </React.Fragment>
+    </div>
   );
 };
 export default App;

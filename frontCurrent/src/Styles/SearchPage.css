@@ -1,49 +1,20 @@
-.searchPage-container {
-    min-height: 81.1vh; 
-    
-
+.searchPage-container {  
+    margin:0;
+    padding:0;
+    min-height: 81.6vh;
+    background-color: #EEFDF5;
+   
 }
-
 .text-container {
     padding-top: 5px;
     text-align: center;
 }
 
-.searchPage-main {
-    padding-left: 11rem;
+section {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
+    justify-items: center;
     overflow: auto;
-    padding-bottom: 75px;
-    
-    
-}
-
-.product-wrapper {
-
-    padding-bottom: 20px;
-    display: flex;
-    
-}
-
-.product-img {
-    margin-top: 0;
-    width: 30vh;
-    height: 30vh;
-}
-
-
-
-
-.product-link {
-    text-decoration: none;
-    color: black;
-    transition: 0.2s ease all;
-}
-
-.product-link:hover {
-    text-decoration: none;
-    color: green;
-    transition: 0.2s ease all;
-}
+  }

@@ -35,7 +35,7 @@ const handleClick = (item) => {
 };
 const FeaturedPage = () => {
   return (
-    <div>
+    <div className="content-container">
       <section>
         {JSON.parse(sessionStorage.featured).map((item) => (
           <ProductCards key={item.id} item={item} handleClick={handleClick} />

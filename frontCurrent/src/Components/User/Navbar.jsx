@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineLogin } from "react-icons/md";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -8,8 +8,37 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 const Navbar = ({ setShow }) => {
   const [search, setSearch] = useState("");
   const [cart, setCart] = useState([]);
+  const [userName, setUserName ] = useState("");
+  const [customer, setCustomerInfo] = useState("");
+
+
+  const getCustomerInfo = async () => {
+    try{
+    const keyword = sessionStorage.sessionId;
+    if (!keyword) {
+        return;
+    }
+    console.log(keyword);
+    const url = "http://localhost:9000/customer/ShoppingSession/" + keyword;
+
+    const response = await fetch(url, {
+        method: "GET",
+    });
+    const responseJson = await response.json();
+    setCustomerInfo(responseJson);
+    console.log(JSON.stringify(customer));
+    }catch (error) {
+      console.log("error", error);
+     }
+     };
+
+     useEffect(() => {
+        getCustomerInfo();
+    }, 0);
+
   return (
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark navbar-style">
+      
       <div class="container-fluid">
         <li className="navbar-brand">
           <Link className="website-name" title="Return to the homepage" to="/">
@@ -191,13 +220,27 @@ const Navbar = ({ setShow }) => {
               <Link to="/Cart"className="account-link shopping-cart-link">
                 <AiOutlineShoppingCart/>
               </Link>
-              <Link to="/Login" className="login-link account-link">
+              {sessionStorage.sessionId ? (
+                  <>
+                  <Link to="/" className="account-link">
+                    {" "}<BsFillPersonFill /><span>Account </span>
+                  </Link>
+                  <Link to="/Register" className="account-link">
+                  <MdOutlineLogin /> <span>Sign out</span>{" "}
+                  </Link>
+                  </>
+              ) : (
+              <>
+          <Link to="/Login" className="login-link account-link">
                 {" "}
                 <BsFillPersonFill /> <span>Login</span>{" "}
               </Link>{" "}
               <Link to="/Register" className="account-link">
                 <MdOutlineLogin /> <span>Sign up</span>{" "}
               </Link>
+                </>
+              )}
+    
             </li>
           </ul>
         </div>
