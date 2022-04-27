@@ -119,8 +119,8 @@ const Cart = () => {
         <span>${price}</span>
       </div>
       <div className="checkout">
-      <Link to="/PlaceOrder">
-        <button>Place Order</button>
+      <Link to="/shipping">
+        <button>Checkout</button>
         </Link>
       </div>
     </article>

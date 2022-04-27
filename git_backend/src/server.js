@@ -35,13 +35,13 @@ server.get("/categories", async (req, res) => {
 });
 
 //GET all orders
-//GET all product categories
 server.get("/orders", async (req, res) => {
   const orders = await db
       .select("id", "customer_id", "total", "order_date", "status")
       .from("orders");
   res.send(orders);
 });
+
 //Post Order Daniel
 var orderParser = bodyParser.json();
 server.post("/AddOrder",orderParser, async (req, res) => {
@@ -686,4 +686,18 @@ server.delete('/inventory', jsonParser, async (req, res) => {
   
   const dbResult = await db("product_inventory").where("id", req.body.id).del();
   //await db("product_inventory").where({ id:  req.body.id}).del();
+});
+server.get("/orders/:id", async (req, res) => {
+  const id = req.params.id;
+  const orders = await db
+      .select("*")
+      .from("orders").where("customer_id", id);
+  res.send(orders);
+});
+//delete cart bases on session id;
+server.delete("/DeleteCart/:id", async (req, res) => {
+  const id = req.params.id;
+
+  await db("cart_item").where("session_id", id).del();
+  console.log(`cart ${id} deleted`);
 });

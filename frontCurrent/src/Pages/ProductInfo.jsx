@@ -1,8 +1,7 @@
-
-import {useNavigate, useParams} from "react-router-dom";
-import {useContext, useEffect, useReducer} from "react";
+import { useParams} from "react-router-dom";
+import { useEffect, useReducer} from "react";
 import axios from "axios";
-import {Badge, Button, Card, Col, ListGroup, Row} from "react-bootstrap";
+import {Badge, Card, Col, ListGroup, Row} from "react-bootstrap";
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -17,7 +16,6 @@ const reducer = (state, action) => {
     }
 };
 function ProductInfo() {
-    const navigate= useNavigate()
     const params = useParams();
     const {id} = params;
 
@@ -62,7 +60,6 @@ function ProductInfo() {
     });
 
     console.log("item added");
-    navigate();
   };
     return  (
       loading ? <div>Loading...</div>

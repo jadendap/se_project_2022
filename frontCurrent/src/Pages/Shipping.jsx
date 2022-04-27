@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
+import { useNavigate } from "react-router-dom";
 
 const appStyle = {
   height: "1300pxx",
@@ -44,80 +45,19 @@ const submitStyle = {
 };
 
 export default function Shipping() {
-    const [name, setName] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [zipCode, setZip] = useState('');
-    const [country, setCountry] = useState('');
+    const navigate = useNavigate();
     const [ccNumber, setCCNumber] = useState('');
+    const [expDate, setExpDate] = useState('');
+    const [cvv, setCVV] = useState('');
     const submitHandler = (e) => {
         e.preventDefault();
-
+        navigate('/PlaceOrder');
     };
+
     return (
         <div >
             <form style={formStyle} className="form" onSubmit={submitHandler}>
-                <div>
-                    <h1 style={labelStyle}>Shipping Address</h1>
-                </div>
-                <div>
-                    <label style={labelStyle} htmlFor="name" >Full Name: </label>
-                    <input style={inputStyle}
-                        type="text"
-                        id="name"
-                        placeholder="Enter name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    ></input>
-                </div>
-                <div>
-                    <label style={labelStyle} htmlFor="address">Address: </label>
-                    <input style={inputStyle}
-                        type="text"
-                        id="address"
-                        placeholder="Enter address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                    ></input>
-                </div>
-                <div>
-                    <label style={labelStyle} htmlFor="city">City: </label>
-                    <input style={inputStyle}
-                        type="text"
-                        id="city"
-                        placeholder="Enter city"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        required
-                    ></input>
-                </div>
-                <div>
-                    <label style={labelStyle} htmlFor="zipCode">Zip Code: </label>
-                    <input style={inputStyle}
-                        type="text"
-                        id="zipCode"
-                        placeholder="Enter zip code"
-                        value={zipCode}
-                        onChange={(e) => setZip(e.target.value)}
-                        required
-                    ></input>
-                </div>
-                <div>
-                    <label style={labelStyle} htmlFor="country">Country: </label>
-                    <input style={inputStyle}
-                        type="text"
-                        id="country"
-                        placeholder="Enter country"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        required
-                    ></input>
-                </div>
-                <div>
-                  <h1 style={labelStyle}>Payment</h1>
-                </div>
+                  <h1 style={labelStyle}>Payment</h1>   zzZ
                 <div>
                   <label style={labelStyle} htmlFor="ccNumber" >Credit Card Number: </label>
                    <input style={inputStyle}
@@ -168,6 +108,18 @@ export default function Shipping() {
                                   <option value="2040">2040</option>
                               </select>
                               </div>
+                              <div>
+                               <label style={labelStyle} htmlFor="zipCode">CVV: </label>
+                               <input style={inputStyle}
+                               type="text"
+                               id="cvv"
+                               placeholder="Enter cvv"
+                               value={cvv}
+                               onChange={(e) => setCVV(e.target.value)}
+                               required
+                               ></input>
+                               </div>
+
                             <div>
                                 <label/>
                                 <button style={submitStyle} className="primary" type="submit">Continue</button>
