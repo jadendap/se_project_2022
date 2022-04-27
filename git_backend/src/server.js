@@ -37,14 +37,14 @@ server.get("/categories", async (req, res) => {
 //GET all orders
 server.get("/orders", async (req, res) => {
   const orders = await db
-      .select("id", "customer_id", "total", "order_date", "status")
-      .from("orders");
+    .select("id", "customer_id", "total", "order_date", "status")
+    .from("orders");
   res.send(orders);
 });
 
 //Post Order Daniel
 var orderParser = bodyParser.json();
-server.post("/AddOrder",orderParser, async (req, res) => {
+server.post("/AddOrder", orderParser, async (req, res) => {
   let order = req.body;
   order = {
     customer_id: req.body.customer_id,
@@ -80,19 +80,18 @@ server.get("/customers/:id", async (req, res) => {
 //GET customer based on shopping_session Daniel
 server.get("/customer/ShoppingSession/:id", async (req, res) => {
   const id = req.params.id;
-  const customer = await db.from("customer").innerJoin("shopping_session","shopping_session.customer_id","customer.id").where("shopping_session.id", id);
+  const customer = await db
+    .from("customer")
+    .innerJoin(
+      "shopping_session",
+      "shopping_session.customer_id",
+      "customer.id"
+    )
+    .where("shopping_session.id", id);
   if (customer.length === 0) {
     return res.status(404).send("Customer not found");
   }
   res.send(customer[0]);
-});
-server.get("/products/:id", async (req, res) => {
-  const id = req.params.id;
-  const product = await db("product").where("id", id);
-  if (product.length === 0) {
-    return res.status(404).send("Product not found");
-  }
-  res.send(product);
 });
 
 //login user
@@ -121,39 +120,43 @@ server.post("/login", loginParser, async (req, res) => {
 
   //send shopping session id back to front end
   const maxSessionId = await db("shopping_session")
-      .max("id as sessionId")
-      .first();
+    .max("id as sessionId")
+    .first();
   console.log(
-      customer[0].username +
+    customer[0].username +
       " logged in with session id " +
       maxSessionId.sessionId
   );
+  const c_info = {
+    c_id: session.customer_id,
+    c_session: maxSessionId.sessionId,
+  };
 
-  res.send(maxSessionId);
+  res.send(c_info);
 });
 
 //GET all products
 server.get("/products", async (req, res) => {
   const products = await db
-      .select(
-          "product.id",
-          "product.name",
-          "product.discount_id",
-          "product.category_id",
-          "product.inventory_id",
-          "product.desc",
-          "product.sku",
-          "product.image_url",
-          "product.price",
-          "product_inventory.id",
-          "product_inventory.quantity"
-      )
-      .from("product")
-      .leftJoin(
-          "product_inventory",
-          "product.inventory_id",
-          "product_inventory.id"
-      );
+    .select(
+      "product.id",
+      "product.name",
+      "product.discount_id",
+      "product.category_id",
+      "product.inventory_id",
+      "product.desc",
+      "product.sku",
+      "product.image_url",
+      "product.price",
+      "product_inventory.id",
+      "product_inventory.quantity"
+    )
+    .from("product")
+    .leftJoin(
+      "product_inventory",
+      "product.inventory_id",
+      "product_inventory.id"
+    );
   res.send(products);
 });
 
@@ -165,8 +168,8 @@ server.get("/products/:search", async (req, res) => {
   console.log(search);
   //search name and desc columns
   const searchResults = await db("product")
-      .whereILike("name", `%${search}%`)
-      .orWhereILike("desc", `%${search}%`);
+    .whereILike("name", `%${search}%`)
+    .orWhereILike("desc", `%${search}%`);
   console.log(searchResults);
   res.send(searchResults);
 });
@@ -177,8 +180,8 @@ server.get("/products/search", async (req, res) => {
   console.log(search);
   //search name and desc columns
   const searchResults = await db("product")
-      .whereILike("name", `%${search}%`)
-      .orWhereILike("desc", `%${search}%`);
+    .whereILike("name", `%${search}%`)
+    .orWhereILike("desc", `%${search}%`);
   console.log(searchResults);
   res.send(searchResults);
 });
@@ -208,56 +211,56 @@ server.delete("/removeFromCart", deleteParser, async (req, res) => {
 //return all featured items
 server.get("/featured", async (req, res) => {
   const featured = await db
-      .select(
-          "product.id",
-          "product.name",
-          "product.discount_id",
-          "product.category_id",
-          "product.inventory_id",
-          "product.desc",
-          "product.sku",
-          "product.image_url",
-          "product.price",
-          "product_inventory.quantity"
-      )
-      .from("product")
-      .leftJoin("product_category", "product.category_id", "product_category.id")
-      .leftJoin(
-          "product_inventory",
-          "product.inventory_id",
-          "product_inventory.id"
-      )
-      .where("product.category_id", 1);
+    .select(
+      "product.id",
+      "product.name",
+      "product.discount_id",
+      "product.category_id",
+      "product.inventory_id",
+      "product.desc",
+      "product.sku",
+      "product.image_url",
+      "product.price",
+      "product_inventory.quantity"
+    )
+    .from("product")
+    .leftJoin("product_category", "product.category_id", "product_category.id")
+    .leftJoin(
+      "product_inventory",
+      "product.inventory_id",
+      "product_inventory.id"
+    )
+    .where("product.category_id", 1);
   res.send(featured);
 });
 //GET all items on sale
 //GET all items on sale
 server.get("/sale", async (req, res) => {
   const sale_items = await db
-      .select(
-          "product.id",
-          "product.name",
-          "product.discount_id",
-          "product.category_id",
-          "product.inventory_id",
-          "product.desc",
-          "product.sku",
-          "product.image_url",
-          "product.price",
-          "product_inventory.quantity",
-          "discount.desc",
-          "discount.discount_percent"
-      )
-      .from("product")
-      .where("product.category_id", 2)
-      .leftJoin(
-          "product_inventory",
-          "product.inventory_id",
-          "product_inventory.id"
-      )
-      .leftJoin("discount", "product.discount_id", "discount.id")
-      .whereNot("discount_id", 6)
-      .andWhereNot("discount.active", "false");
+    .select(
+      "product.id",
+      "product.name",
+      "product.discount_id",
+      "product.category_id",
+      "product.inventory_id",
+      "product.desc",
+      "product.sku",
+      "product.image_url",
+      "product.price",
+      "product_inventory.quantity",
+      "discount.desc",
+      "discount.discount_percent"
+    )
+    .from("product")
+    .where("product.category_id", 2)
+    .leftJoin(
+      "product_inventory",
+      "product.inventory_id",
+      "product_inventory.id"
+    )
+    .leftJoin("discount", "product.discount_id", "discount.id")
+    .whereNot("discount_id", 6)
+    .andWhereNot("discount.active", "false");
 
   res.send(sale_items);
 });
@@ -347,16 +350,15 @@ server.post("/additem", jsonParser, async (req, res) => {
   const inventoryResult = await db.insert(inventory).into("product_inventory");
   //get the most recent inventory id so we can assign it to the product that was just added
   const maxIventoryId = await db("product_inventory")
-      .max("id as maxId")
-      .first();
+    .max("id as maxId")
+    .first();
   console.log(maxIventoryId);
   //id assignment
   const updateResult = await db("product")
-      .where("name", req.body.name)
-      .update("inventory_id", maxIventoryId.maxId);
+    .where("name", req.body.name)
+    .update("inventory_id", maxIventoryId.maxId);
   res.send("item added");
 });
-
 
 //add a discount to db
 server.post("/adddiscount", jsonParser, async (req, res) => {
@@ -538,17 +540,16 @@ server.put("/products/:id", jsonParser, async (req, res) => {
     res.status(400).send("record not found");
   }
 });
-server.put("/inventory", jsonParser, async(req, res) =>
-{
+server.put("/inventory", jsonParser, async (req, res) => {
   let inv = req.body;
-  inv =
-  {
+  inv = {
     id: req.body.id,
-    quantity: req.body.quantity
-  }
-  const dbResult = await db("product_inventory").where({ id: req.body.id }).update(inv);
-}
-)
+    quantity: req.body.quantity,
+  };
+  const dbResult = await db("product_inventory")
+    .where({ id: req.body.id })
+    .update(inv);
+});
 server.delete("/products/:id", async (req, res) => {
   //const {id } = req.params
   console.log(req.params.id);
@@ -584,25 +585,26 @@ server.listen(PORT, () => {
 server.get("/product/id/:id", async (req, res) => {
   const id = req.params.id;
   const productInfo = await db
-      .select(
-          "product.id",
-          "product.name",
-          "product.discount_id",
-          "product.category_id",
-          "product.inventory_id",
-          "product.desc",
-          "product.sku",
-          "product.image_url",
-          "product.price",
-          "product_inventory.quantity"
-      )
-      .from("product")
-      .leftJoin("product_category", "product.category_id", "product_category.id")
-      .leftJoin(
-          "product_inventory",
-          "product.inventory_id",
-          "product_inventory.id"
-      ).where("product.id", id);
+    .select(
+      "product.id",
+      "product.name",
+      "product.discount_id",
+      "product.category_id",
+      "product.inventory_id",
+      "product.desc",
+      "product.sku",
+      "product.image_url",
+      "product.price",
+      "product_inventory.quantity"
+    )
+    .from("product")
+    .leftJoin("product_category", "product.category_id", "product_category.id")
+    .leftJoin(
+      "product_inventory",
+      "product.inventory_id",
+      "product_inventory.id"
+    )
+    .where("product.id", id);
 
   res.send(productInfo[0]);
 });
@@ -630,18 +632,37 @@ server.get("/cart/id/:id", async (req, res) => {
 server.get("/cart/:id", async (req, res) => {
   const id = req.params.id;
   //const cart = await db.from("cart_item").innerJoin("product", "cart_item.product_id", "product.id").where({session_id: id});
-  const cart = await db.select(" cart_item.product_id","product.name","product.price","product.image_url").count("cart_item.product_id AS amount").from("cart_item").innerJoin("product", "cart_item.product_id", "product.id").where({session_id: id}).groupBy("product.name","cart_item.product_id","product.price","product.image_url");
+  const cart = await db
+    .select(
+      " cart_item.product_id",
+      "product.name",
+      "product.price",
+      "product.image_url"
+    )
+    .count("cart_item.product_id AS amount")
+    .from("cart_item")
+    .innerJoin("product", "cart_item.product_id", "product.id")
+    .where({ session_id: id })
+    .groupBy(
+      "product.name",
+      "cart_item.product_id",
+      "product.price",
+      "product.image_url"
+    );
   res.send(cart);
 });
 //delete cart_item to session
 var deleteParser = bodyParser.json();
-server.delete('/removeFromCart', deleteParser, async(req, res) => {
+server.delete("/removeFromCart", deleteParser, async (req, res) => {
   let cartItem = req.body;
   cartItem = {
     session_id: req.body.session_id,
     product_id: req.body.product_id,
-  }
-  const dbResult = await db("cart_item").where("session_id",req.body.session_id).where("product_id",req.body.product_id).del();
+  };
+  const dbResult = await db("cart_item")
+    .where("session_id", req.body.session_id)
+    .where("product_id", req.body.product_id)
+    .del();
   res.send("item is deleted from cart");
 });
 //daniel
@@ -661,37 +682,38 @@ server.get("/cart", async (req, res) => {
 
 //delete cart_item to session
 var jsonParser = bodyParser.json();
-server.delete('/deleteCartItem', jsonParser, async(req, res) => {
+server.delete("/deleteCartItem", jsonParser, async (req, res) => {
   let cartItem = req.body;
   cartItem = {
     //added
     id: req.body.id,
     session_id: req.body.session_id,
     product_id: req.body.product_id,
-  }
+  };
   //const dbResult = await db("cart_item").where("session_id",req.body.session_id).where("product_id",req.body.product_id).del();
-  const dbResult = await db("cart_item").where("id", req.body.id).where("session_id",req.body.session_id).where("product_id",req.body.product_id).del();
+  const dbResult = await db("cart_item")
+    .where("id", req.body.id)
+    .where("session_id", req.body.session_id)
+    .where("product_id", req.body.product_id)
+    .del();
   res.send("item is deleted from cart");
 });
 var jsonParser = bodyParser.json();
-server.delete('/inventory', jsonParser, async (req, res) => {
+server.delete("/inventory", jsonParser, async (req, res) => {
   let inv = req.body;
-  inv =
-  {
+  inv = {
     id: req.body.id,
-    quantity: req.body.quantity
-  }
+    quantity: req.body.quantity,
+  };
   console.log(`Inventory item deleted: ${req.body.id}`);
   //const dbResult = await db('customer').where({username: userName}).update(usr)
-  
+
   const dbResult = await db("product_inventory").where("id", req.body.id).del();
   //await db("product_inventory").where({ id:  req.body.id}).del();
 });
 server.get("/orders/:id", async (req, res) => {
   const id = req.params.id;
-  const orders = await db
-      .select("*")
-      .from("orders").where("customer_id", id);
+  const orders = await db.select("*").from("orders").where("customer_id", id);
   res.send(orders);
 });
 //delete cart bases on session id;
