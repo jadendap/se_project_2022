@@ -184,7 +184,7 @@ const getCart = async () => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <div className="d-grid">
-                  <Link to="/OrderHistory">
+                  <Link to="/Confirmation">
                     <button
                       type="button"
                        onClick={() => handlePlace(customer.customer_id,total, date)}

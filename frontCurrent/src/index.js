@@ -19,7 +19,7 @@ import NavBar from "./Components/User/Navbar";
 import Footer from "./Components/User/Footer";
 import ProductInfo from "./Pages/ProductInfo";
 import Shipping from "./Pages/Shipping";
-
+import Confirmation from "./Pages/Confirmation";
 import PlaceOrder from "./Pages/PlaceOrder";
 import OrderHistory from "./Pages/OrderHistory";
 /*********************** stuff michael added************************/
@@ -66,7 +66,7 @@ ReactDOM.render(
         <Route path="/PlaceOrder" element={<PlaceOrder />}></Route>
         <Route path="/OrderHistory" element={<OrderHistory />}></Route>
         <Route path="/OnSale" element={<OnSale />}></Route>
-
+        <Route path="/Confirmation" element={<Confirmation />}></Route>
         <Route
           path="/AdminDiscountsPage"
           element={<AdminDiscountsPage />}
