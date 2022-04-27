@@ -31,7 +31,7 @@ useEffect(() => {
    getOrderHistory();
     }, []);
   return (
-    <div>
+    <div className='content-container'>
       <h1>Orders</h1>
 
         <table className="table">

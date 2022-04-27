@@ -55,7 +55,7 @@ export default function Shipping() {
     };
 
     return (
-        <div >
+        <div className='content-container'>
             <form style={formStyle} className="form" onSubmit={submitHandler}>
                   <h1 style={labelStyle}>Payment</h1>   zzZ
                 <div>
