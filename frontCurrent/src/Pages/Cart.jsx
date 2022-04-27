@@ -93,6 +93,7 @@ const Cart = () => {
   }, []);
 
   return (
+    <div div className="content-container">
     <article>
       {cart.map((item) => (
         <div className="cart_box" key={item.id}>
@@ -124,6 +125,7 @@ const Cart = () => {
         </Link>
       </div>
     </article>
+    </div>
   );
 };
 
