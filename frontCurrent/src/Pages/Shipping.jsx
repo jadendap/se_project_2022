@@ -109,7 +109,7 @@ export default function Shipping() {
                               </select>
                               </div>
                               <div>
-                               <label style={labelStyle} htmlFor="zipCode">CVV: </label>
+                               <label style={labelStyle} htmlFor="cvv">CVV: </label>
                                <input style={inputStyle}
                                type="text"
                                id="cvv"

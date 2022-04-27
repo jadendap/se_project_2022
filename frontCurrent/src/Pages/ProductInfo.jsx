@@ -42,10 +42,10 @@ function ProductInfo() {
 
     //check if user is logged in
     if (!userSession) {
-      alert("Please sign in to add item to cart");
-      window.location.href = "http://localhost:3000/login";
-      return;
-    }
+          alert("Please sign in to add item to cart");
+          window.location.href = "http://localhost:3000/login";
+          return;
+        }
     //post request to add item to db
     //send userSession, product_id
     const cart_item = {

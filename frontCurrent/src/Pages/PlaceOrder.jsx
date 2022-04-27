@@ -9,6 +9,7 @@ const [cart, setCart] = useState([]);
 const [customer, setCustomerInfo] = useState('');
 const [total, setTotal] = useState(0);
 const [tax, setTax] = useState(0);
+const [itemPrice, setItemPrice] = useState(0);
 var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
@@ -62,9 +63,14 @@ const getCart = async () => {
            let t = 0;
            let ans = 0;
            cart.map((item) => (ans += parseInt(item.amount) * item.price));
-           setTotal(ans);
+           setItemPrice(ans);
            t = ans * 0.0625;
+           t = t.toFixed(2);
            setTax(t);
+           let x = Number(t) + Number(ans) + 5;
+
+           x = x.toFixed(2);
+           setTotal(x);
            };
 
       const handlePlace = (id, total, date) => {
@@ -127,7 +133,7 @@ const getCart = async () => {
               <h1>Items</h1>
               <ListGroup >
                 {cart.map((item) => (
-                  <ListGroup.Item key={item.id}>
+                  <ListGroup.Item className="cart_box" key={item.id}>
                     <Row className="align-items-center">
                       <Col md={6}>
                         <img
@@ -157,7 +163,7 @@ const getCart = async () => {
                 <ListGroup.Item>
                   <Row>
                     <Col>Items</Col>
-                    <Col>${total}</Col>
+                    <Col>${itemPrice}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -184,7 +190,7 @@ const getCart = async () => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <div className="d-grid">
-                  <Link to="/OrderHistory">
+                  <Link to="/Confirmation">
                     <button
                       type="button"
                        onClick={() => handlePlace(customer.customer_id,total, date)}
