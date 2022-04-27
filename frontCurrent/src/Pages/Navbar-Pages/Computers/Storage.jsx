@@ -1,14 +1,6 @@
 import ProductCards from "../../../Components/User/ProductCard";
 import React from "react";
 import "../../../Styles/FeaturedPage.css";
-
-const fetchFeatured = async () => {
-  const response = await fetch("http://localhost:9000/featured");
-  const responseJson = await response.json();
-  console.log(responseJson);
-  sessionStorage.setItem("featured", JSON.stringify(responseJson));
-};
-fetchFeatured();
 const handleClick = (item) => {
   const userSession = sessionStorage.sessionId;
 
@@ -34,19 +26,24 @@ const handleClick = (item) => {
   console.log("item added");
 };
 const StoragePage = () => {
-    let conditions = [ "storage", "Storage", "SSD", "ssd", "SATA" ]
+  let conditions = ["storage", "Storage", "SSD", "ssd", "SATA"];
   return (
     <div className="content-container">
       <section>
         {JSON.parse(sessionStorage.featured).map((item) => (
-            //conditions.some(el => str1.includes(el));
-            <>
-            { conditions.some(el => item.name.includes(el)) ? (
-          <ProductCards key={item.id} item={item} handleClick={handleClick} />
-        ):(console.log("no"))}</>
-        ))
-    
-    }
+          //conditions.some(el => str1.includes(el));
+          <>
+            {conditions.some((el) => item.name.includes(el)) ? (
+              <ProductCards
+                key={item.id}
+                item={item}
+                handleClick={handleClick}
+              />
+            ) : (
+              console.log("no")
+            )}
+          </>
+        ))}
       </section>
     </div>
   );

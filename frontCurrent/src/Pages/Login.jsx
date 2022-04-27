@@ -86,9 +86,12 @@ const Form = ({ onSubmit }) => {
       //window.location.href = "http://localhost:3000/Login";
     } else {
       const responseJson = await response.json();
-      const customerSessionId = responseJson.sessionId;
+      const customerSessionId = responseJson.c_session;
+      const customerId = responseJson.c_id;
       console.log(customerSessionId);
+      console.log(customerId);
       sessionStorage.setItem("sessionId", customerSessionId);
+      sessionStorage.setItem("customerId", customerId);
       home_redirect();
 
       //window.location.href = "http://localhost:3000/Desktop";

@@ -1,14 +1,11 @@
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import Featured from "../../../Components/User/Featured";
 import ProductCards from "../../../Components/User/ProductCard";
-import React from "react";
-import "../../../Styles/FeaturedPage.css";
 
-const fetchFeatured = async () => {
-  const response = await fetch("http://localhost:9000/featured");
-  const responseJson = await response.json();
-  console.log(responseJson);
-  sessionStorage.setItem("featured", JSON.stringify(responseJson));
-};
-fetchFeatured();
+import "../../../Styles/FeaturedPage.css";
+import FeaturedPage from "../../FeaturedPage";
+
 const handleClick = (item) => {
   const userSession = sessionStorage.sessionId;
 
@@ -34,20 +31,53 @@ const handleClick = (item) => {
   console.log("item added");
 };
 const MonitorPage = () => {
-    let conditions = [ "monitor", "Monitor" ]
+  const searchKey = useParams();
+  const [search, setSearch] = useState("");
+  //console.log( searchKey);
+  const [products, setProducts] = useState([]);
+
+  //Make a sample data set and make it so that renders, figure out how to pull data later.
+  const getProducts = async () => {
+    const keyword = "monitor";
+    console.log(keyword);
+    const url = "http://localhost:9000/products/" + keyword;
+    console.log(url);
+
+    const response = await fetch(url, {
+      method: "GET",
+    });
+
+    const responseJson = await response.json();
+    //console.log( JSON.stringify(responseJson));
+    setProducts(responseJson);
+    console.log(products);
+  };
+
+  useEffect(() => {
+    setSearch(searchKey);
+    console.log(search);
+    getProducts(searchKey.id);
+  }, 0);
+
   return (
-    <div className="content-container">
-      <section>
-        {JSON.parse(sessionStorage.featured).map((item) => (
-            //conditions.some(el => str1.includes(el));
-            <>
-            { conditions.some(el => item.desc.includes(el)) ? (
-          <ProductCards key={item.id} item={item} handleClick={handleClick} />
-        ):(console.log("no"))}</>
-        ))
-    
-    }
-      </section>
+    <div className="searchPage-container">
+      {products.length ? (
+        <div className="searchPage-main">
+          {products.map((item) => (
+            <ProductCards key={item.id} item={item} handleClick={handleClick} />
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className="text-container">
+            <p>
+              No results for {search.id}. Here are the featured items instead.
+            </p>
+          </div>
+
+          <FeaturedPage />
+        </>
+      )}
     </div>
   );
 };
