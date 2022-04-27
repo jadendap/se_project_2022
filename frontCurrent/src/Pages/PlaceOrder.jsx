@@ -3,12 +3,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import React, { useState, useEffect } from "react";
-import '../Components/ComponentCSS/cart.css'
 
 export default function PlaceOrder() {
 const [cart, setCart] = useState([]);
 const [customer, setCustomerInfo] = useState('');
 const [total, setTotal] = useState(0);
+const [tax, setTax] = useState(0);
 var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
@@ -46,7 +46,6 @@ const getCart = async () => {
                     window.location.href = "http://localhost:3000/Login";
                     return;
                 }
-                console.log(keyword);
                 const url = "http://localhost:9000/customer/ShoppingSession/" + keyword;
 
                 const response = await fetch(url, {
@@ -60,16 +59,21 @@ const getCart = async () => {
                  }
                  };
     const handlePrice = () => {
+           let t = 0;
            let ans = 0;
            cart.map((item) => (ans += parseInt(item.amount) * item.price));
            setTotal(ans);
+           t = ans * 0.0625;
+           setTax(t);
            };
 
       const handlePlace = (id, total, date) => {
+          const keyword = sessionStorage.sessionId;
           const order = {
             customer_id: id,
             total: total,
             date: date,
+            status: "open",
           };
           console.log(`order added ${order.id} ${order.total}`);
           const addResponse = fetch("http://localhost:9000/AddOrder", {
@@ -77,9 +81,12 @@ const getCart = async () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(order),
           });
-
+        const deleteResponse = fetch(`http://localhost:9000/DeleteCart/${keyword}`, {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(keyword),
+            });
         }
-
    useEffect(() => {
        handlePrice();
        });
@@ -99,9 +106,7 @@ const getCart = async () => {
               <h1>Shipping</h1>
               <div>
                 <strong>Name: </strong> {customer.first_name} {customer.last_name} <br />
-                <strong>Address: </strong> {customer.address} ,
-                City, Zip Code,
-                Country
+                <strong>Address: </strong> {customer.address}
               </div>
               <Link to="/Shipping">Edit</Link>
             </div>
@@ -111,7 +116,7 @@ const getCart = async () => {
             <div>
               <h1>Payment</h1>
               <div>
-                <strong>CC:</strong> temp
+                <strong>CC:</strong> ****************
               </div>
               <Link to="/shipping">Edit</Link>
             </div>
@@ -125,7 +130,7 @@ const getCart = async () => {
                   <ListGroup.Item key={item.id}>
                     <Row className="align-items-center">
                       <Col md={6}>
-                        <img className="checkout_img"
+                        <img
                           src={item.image_url}
                           alt={item.name}
 
@@ -152,19 +157,19 @@ const getCart = async () => {
                 <ListGroup.Item>
                   <Row>
                     <Col>Items</Col>
-                    <Col>$</Col>
+                    <Col>${total}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Shipping</Col>
-                    <Col>$</Col>
+                    <Col>$ 5.00</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Tax</Col>
-                    <Col>$</Col>
+                    <Col>${tax}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -179,6 +184,7 @@ const getCart = async () => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <div className="d-grid">
+                  <Link to="/OrderHistory">
                     <button
                       type="button"
                        onClick={() => handlePlace(customer.customer_id,total, date)}
@@ -186,6 +192,7 @@ const getCart = async () => {
                     >
                       Place Order
                     </button>
+                    </Link>
                   </div>
                 </ListGroup.Item>
               </ListGroup>
