@@ -15,7 +15,7 @@ const OrderHistory = () => {
       return;
     }
     console.log(keyword);
-    const url = "http://localhost:9000/order/" + history_id;
+    const url = "http://localhost:9000/orders/" + history_id;
 
     const response = await fetch(url);
     const responseJson = await response.json();

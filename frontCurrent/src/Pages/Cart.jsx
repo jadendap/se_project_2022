@@ -52,7 +52,6 @@ const Cart = () => {
     // const arr = cart.filter((item) => item.product_id !== id);
     setCart(cart);
     handlePrice();
-    window.location.reload(false);
   };
 
   const handlePrice = () => {
@@ -95,38 +94,37 @@ const Cart = () => {
 
   return (
     <div div className="content-container">
-      <article>
-        {cart.map((item) => (
-          <div className="cart_box" key={item.id}>
-            <div className="cart_img">
-              <Link to={`/product/id/${item.product_id}`}>
-                <img src={item.image_url} alt="" />
-              </Link>
-              <p>{item.title}</p>
-            </div>
-            <div>
-              <button onClick={() => handleChange(item, 1)}>+</button>
-              <button>{item.amount}</button>
-              <button onClick={() => handleChange(item, -1)}>-</button>
-            </div>
-            <div>
-              <span>{item.price}</span>
-              <button onClick={() => handleRemove(item.product_id)}>
-                Remove
-              </button>
-            </div>
+    <article>
+      {cart.map((item) => (
+        <div className="cart_box" key={item.id}>
+          <div className="cart_img">
+            <Link to={`/product/id/${item.product_id}`}>
+              <img src={item.image_url} alt="" /></Link>
+            <p>{item.title}</p>
           </div>
-        ))}
-        <div className="total">
-          <span>Total Price of your Cart</span>
-          <span>${price}</span>
+          <div>
+            <button onClick={() => handleChange(item, 1)}>+</button>
+            <button>{item.amount}</button>
+            <button onClick={() => handleChange(item, -1)}>-</button>
+          </div>
+          <div>
+            <span>{item.price}</span>
+            <button onClick={() => handleRemove(item.product_id)}>
+              Remove
+            </button>
+          </div>
         </div>
-        <div className="checkout">
-          <Link to="/shipping">
-            <button>Checkout</button>
-          </Link>
-        </div>
-      </article>
+      ))}
+      <div className="total">
+        <span>Total Price of your Cart</span>
+        <span>${price}</span>
+      </div>
+      <div className="checkout">
+      <Link to="/shipping">
+        <button>Checkout</button>
+        </Link>
+      </div>
+    </article>
     </div>
   );
 };
