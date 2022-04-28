@@ -1,0 +1,14 @@
+.content-container{
+  margin-top: -95px;
+  min-height: 81.6vh;
+  background-color: #EEFDF5;
+}
+
+section {
+  padding-top: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  justify-items: center;
+}

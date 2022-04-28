@@ -1,0 +1,229 @@
+
+.scrollDiv {
+  max-height: 100vh;
+  overflow: auto;
+}
+.px-4{
+    background-color: #73fcb7;
+}
+.orders-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 510px;
+    left:40px; 
+}
+.additem
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 550px;
+    left:40px; 
+}
+.adminsales-btn
+{
+    
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 470px;
+    left:40px; 
+}
+.modifyusers-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 430px;
+    left:40px; 
+}
+.discount-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 390px;
+    left:40px; 
+}
+.modifyitems-btn
+{
+    position:absolute; 
+    background-color: #73fcb7;
+    top: 350px;
+    left:40px; 
+}
+.admin-nav-item .nav-link:focus{
+    color:#030303;
+    background-color:#eefdf5 !important;
+    border-color: #d45500;
+    border-bottom-color:transparent !important;
+    border: 2px solid #ffffff;
+}
+.admin-nav-link .nav-link {
+    
+    text-align: left;
+    color:#00719f;
+    border: 2px solid #ffffff;
+    border-bottom-color:#ffffff !important;
+}
+.nav-link:hover{
+    
+}
+.admin-navbar-style
+{
+    background-color: #caebd9 !important;
+    position:relative;
+    width:200px !important;
+    height: 1000px;
+    top: -2px;
+    left: -57px;
+    transform: translateX(-50%);
+    text-align: left;
+    border: 2px solid rgb(0, 0, 0);
+}
+.nav
+{
+    width: 500px;
+}
+.navbar-brand.abs
+    {
+        position: absolute;
+        width: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: left;
+    }
+    .mt-5
+    {
+        padding-top: -10px;
+     
+        padding-left:400px;
+    }
+    a.header
+    {
+        color: #4c926c!important;
+        font-size: 130%;
+    }
+    .first_row, col-sm
+    {
+        position: absolute;
+        background-color: #00719f;
+        top:250px;
+        left:30%;
+        height: 50px;
+        width: 800px;
+    }
+      .thead{
+        position: relative;
+        left:30%;
+        height: 50px;
+        width: 100px;
+        border: 1px solid rgb(0, 0, 0);
+        padding: 8px;
+      }
+      .userid{
+        width: 50px;
+      }
+      .username{
+        width: 50px;
+      }
+      
+      .panel 
+      {
+          
+        position: relative;
+        bottom: 843px;
+        left:260px;
+        width: 1500px;
+      }
+      .panel2 
+      {
+          
+        position: relative;;
+        bottom: 1200px;
+        left:200px;
+        width: 500px;
+      }
+      .table-bordered
+      {
+        
+        border:5px solid black;
+      }
+      .table-responsive
+      {
+        max-height: 300px;
+      }
+      #wrapper div {
+        width: 120px;
+        background-color: rgba(0,0,255,.1)
+      }
+      
+      #wrapper{
+        display: flex;
+        height: 100px;
+        background-color: rgba(255,0,0,0.1);
+      }
+      .Form
+      {
+        position: relative;
+        left:30px;
+      }
+      .div#root {
+        max-height: 920px;
+    }
+    .table-responsive
+    {
+      max-height: 500px;
+      max-width: 1000px;
+    }
+    .my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+.pageHeading
+{
+  position: relative;
+  bottom: 943px;
+  left:260px;
+  width: 1500px;
+
+}
+.savebtn{
+}
+.editbtn
+{
+  width: 50px;
+}
+.delbtn
+{
+  width: 50px;
+
+}
+th{
+  position: sticky;
+  top: 0;
+}
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; background-color: #caebd9};
+.scrollme {
+  overflow-x: auto;
+}
+.table thead th 
+      {
+        table-layout: fixed;
+        word-wrap: break-word;
+        background-color: #caebd9
+      }
+.table{
+}
+.product_form
+{
+  position: relative;
+  left: 1100px;
+  top: -670px;
+}
+.product_table
+{
+  position: relative;
+  top: -70px;
+}

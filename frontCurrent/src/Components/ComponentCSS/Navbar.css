@@ -1,0 +1,260 @@
+.welcome-text {
+  padding-right: 15px;
+}
+.save-ship {
+  color: white;
+}
+
+li {
+  list-style: none;
+}
+.cart {
+  cursor: pointer;
+}
+.cart span:nth-child(1) {
+  font-size: 2rem;
+  color: white;
+  position: relative;
+  padding-right: 30px;
+}
+.cart span:nth-child(2) {
+  padding: 0 3px;
+  background-color: red;
+  color: white;
+  font-weight: bolx;
+  border-radius: 5px;
+  position: relative;
+  top: -10px;
+}
+.searchButton {
+  color: green;
+  font-weight: 400;
+  background-color: white;
+  border-width: 2px;
+  border-color: green;
+  border-radius: 5px;
+  height: 40px;
+  transition: all 0.1s ease;
+}
+
+.searchButton:hover {
+  color: white;
+  font-weight: 400;
+  background-color: green;
+  border-width: 2px;
+  border-radius: 5px;
+  transition: all 0.1s ease;
+}
+
+.fa-fa-shopping-cart {
+  z-index: 1;
+  text-decoration: none;
+  position: absolute;
+  top: 20px;
+  left: 80%;
+  color: white;
+  width: 35px;
+  height: 35px;
+}
+
+.shopping-cart-link {
+  padding-left: 0.75rem;
+}
+
+
+
+.account-link {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgba(219, 236, 228, 0.918);
+  position: relative;
+}
+span {
+  font-size: 1.15rem;
+}
+.account-link:hover {
+  text-decoration: none;
+  color: rgb(100, 245, 100);
+  position: relative;
+}
+
+@media screen and (max-width: 992px) {
+  .shopping-cart-link {
+    padding: 0;
+  }
+}
+
+.form-control {
+  top: 10;
+}
+
+.nav {
+  align-items: center;
+}
+
+.navbar-style {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 16%,
+    rgb(38, 48, 29) 52%,
+    rgba(0, 0, 0, 1) 89%
+  );
+}
+.form-control mr-sm-2 {
+  position: absolute;
+  left: 20%;
+  top: 25%;
+}
+
+.website-name {
+  color: azure;
+  text-decoration: none;
+  transition: all 0.2s ease-in;
+}
+
+.website-name:hover {
+  transition: all 0.2s ease-out;
+  text-decoration: none;
+  color: lightgreen;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(219, 236, 228, 0.918);
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: rgb(100, 245, 100);
+}
+
+.dropdown-menu {
+  background-color: #73fcb7;
+}
+
+img {
+  width: 400px;
+  height: 320px;
+  object-fit: fill;
+  margin-top: 130px;
+}
+
+.column {
+  float: left;
+  width: 30.33%;
+  height: 30%;
+  padding-left: 120px;
+}
+.column img:hover {
+  opacity: 0.6;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #008cba;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 1200px) {
+  .fa-fa-shopping-cart {
+    margin-right: 300px;
+  }
+
+  .search_bar input[type="text"] {
+    position: absolute;
+    left: 63%;
+    top: 2%;
+    width: 25%;
+    background-color: white;
+    color: grey;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .fa-fa-shopping-cart {
+    left: 80%;
+  }
+  .navbar {
+    padding-bottom: 20px;
+  }
+}
+
+/*media screen max-width 920px*/
+@media screen and (max-width: 922px) {
+  .search_bar input[type="text"] {
+    position: absolute;
+    left: 60%;
+    top: 2%;
+    width: 25%;
+    background-color: white;
+    color: grey;
+  }
+
+  .column {
+    float: left;
+    width: 40.33%;
+    height: 40%;
+    padding-left: 50px;
+  }
+  .clothes {
+    left: 20px;
+    top: 55px;
+  }
+}
+/*media screen max-width 812px  optomized✅ */
+@media screen and (max-width: 768px) {
+  html {
+    width: 812;
+    overflow: auto;
+  }
+  .search_bar input[type="text"] {
+    position: absolute;
+    left: 60%;
+    top: 2%;
+    width: 25%;
+    background-color: white;
+    color: grey;
+  }
+}
+
+@media screen and (max-width: 628px) {
+  .fa-fa-shopping-cart {
+    left: 80%;
+  }
+
+  .search_bar input[type="text"] {
+    position: absolute;
+    left: 65%;
+    top: 2%;
+    width: 20%;
+    background-color: white;
+    color: grey;
+  }
+  img {
+    width: 100px;
+    height: 200px;
+    object-fit: scale-down;
+    margin-top: 90px;
+  }
+  .column {
+    float: left;
+    width: 40.33%;
+    height: 40%;
+    padding-left: 50px;
+  }
+  .clothes {
+    left: 20px;
+    top: 55px;
+  }
+}

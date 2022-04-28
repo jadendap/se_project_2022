@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+article {
+  width: 60%;
+  margin: auto;
+}
+
+.cart_box img {
+  width: 80px;
+  height: 80px;
+}
+.cart_img {
+  display: flex;
+  width: 400px;
+}
+
+.cart_img p {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.cart_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+  border-bottom: 2px solid skyblue;
+  padding-bottom: 2px;
+  border: black;
+}
+
+.cart_box div:nth-child(2) button {
+  padding: 2px 5px;
+  font-weight: normal;
+  margin-right: 2px;
+}
+
+.cart_box div:nth-child(3) button {
+  padding: 3px 5px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: skyblue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cart_box div:nth-child(3) button:hover {
+  background-color: darkseagreen;
+}
+.cart_box div:nth-child(3) span {
+  background-color: lightgreen;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total span:nth-child(1) {
+  font-size: 2rem;
+  color: skyblue;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.total span:nth-child(2) {
+  font-size: 2rem;
+  color: green;
+  font-weight: bold;
+}
+.checkout button {
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+  background-color: skyblue;
+  outline: none;
+}
+
+.button-3 {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+ }
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
