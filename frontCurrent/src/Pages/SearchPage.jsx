@@ -68,11 +68,13 @@ const SearchPage = () => {
           <div className="text-container">
             <p>{products.length} Result(s) for {search.id}. </p>
           </div>
-          <section>
+          <div className="product-container">
+          
             {JSON.parse(sessionStorage.searchResults).map((item) => (
               <ProductCards key={item.id} item={item} handleClick={handleAddClick} />
             ))}
-          </section>
+          
+          </div>
           </>
         ) : (
           <>

@@ -61,7 +61,7 @@ const Form = ({ onSubmit }) => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
   const home_redirect = () => {
-    navigate("/");
+    window.location.href = "http://localhost:3000/"
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
