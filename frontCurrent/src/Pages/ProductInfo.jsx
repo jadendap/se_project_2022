@@ -62,7 +62,6 @@ function ProductInfo() {
     console.log("item added");
   };
     return  (
-        <div className="content-container">
       loading ? <div>Loading...</div>
            : error ? <div>{error}</div>
            :
@@ -117,7 +116,6 @@ function ProductInfo() {
                        </Card>
                    </Col>
                </Row>
-           </div>
            </div>
     );
 }

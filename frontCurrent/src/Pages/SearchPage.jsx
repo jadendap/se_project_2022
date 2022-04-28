@@ -62,7 +62,6 @@ const SearchPage = () => {
 
 
   return (
-    <div className="content-container">
     <div className="searchPage-container">
         {products.length ? (
           <>
@@ -85,7 +84,6 @@ const SearchPage = () => {
           </>
         )}
       
-    </div>
     </div>
   );
 };

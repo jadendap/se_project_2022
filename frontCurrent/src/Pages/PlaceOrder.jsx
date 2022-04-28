@@ -103,7 +103,7 @@ const getCart = async () => {
         getCart();
        }, []);
   return (
-    <div className='content-container'>
+    <div>
       <h1 className="my-3">Preview Order</h1>
       <Row>
         <Col md={8}>

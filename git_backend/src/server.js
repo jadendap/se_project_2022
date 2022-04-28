@@ -711,9 +711,9 @@ server.delete("/inventory", jsonParser, async (req, res) => {
   const dbResult = await db("product_inventory").where("id", req.body.id).del();
   //await db("product_inventory").where({ id:  req.body.id}).del();
 });
-server.get("/orders/:id", async (req, res) => {
+server.get("/order/:id", async (req, res) => {
   const id = req.params.id;
-  const orders = await db.select("*").from("orders").where("customer_id", id);
+  const orders = await db("orders").where("customer_id", id);
   res.send(orders);
 });
 //delete cart bases on session id;

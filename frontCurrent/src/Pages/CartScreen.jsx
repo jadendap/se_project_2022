@@ -95,7 +95,6 @@ const Cart = () => {
     }, []);
 
     return (
-        <div className="content-container">
         <div id="cartItems">
 
             <h1>Cart</h1>
@@ -166,7 +165,6 @@ const Cart = () => {
                     </Card>
                 </Col>
             </Row>
-        </div>
         </div>
     );
 };
