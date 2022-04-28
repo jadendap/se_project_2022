@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import React, { useState, useEffect } from "react";
-
+import Shipping from "./Shipping";
 export default function PlaceOrder() {
 const [cart, setCart] = useState([]);
 const [customer, setCustomerInfo] = useState('');

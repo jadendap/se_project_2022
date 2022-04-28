@@ -12,7 +12,7 @@ const formStyle = {
   borderRadius: "5px",
   background: "black",
   width: "700px",
-  height: "1000px",
+  height: "700x",
   display: "block",
 };
 
@@ -43,7 +43,9 @@ const submitStyle = {
   color: "black",
   display: "block",
 };
-
+const headerStyle = {
+color: "white",
+};
 export default function Shipping() {
     const navigate = useNavigate();
     const [ccNumber, setCCNumber] = useState('');
@@ -56,11 +58,14 @@ export default function Shipping() {
 
     return (
         <div >
+        <p><br/></p>
             <form style={formStyle} className="form" onSubmit={submitHandler}>
-                  <h1 style={labelStyle}>Payment</h1>   zzZ
+                  <h1 style={headerStyle}>Payment</h1>
                 <div>
                   <label style={labelStyle} htmlFor="ccNumber" >Credit Card Number: </label>
                    <input style={inputStyle}
+                   minlength="16"
+                   maxlength="16"
                     type="text"
                     id="ccNumber"
                     placeholder="Enter Credit Card Number"
@@ -112,6 +117,8 @@ export default function Shipping() {
                                <label style={labelStyle} htmlFor="cvv">CVV: </label>
                                <input style={inputStyle}
                                type="text"
+                               minlength="3"
+                               maxlength="3"
                                id="cvv"
                                placeholder="Enter cvv"
                                value={cvv}
@@ -125,6 +132,7 @@ export default function Shipping() {
                                 <button style={submitStyle} className="primary" type="submit">Continue</button>
                             </div>
                         </form>
+                        <p><br/></p>
         </div>
     )
 }
